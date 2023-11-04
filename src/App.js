@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import Home from './Home.js';
+import Navbar from './Navbar.js';
+import FAQ from './FAQ.js';
+import AboutUs from './AboutUs.js';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import backgroundImage from './Images/seb-creativo-3jG-UM8IZ40-unsplash.jpg'; // Replace with the actual path to your image
+import secondImage from './Images/florian-steciuk-F7Rl02ir0Gg-unsplash2.jpg'; // Replace with the actual path to your image
+import './App.css'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar/>
+      <Home/>
+      <AboutUs/>
+      <FAQ/>
+      {/* Additional content */}
     </div>
   );
 }

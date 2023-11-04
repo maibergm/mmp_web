@@ -1,0 +1,7 @@
+@media (max-width: 1000px) {
+  .modal-dialog {
+    max-width: 50%;
+    margin: 0 auto; /* Center the modal horizontally */
+    padding: 10;
+  }
+}

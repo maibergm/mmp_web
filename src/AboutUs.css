@@ -1,0 +1,29 @@
+.aboutus-container {
+  max-width: 100%;
+  display:flex;
+}
+.aboutus-first-section,
+.aboutus-second-section {
+  flex: 1;
+  margin: 0; /* Remove margin to eliminate the gap */
+  padding: 20px; /* Add padding for spacing within sections */
+}
+.aboutus-first-image,
+.aboutus-second-image {
+  height:50vh;
+}
+.aboutus-first-heading,
+.aboutus-second-heading {
+  text-align: center;
+}
+
+@media (max-width:768px) {
+  .aboutus-container {
+    display:block;
+    max-width: 100%;
+  }
+  .aboutus-first-image,
+  .aboutus-second-image {
+    height:30vh;
+  }
+}
