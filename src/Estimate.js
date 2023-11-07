@@ -33,12 +33,42 @@ function Estimate() {
     surveyType:'',
 
   };
+  const [bedModal, setBedModal] = useState('Bed');
+  const [bedPartModal, setBedPartModal] = useState('');
   const [selectedRooms, setSelectedRooms] = useState([]);
   const [selectedBedroomItems, setSelectedBedroomItems] = useState([]);
+  const [selectedBeds,setSelectedBeds] = useState ([]);
+  const [selectedBedParts,setSelectedBedParts] = useState ([]);
   const [formData, setFormData] = useState(initialFormData);
   const [tooltipOpen, setTooltipOpen] = useState(false); // State for tooltip visibility
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = (e) => {
+  e.preventDefault();
+  setShow(true);
+};
+  function handleBedPartsClick(e, item) {
+    e.preventDefault();
+    if (selectedBedParts.includes(item)) {
+      setSelectedBedParts(selectedBedParts.filter((selected) => selected !== item));
+      setBedPartModal('');
+    } else {
+      setSelectedBedParts([item]);
+      setBedPartModal(item);
+    }
+  }
 
+  function handleBedClick(e, item) {
+    e.preventDefault();
+    if (selectedBeds.includes(item)) {
+      setSelectedBeds(selectedBeds.filter((selected) => selected !== item));
+      setBedModal(item);
+    } else {
+      setSelectedBeds([...selectedBedroomItems, item]);
+      setBedModal(item);
+    }
+  }
   function handleItemClick(e, item) {
     e.preventDefault();
     if (selectedBedroomItems.includes(item)) {
@@ -68,7 +98,59 @@ function Estimate() {
     // Clear the form or perform any additional tasks
     setFormData(initialFormData);
   }
+  function modalTester() {
 
+
+    return (
+      <>
+      <button
+        className={`form-control room-button ${ bedPartModal ? 'selected' : ''}`}
+        onClick={handleShow} >
+        {bedModal + ' ' + bedPartModal}
+      </button>
+
+        <Modal show={show} onHide={handleClose}>
+
+          <Modal.Body>
+            <div className ="bed-picker">
+              <button
+                className={`form-control room-button ${selectedBeds.includes('Single') ? 'selected' : ''}`}
+                onClick={(e) => handleBedClick(e, 'Single')}>Single
+              </button>
+              <button
+                className={`form-control room-button ${selectedBeds.includes('Double') ? 'selected' : ''}`}
+                onClick={(e) => handleBedClick(e, 'Double')}>Double
+              </button>
+              <button
+                className = {`form-control room-button ${selectedBeds.includes('Queen') ? 'selected' : ''}`}
+                onClick={(e) => handleBedClick(e, 'Queen')}>Queen
+              </button>
+              <button
+                className={`form-control room-button ${selectedBeds.includes('King') ? 'selected' : ''}`}
+                onClick={(e) => handleBedClick(e, 'King')}>King
+              </button>
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <div className = "form-control bed-picker">
+              <button
+                className = {`form-control room-button ${selectedBedParts.includes('Full Bed') ? 'selected' : ''}`}
+                onClick={(e) => handleBedPartsClick(e, 'Full Bed')}>Full Bed
+              </button>
+              <button
+                className={`form-control room-button ${selectedBedParts.includes('Mattress') ? 'selected' : ''}`}
+                onClick={(e) => handleBedPartsClick(e, 'Mattress')}>Mattress Only
+              </button>
+              <button
+                className={`form-control room-button ${selectedBedParts.includes('Bed Base') ? 'selected' : ''}`}
+                onClick={(e) => handleBedPartsClick(e, 'Bed Base')}>Base Only
+              </button>
+            </div>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
 
   function renderPersonalInformation() {
     return (
@@ -324,21 +406,8 @@ function Estimate() {
 }
   function renderBedroomList() {
     const bedroomItems = [
-      { name: "Queen Bed full", volume: 30 },
-      { name: "King Bed full", volume: 40 },
-      { name: "Double bed full", volume: 25 },
-      { name: "Single bed full", volume: 20 },
-      { name: "Queen Mattress", volume: 10 },
-      { name: "King Mattress", volume: 15 },
-      { name: "Double Mattress", volume: 10 },
-      { name: "Single Mattress", volume: 5 },
-      { name: "Queen base only", volume: 15 },
-      { name: "King bed base only", volume: 20 },
-      { name: "Double bed base only", volume: 15 },
-      { name: "Single bed base", volume: 10 },
       { name: "Bunk Bed", volume: 35 },
-      { name: "Chest of Drawers large", volume: 20 },
-      { name: "Chest of Drawers medium", volume: 15 },
+      { name: "Chest of Drawers", volume: 20 },
       { name: "Triple Wardrobe", volume: 40 },
       { name: "Double Wardrobe", volume: 30 },
       { name: "Single Wardrobe", volume: 20 },
@@ -375,7 +444,7 @@ function Estimate() {
         <>
         <h4 className="d-flex justify-content-center">Bedroom</h4>
          <div className="inventory-list">
-         
+          {modalTester()}
            {bedroomItems.map((item, index) => (
              <div className="mb-3" key={index}>
                <button
@@ -526,7 +595,7 @@ function Estimate() {
         <p>Surname: {formData.surname}</p>
         <p>E-mail: {formData.email}</p>
         <p>Phone: {formData.phone}</p>
-        <p>addy: {selectedRooms[0]}</p>
+        <p>addy: {selectedBeds[0]}</p>
 
         </div>
       </div>
