@@ -40,13 +40,21 @@ function Estimate() {
   const [selectedBeds,setSelectedBeds] = useState ([]);
   const [selectedBedParts,setSelectedBedParts] = useState ([]);
   const [formData, setFormData] = useState(initialFormData);
-  const [tooltipOpen, setTooltipOpen] = useState(false); // State for tooltip visibility
+  const [tooltipOpen, setTooltipOpen] = useState(false);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = (e) => {
   e.preventDefault();
-  setShow(true);
+  if(bedPartModal !== '') {
+    setBedPartModal('');
+    setBedModal('Bed');
+    setSelectedBeds('');
+    setSelectedBedParts('');
+  }
+  else {
+    setShow(true);
+  }
 };
   function handleBedPartsClick(e, item) {
     e.preventDefault();
@@ -60,15 +68,26 @@ function Estimate() {
   }
 
   function handleBedClick(e, item) {
-    e.preventDefault();
-    if (selectedBeds.includes(item)) {
-      setSelectedBeds(selectedBeds.filter((selected) => selected !== item));
-      setBedModal(item);
+  e.preventDefault();
+  if (selectedBeds.includes(item)) {
+    setSelectedBeds(selectedBeds.filter((selected) => selected !== item));
+    setBedModal(item);
+  } else {
+    setSelectedBeds([...selectedBedroomItems, item]);
+    setBedModal(item);
+  }
+
+  if (selectedBedParts.length === 0) {
+    setBedPartModal('Full Bed'); // Set a default value when selectedBeds is empty
+    if (selectedBedParts.includes('Full Bed')) {
+      setSelectedBedParts(selectedBedParts.filter((selected) => selected !== 'Full Bed'));
+      setBedPartModal('');
     } else {
-      setSelectedBeds([...selectedBedroomItems, item]);
-      setBedModal(item);
+      setSelectedBedParts(['Full Bed']);
+      setBedPartModal('Full Bed');
     }
   }
+}
   function handleItemClick(e, item) {
     e.preventDefault();
     if (selectedBedroomItems.includes(item)) {
@@ -103,14 +122,7 @@ function Estimate() {
 
     return (
       <>
-      <button
-        className={`form-control room-button ${ bedPartModal ? 'selected' : ''}`}
-        onClick={handleShow} >
-        {bedModal + ' ' + bedPartModal}
-      </button>
-
         <Modal show={show} onHide={handleClose}>
-
           <Modal.Body>
             <div className ="bed-picker">
               <button
@@ -444,7 +456,14 @@ function Estimate() {
         <>
         <h4 className="d-flex justify-content-center">Bedroom</h4>
          <div className="inventory-list">
-          {modalTester()}
+           <div className = "mb-3">
+             <button
+               className={`form-control item-button ${ bedPartModal ? 'selected' : ''}`}
+               onClick={handleShow} >
+               {bedModal + ' ' + bedPartModal}
+             </button>
+             {modalTester()}
+           </div>
            {bedroomItems.map((item, index) => (
              <div className="mb-3" key={index}>
                <button
