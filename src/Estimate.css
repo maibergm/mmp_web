@@ -1,5 +1,4 @@
-
-
+/*Main form styling */
 .Estimate {
   display: flex;
   flex-direction:column;
@@ -16,15 +15,27 @@
   width: 50%;
   margin-top:30px;
 }
+
+/*Personal details */
 .customer-name {
   display: grid;
   grid-template-columns: 1fr 2fr 2fr;
-  width:99%;
+
 }
 .customer-email {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+.form-subheading {
+  border-bottom: 1px inset #ddd; /* Adjust the border properties as needed */
+  display: flex; /* Ensure the underline spans the entire width of the container */
+  padding-bottom: 5px; /* Add some space between the text and the underline */
+}
+.input-boxes {
+  margin:5px;
+}
+
+/*Address details*/
 .address {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -33,151 +44,32 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.form-control {
-  width: 90%;
-}
-.survey-render{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.room-picker{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-.estimate-form {
-  display: flex;
-  justify-content: center;
-  width: 100%;
 
-}
-.submit-button {
-  margin-top: 20px;
-  padding: 10px;
-  width: 10%;
-  background-color: black; /* Set the background color to black */
-  color: white; /* Set the text color to white */
-  border-radius: 5px; /* Add rounded edges */
-  cursor: pointer; /* Add a pointer cursor on hover for usability */
-}
-.form-subheading {
-  border-bottom: 1px inset #ddd; /* Adjust the border properties as needed */
-  display: flex; /* Ensure the underline spans the entire width of the container */
-  padding-bottom: 5px; /* Add some space between the text and the underline */
-  width:95%;
-}
-.inventory-heading {
-  padding-top: 10px;
-}
-.submit-button:hover {
-  background-color: darkgray; /* Change background color on hover (optional) */
-  /* You can adjust the hover styles to your preference */
-}
 .boxSupplyAmount {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-.small-text {
-  font-size: 80%; /* You can adjust the percentage to make it smaller or larger */
+
+
+
+/*TESTING */
+.button-group-test{
+  display: block;
+  width:25%;
 }
-.inventory-list {
-  display: grid;
-  grid-template-columns: repeat(5,1fr);
-}
-.bed-picker-button {
-  margin: 10px;
-  padding: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.item-button {
-  margin: 5px;
-  padding: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.item-dropdown {
-  margin: 5px;
-  padding: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  padding-right: 1rem; /* Increase or decrease as needed */
-  padding-left: 1rem;  /* Increase or decrease as needed */
-}
-.item-dropdown::after {
-  display: none;
-}
-.item-button.selected {
-  background-color: #000;
-  color: #fff;
-}
-.inventory-heading {
-  text-align: center;
-}
-.room-button {
-  margin: 5px;
-  padding: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.room-button.selected {
-  background-color: #000;
-  color: #fff;
-}
-.bed-modal {
+.button-group-test2{
   display: flex;
-  justify-content: center; /* Horizontal centering */
-  align-items: center;     /* Vertical centering */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background overlay */
-  z-index: 9999; /* Ensure the modal is on top of other content */
+  width: 75%;
+  margin:0 auto;
 }
-.bed-picker{
+
+.survey-picker{
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: 1fr 1fr;
 }
-@media (max-width:768px) {
-  .form {
-    width: 90%;
-  }
-  .form-subheading {
-    border-bottom: 1px inset #ddd; /* Adjust the border properties as needed */
-    display: flex; /* Ensure the underline spans the entire width of the container */
-    padding-bottom: 5px; /* Add some space between the text and the underline */
-    width:100%;
-  }
-  .customer-name {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-  .customer-email {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-  .address {
-    display: block;
-    grid-template-columns: 1fr;
-  }
-  .address textarea {
-    width: 100%;
-  }
-  .address-subinfo{
-    display: block;
-    grid-template-columns: 1fr;
-  }
-  .inventory-list {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-  }
-  .room-picker{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .survey-render{
-    display: grid;
-    grid-template-columns:1fr;
-  }
+.button-picker-groups {
+
+}
+.room-button{
+  padding:20px;
 }
