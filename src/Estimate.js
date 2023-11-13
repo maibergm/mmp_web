@@ -37,19 +37,47 @@ function Estimate() {
   const [selectedDiningRoomItems, setSelectedDiningRoomItems] = useState([]);
   const [selectedOutsideItems, setSelectedOutsideItems] = useState([]);
   const [selectedBathroomItems, setSelectedBathroomItems] = useState([]);
-  const [selectedMiscItems, setSelectedMiscItems] = useState([]);
-  const [selectedRooms, setSelectedRooms] = useState(["Bedroom"]);
-
-  const[selectedItems, setSelectedItems] = useState([]);
+  const [selectedRooms, setSelectedRooms] = useState([]);
+  const [inputValues, setInputValues] = useState({});
 
   {/* Button Clicker Handlers */}
-  function addItem(e, item) {
-    e.preventDefault();
-    if (selectedItems.includes(item)) {
+  function addItem(event, itemName) {
+  if (!inputValues.hasOwnProperty(itemName)) {
+    // Update the state with the new value for the specific itemName
+    setInputValues((prevInputValues) => ({
+      ...prevInputValues,
+      [itemName]: 1,
+    }));
+  }
+  else {
+    let newValue = inputValues[itemName];
+    newValue = newValue + 1;
+    setInputValues((prevInputValues) => ({
+      ...prevInputValues,
+      [itemName]: newValue,
+    }));
+  }
+}
+  function handleQtyChange(event, itemName) {
+    let valueCheck = parseInt(event.target.value, 10);
+    if(!isNaN(valueCheck) && valueCheck >= 0) {
+      if (event.target.value === '0') {
+      // Create a copy of the inputValues object without the specified key
+        const newInputValues = { ...inputValues };
+        delete newInputValues[itemName];
 
-    } else {
-      const newItem = {item, }
-      setSelectedItems([...selectedItems, item]);
+        // Update the state with the new object
+        setInputValues(newInputValues);
+      }
+      else {
+        const { value } = event.target;
+
+        // Update the state with the new value for the specific itemName
+        setInputValues((prevInputValues) => ({
+          ...prevInputValues,
+          [itemName]: value,
+        }));
+      }
     }
   }
 
@@ -76,7 +104,6 @@ function Estimate() {
       setSelectedRooms([room]);
     }
   }
-
 
   function personalInformation() {
     return (
@@ -375,12 +402,16 @@ function Estimate() {
           {bedroomItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-button ${selectedBedroomItems.includes(item.name) ? 'selected' : ''}`}
-                 onClick={(e) => handleItemClick(e, item.name)}>{item.name}
+                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
-               <button className ="qty-button">
-                  0
-               </button>
+                <input
+                  className = "qty-button"
+                  type="number"
+                  value={inputValues[item.name] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleQtyChange(e, item.name)}
+                />
              </div>
            ))}
         </div>
@@ -407,12 +438,16 @@ function Estimate() {
           {kitchenItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-button ${selectedKitchenItems.includes(item.name) ? 'selected' : ''}`}
-                 onClick={(e) => handleItemClick(e, item.name)}>{item.name}
+                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
-               <button className ="qty-button">
-                  0
-               </button>
+                <input
+                  className = "qty-button"
+                  type="number"
+                  value={inputValues[item.name] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleQtyChange(e, item.name)}
+                />
              </div>
            ))}
         </div>
@@ -434,12 +469,16 @@ function Estimate() {
           {officeItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-button ${selectedOfficeItems.includes(item.name) ? 'selected' : ''}`}
-                 onClick={(e) => handleItemClick(e, item.name)}>{item.name}
+                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
-               <button className ="qty-button">
-                  0
-               </button>
+                <input
+                  className = "qty-button"
+                  type="number"
+                  value={inputValues[item.name] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleQtyChange(e, item.name)}
+                />
              </div>
            ))}
         </div>
@@ -466,12 +505,16 @@ function Estimate() {
           {livingRoomItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-button ${selectedLivingRoomItems.includes(item.name) ? 'selected' : ''}`}
-                 onClick={(e) => handleItemClick(e, item.name)}>{item.name}
+                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
-               <button className ="qty-button">
-                  0
-               </button>
+                <input
+                  className = "qty-button"
+                  type="number"
+                  value={inputValues[item.name] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleQtyChange(e, item.name)}
+                />
              </div>
            ))}
         </div>
@@ -493,12 +536,16 @@ function Estimate() {
           {diningRoomItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-button ${selectedDiningRoomItems.includes(item.name) ? 'selected' : ''}`}
-                 onClick={(e) => handleItemClick(e, item.name)}>{item.name}
+                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
-               <button className ="qty-button">
-                  0
-               </button>
+                <input
+                  className = "qty-button"
+                  type="number"
+                  value={inputValues[item.name] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleQtyChange(e, item.name)}
+                />
              </div>
            ))}
         </div>
@@ -526,12 +573,16 @@ function Estimate() {
           {outsideItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-button ${selectedOutsideItems.includes(item.name) ? 'selected' : ''}`}
-                 onClick={(e) => handleItemClick(e, item.name)}>{item.name}
+                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
-               <button className ="qty-button">
-                  0
-               </button>
+                <input
+                  className = "qty-button"
+                  type="number"
+                  value={inputValues[item.name] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleQtyChange(e, item.name)}
+                />
              </div>
            ))}
         </div>
@@ -554,12 +605,16 @@ function Estimate() {
           {bathroomItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-button ${selectedBathroomItems.includes(item.name) ? 'selected' : ''}`}
-                 onClick={(e) => handleItemClick(e, item.name)}>{item.name}
+                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
-               <button className ="qty-button">
-                  0
-               </button>
+                <input
+                  className = "qty-button"
+                  type="number"
+                  value={inputValues[item.name] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleQtyChange(e, item.name)}
+                />
              </div>
            ))}
         </div>
@@ -583,12 +638,16 @@ function Estimate() {
           {miscItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-button ${selectedItems.includes(item.name) ? 'selected' : ''}`}
+                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
-               <button className ="qty-button">
-                  {item.qty}
-               </button>
+                <input
+                  className = "qty-button"
+                  type="number"
+                  value={inputValues[item.name] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleQtyChange(e, item.name)}
+                />
              </div>
            ))}
         </div>
@@ -604,38 +663,38 @@ function Estimate() {
         <label className="form-label"> Choose all the items that you want to bring </label>
         <div className = "survey-group">
           <div className = "button-group-test" >
-              <button
-                  className={`room-button ${selectedRooms.includes('Bedroom') ? 'selected' : ''}`}
-                  onClick={(e) => handleRoomClick(e, 'Bedroom')}>Bedroom
-              </button>
-              <button
-                className={`room-button ${selectedRooms.includes('Kitchen') ? 'selected' : ''}`}
-                onClick={(e) => handleRoomClick(e, 'Kitchen')}>Kitchen
-              </button>
-              <button
-                className={`room-button ${selectedRooms.includes('Office') ? 'selected' : ''}`}
-                onClick={(e) => handleRoomClick(e, 'Office')}>Office
-              </button>
-              <button
-                className={`room-button ${selectedRooms.includes('Living Room') ? 'selected' : ''}`}
-                onClick={(e) => handleRoomClick(e, 'Living Room')}>Living Room
-              </button>
-              <button
-                className={`room-button ${selectedRooms.includes('Dining Room') ? 'selected' : ''}`}
-                onClick={(e) => handleRoomClick(e, 'Dining Room')}>Dining Room
-              </button>
-              <button
-                className={`room-button ${selectedRooms.includes('Outside') ? 'selected' : ''}`}
-                onClick={(e) => handleRoomClick(e, 'Outside')}>Garage/Garden
-              </button>
-              <button
-                className={`room-button ${selectedRooms.includes('Bathroom') ? 'selected' : ''}`}
-                onClick={(e) => handleRoomClick(e, 'Bathroom')}>Bathroom
-              </button>
-              <button
-                className={`room-button ${selectedRooms.includes('Misc') ? 'selected' : ''}`}
-                onClick={(e) => handleRoomClick(e, 'Misc')}>Boxes & Misc
-              </button>
+            <button
+              className={`form-control room-button ${selectedRooms.includes('Bedroom') ? 'selected' : ''}`}
+              onClick={(e) => handleRoomClick(e, 'Bedroom')}>Bedroom
+            </button>
+            <button
+              className={`form-control room-button ${selectedRooms.includes('Kitchen') ? 'selected' : ''}`}
+              onClick={(e) => handleRoomClick(e, 'Kitchen')}>Kitchen
+            </button>
+            <button
+              className={`form-control room-button ${selectedRooms.includes('Living Room') ? 'selected' : ''}`}
+              onClick={(e) => handleRoomClick(e, 'Living Room')}>Living Room
+            </button>
+            <button
+              className={`form-control room-button ${selectedRooms.includes('Dining Room') ? 'selected' : ''}`}
+              onClick={(e) => handleRoomClick(e, 'Dining Room')}>Dining Room
+            </button>
+            <button
+              className={`form-control room-button ${selectedRooms.includes('Outside') ? 'selected' : ''}`}
+              onClick={(e) => handleRoomClick(e, 'Outside')}>Garage/Garden
+            </button>
+            <button
+              className={`form-control room-button ${selectedRooms.includes('Bathroom') ? 'selected' : ''}`}
+              onClick={(e) => handleRoomClick(e, 'Bathroom')}>Bathroom
+            </button>
+            <button
+              className={`form-control room-button ${selectedRooms.includes('Misc') ? 'selected' : ''}`}
+              onClick={(e) => handleRoomClick(e, 'Misc')}>Boxes & Misc
+            </button>
+            <button
+              className={`form-control room-button ${selectedRooms.includes('Office') ? 'selected' : ''}`}
+              onClick={(e) => handleRoomClick(e, 'Office')}>Office
+            </button>
           </div>
           {bedroomItemPicker()}
           {kitchenItemPicker()}
@@ -661,7 +720,13 @@ function Estimate() {
         {packingInformation()}
         {survey()}
       </div>
-      <p>Title: {formData.surveyType}</p>
+      {Object.keys(inputValues).map((itemName, index) => (
+        <div key={index}>
+          <p>{itemName}: {inputValues[itemName]}</p>
+        </div>
+      ))}
+      <p>addy: {selectedRooms[0]}</p>
+
     </div>
   );
 }
