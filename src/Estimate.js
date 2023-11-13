@@ -32,8 +32,27 @@ function Estimate() {
   const [formData, setFormData] = useState(clientFormData);
   const [selectedBedroomItems, setSelectedBedroomItems] = useState([]);
   const [selectedKitchenItems, setSelectedKitchenItems] = useState([]);
+  const [selectedOfficeItems, setSelectedOfficeItems] = useState([]);
+  const [selectedLivingRoomItems, setSelectedLivingRoomItems] = useState([]);
+  const [selectedDiningRoomItems, setSelectedDiningRoomItems] = useState([]);
+  const [selectedOutsideItems, setSelectedOutsideItems] = useState([]);
+  const [selectedBathroomItems, setSelectedBathroomItems] = useState([]);
+  const [selectedMiscItems, setSelectedMiscItems] = useState([]);
   const [selectedRooms, setSelectedRooms] = useState(["Bedroom"]);
+
+  const[selectedItems, setSelectedItems] = useState([]);
+
   {/* Button Clicker Handlers */}
+  function addItem(e, item) {
+    e.preventDefault();
+    if (selectedItems.includes(item)) {
+
+    } else {
+      const newItem = {item, }
+      setSelectedItems([...selectedItems, item]);
+    }
+  }
+
   function handleInputChange(e) {
     const { name, value } = e.target;
     setFormData({
@@ -309,7 +328,7 @@ function Estimate() {
     if(formData.surveyType === "selfSurvey") {
       return(
         <>
-          {renderRoomPicker()}
+          {renderItemPicker()}
         </>
 
       )
@@ -400,42 +419,234 @@ function Estimate() {
       )
     }
   }
-  function renderRoomPicker() {
-    return (
-      <div className = "survey-group">
-        <div className = "button-group-test" >
-            <button
-                className={`room-button ${selectedRooms.includes('Bedroom') ? 'selected' : ''}`}
-                onClick={(e) => handleRoomClick(e, 'Bedroom')}>Bedroom
-            </button>
-            <button
-              className={`room-button ${selectedRooms.includes('Kitchen') ? 'selected' : ''}`}
-              onClick={(e) => handleRoomClick(e, 'Kitchen')}>Kitchen
-            </button>
-            <button
-              className={`room-button ${selectedRooms.includes('Office') ? 'selected' : ''}`}
-              onClick={(e) => handleRoomClick(e, 'Office')}>Office
-            </button>
-            <button
-              className={`room-button ${selectedRooms.includes('Living Room') ? 'selected' : ''}`}
-              onClick={(e) => handleRoomClick(e, 'Living Room')}>Living Room
-            </button>
-            <button
-              className={`room-button ${selectedRooms.includes('Garden/Balcony') ? 'selected' : ''}`}
-              onClick={(e) => handleRoomClick(e, 'Garden/Balcony')}>Garden/Balcony
-            </button>
-            <button
-              className={`room-button ${selectedRooms.includes('Garage') ? 'selected' : ''}`}
-              onClick={(e) => handleRoomClick(e, 'Garage')}>Garage
-            </button>
-            <button
-              className={`room-button ${selectedRooms.includes('boxesMisc') ? 'selected' : ''}`}
-              onClick={(e) => handleRoomClick(e, 'boxesMisc')}>Boxes & Misc
-            </button>
+  function officeItemPicker() {
+    const officeItems = [
+      { name: "Desk", volume: 35 },
+      { name: "Office Chair", volume: 20 },
+      { name: "Pedestal", volume: 40 },
+      { name: "Filing Cabinet", volume: 30 },
+      { name: "Desktop Computer", volume: 20 },
+      { name: "Printer", volume: 25 },
+    ];
+    if(selectedRooms.includes("Office")) {
+      return(
+        <div className = "item-picker">
+          {officeItems.map((item, index) => (
+             <div className="item-list" key={index}>
+               <button
+                 className={`item-button ${selectedOfficeItems.includes(item.name) ? 'selected' : ''}`}
+                 onClick={(e) => handleItemClick(e, item.name)}>{item.name}
+               </button>
+               <button className ="qty-button">
+                  0
+               </button>
+             </div>
+           ))}
         </div>
-        {bedroomItemPicker()}
-        {kitchenItemPicker()}
-      </div>
+      )
+    }
+  }
+  function livingRoomItemPicker() {
+    const livingRoomItems = [
+      { name: "2 Seater Sofa", volume: 35 },
+      { name: "3 Seater Sofa", volume: 20 },
+      { name: "Armchair", volume: 40 },
+      { name: "Coffee Table", volume: 30 },
+      { name: "TV", volume: 20 },
+      { name: "TV Unit", volume: 25 },
+      { name: "Side Tables", volume: 20 },
+      { name: "Book Case", volume: 15 },
+      { name: "Rug", volume: 10 },
+      { name: "Artwork", volume: 15 },
+      { name: "Lamps", volume: 15 },
+    ];
+    if(selectedRooms.includes("Living Room")) {
+      return(
+        <div className = "item-picker">
+          {livingRoomItems.map((item, index) => (
+             <div className="item-list" key={index}>
+               <button
+                 className={`item-button ${selectedLivingRoomItems.includes(item.name) ? 'selected' : ''}`}
+                 onClick={(e) => handleItemClick(e, item.name)}>{item.name}
+               </button>
+               <button className ="qty-button">
+                  0
+               </button>
+             </div>
+           ))}
+        </div>
+      )
+    }
+  }
+  function diningRoomItemPicker() {
+    const diningRoomItems = [
+      { name: "6 Person Dining Table", volume: 35 },
+      { name: "8+ Person Dining Table", volume: 20 },
+      { name: "Dining Chairs", volume: 40 },
+      { name: "Display Unit", volume: 30 },
+      { name: "Side Board", volume: 20 },
+      { name: "Rug", volume: 25 },
+    ];
+    if(selectedRooms.includes("Dining Room")) {
+      return(
+        <div className = "item-picker">
+          {diningRoomItems.map((item, index) => (
+             <div className="item-list" key={index}>
+               <button
+                 className={`item-button ${selectedDiningRoomItems.includes(item.name) ? 'selected' : ''}`}
+                 onClick={(e) => handleItemClick(e, item.name)}>{item.name}
+               </button>
+               <button className ="qty-button">
+                  0
+               </button>
+             </div>
+           ))}
+        </div>
+      )
+    }
+  }
+  function outsideGarageItemPicker() {
+    const outsideItems = [
+      { name: "Garden Table", volume: 35 },
+      { name: "Chairs", volume: 20 },
+      { name: "Bench", volume: 40 },
+      { name: "Parasol", volume: 30 },
+      { name: "Lawn Mower", volume: 20 },
+      { name: "Barbecue", volume: 25 },
+      { name: "Bicycle", volume: 20 },
+      { name: "Trampoline", volume: 40 },
+      { name: "Swing Set", volume: 30 },
+      { name: "Play House", volume: 20 },
+      { name: "Tool Chest", volume: 25 },
+      { name: "Extendable Ladder", volume: 20 },
+    ];
+    if(selectedRooms.includes("Outside")) {
+      return(
+        <div className = "item-picker">
+          {outsideItems.map((item, index) => (
+             <div className="item-list" key={index}>
+               <button
+                 className={`item-button ${selectedOutsideItems.includes(item.name) ? 'selected' : ''}`}
+                 onClick={(e) => handleItemClick(e, item.name)}>{item.name}
+               </button>
+               <button className ="qty-button">
+                  0
+               </button>
+             </div>
+           ))}
+        </div>
+      )
+    }
+  }
+  function bathroomItemPicker() {
+    const bathroomItems = [
+      { name: "Bathroom Cabinet", volume: 35 },
+      { name: "Storage Units", volume: 20 },
+      { name: "Mirror", volume: 40 },
+      { name: "Bath", volume: 30 },
+      { name: "Sink", volume: 20 },
+      { name: "Rug", volume: 25 },
+    ];
+
+    if(selectedRooms.includes("Bathroom")) {
+      return(
+        <div className = "item-picker">
+          {bathroomItems.map((item, index) => (
+             <div className="item-list" key={index}>
+               <button
+                 className={`item-button ${selectedBathroomItems.includes(item.name) ? 'selected' : ''}`}
+                 onClick={(e) => handleItemClick(e, item.name)}>{item.name}
+               </button>
+               <button className ="qty-button">
+                  0
+               </button>
+             </div>
+           ))}
+        </div>
+      )
+    }
+  }
+  function miscItemPicker() {
+    const miscItems = [
+      { name: "Wardrobe Boxes", volume: 35,qty:1 },
+      { name: "Large Boxes", volume: 20,qty:0 },
+      { name: "Medium Boxes", volume: 40,qty:0 },
+      { name: "Small Boxes", volume: 30,qty:0 },
+      { name: "Paintings", volume: 20 ,qty:0},
+      { name: "Pool Table", volume: 25,qty:0 },
+      { name: "Treadmill", volume: 20,qty:0 },
+      { name: "Fish Tank", volume: 40 ,qty:0},
+    ];
+    if(selectedRooms.includes("Misc")) {
+      return(
+        <div className = "item-picker">
+          {miscItems.map((item, index) => (
+             <div className="item-list" key={index}>
+               <button
+                 className={`item-button ${selectedItems.includes(item.name) ? 'selected' : ''}`}
+                 onClick={(e) => addItem(e, item.name)}>{item.name}
+               </button>
+               <button className ="qty-button">
+                  {item.qty}
+               </button>
+             </div>
+           ))}
+        </div>
+      )
+    }
+  }
+
+
+  function renderItemPicker() {
+    return (
+      <>
+        <h5 className = "form-subheading">Inventory Items </h5>
+        <label className="form-label"> Choose all the items that you want to bring </label>
+        <div className = "survey-group">
+          <div className = "button-group-test" >
+              <button
+                  className={`room-button ${selectedRooms.includes('Bedroom') ? 'selected' : ''}`}
+                  onClick={(e) => handleRoomClick(e, 'Bedroom')}>Bedroom
+              </button>
+              <button
+                className={`room-button ${selectedRooms.includes('Kitchen') ? 'selected' : ''}`}
+                onClick={(e) => handleRoomClick(e, 'Kitchen')}>Kitchen
+              </button>
+              <button
+                className={`room-button ${selectedRooms.includes('Office') ? 'selected' : ''}`}
+                onClick={(e) => handleRoomClick(e, 'Office')}>Office
+              </button>
+              <button
+                className={`room-button ${selectedRooms.includes('Living Room') ? 'selected' : ''}`}
+                onClick={(e) => handleRoomClick(e, 'Living Room')}>Living Room
+              </button>
+              <button
+                className={`room-button ${selectedRooms.includes('Dining Room') ? 'selected' : ''}`}
+                onClick={(e) => handleRoomClick(e, 'Dining Room')}>Dining Room
+              </button>
+              <button
+                className={`room-button ${selectedRooms.includes('Outside') ? 'selected' : ''}`}
+                onClick={(e) => handleRoomClick(e, 'Outside')}>Garage/Garden
+              </button>
+              <button
+                className={`room-button ${selectedRooms.includes('Bathroom') ? 'selected' : ''}`}
+                onClick={(e) => handleRoomClick(e, 'Bathroom')}>Bathroom
+              </button>
+              <button
+                className={`room-button ${selectedRooms.includes('Misc') ? 'selected' : ''}`}
+                onClick={(e) => handleRoomClick(e, 'Misc')}>Boxes & Misc
+              </button>
+          </div>
+          {bedroomItemPicker()}
+          {kitchenItemPicker()}
+          {officeItemPicker()}
+          {livingRoomItemPicker()}
+          {diningRoomItemPicker()}
+          {outsideGarageItemPicker()}
+          {bathroomItemPicker()}
+          {miscItemPicker()}
+        </div>
+      </>
   );
 }
 

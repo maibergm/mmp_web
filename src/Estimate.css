@@ -67,7 +67,7 @@
   border: 2px solid #ccc; /* Border style, color, and width */
   padding: 20px; /* Add some padding to create space between the content and the border */
   border-radius: 5px; /* Rounded corners for the border */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
 
 }
 .button-group-test {
@@ -112,6 +112,10 @@
 .item-button:focus {
   outline: none; /* Remove default focus outline */
   box-shadow: 0 0 0 2px #007BFF; /* Add a blue border when focused */
+}
+.item-button.selected {
+  background-color: #000;
+  color: #fff;
 }
 .room-button{
   display: inline-block;
