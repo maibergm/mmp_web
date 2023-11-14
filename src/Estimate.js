@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Select from 'react-select'
 import { Modal, Button, Form } from 'react-bootstrap';
 import Navbar from './Navbar';
 import './Estimate.css';
@@ -29,6 +30,14 @@ function Estimate() {
     boxSupplyWardrobe:'',
     surveyType:'',
   };
+  const colourOptions = [
+    { value: 'Bicycle', label: 'Bicycle' },
+    { value: 'Tent', label: 'Tent' },
+    { value: 'Sleeping Bag', label: 'Sleeping Bag' },
+    { value: 'Toy Car', label: 'Toy Car' },
+    { value: 'Ladder', label: 'Ladder' },
+    // Add more options as needed
+  ];
   const [formData, setFormData] = useState(clientFormData);
   const [selectedBedroomItems, setSelectedBedroomItems] = useState([]);
   const [selectedKitchenItems, setSelectedKitchenItems] = useState([]);
@@ -39,6 +48,7 @@ function Estimate() {
   const [selectedBathroomItems, setSelectedBathroomItems] = useState([]);
   const [selectedRooms, setSelectedRooms] = useState(["Bedroom"]);
   const [pickedItems, setPickedItems] = useState({});
+  const [extraItems, setExtraItems] = useState({});
 
   {/* Button Clicker Handlers */}
   function addItem(event, itemName) {
@@ -58,7 +68,22 @@ function Estimate() {
     }));
   }
 }
-
+  function addExtraItem(item) {
+    if (!extraItems.hasOwnProperty(item)) {
+      setExtraItems((prevExtraItem) => ({
+        ...prevExtraItem,
+        [item]: 1,
+      }));
+    }
+    else {
+      let newValue = extraItems[item];
+      newValue = newValue + 1;
+      setPickedItems((prevExtraItem) => ({
+        ...prevExtraItem,
+        [item]: newValue,
+      }));
+    }
+  }
   function subItem(event, itemName) {
     event.preventDefault();
     if (!pickedItems.hasOwnProperty(itemName)) {
@@ -677,7 +702,7 @@ function Estimate() {
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
-                  className = "qty-button"
+                  className = {`qty-button ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
                   type="number"
                   value={pickedItems[item.name] || ''}
                   name="inputValue"
@@ -685,6 +710,25 @@ function Estimate() {
                 />
              </div>
            ))}
+           <div className="additional-item-list">
+            {Object.keys(extraItems).map((item, index) => (
+              <button
+                key={index}
+                className="item-desc">
+                {item}
+              </button>
+            ))}
+          </div>
+           <Select
+             className="additional-item-dropdown"
+             defaultValue={colourOptions[0]}
+             name="color"
+             options={colourOptions}
+             onChange={(selectedOption) => {
+                const selectedItem = selectedOption.value;
+                addExtraItem(selectedItem); // Pass the selected value to your addExtraItem function
+              }}
+             />
         </div>
       )
     }

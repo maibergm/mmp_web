@@ -132,7 +132,7 @@
   box-shadow: 0 0 0 2px #007BFF; /* Add a blue border when focused */
 }
 .item-button.selected {
-  background-color: #000;
+  background-color: black;
   color: #fff;
 }
 .room-button{
@@ -152,7 +152,16 @@
   background-color: #000;
   color: #fff;
 }
-
+.additional-item-dropdown{
+  padding-left: 10px;
+  padding-top: 20px;
+}
+.additional-item-list{
+  padding-top: 10px;
+  padding-left: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+}
 @media (max-width:768px) {
   .form {
     width: 95%;
