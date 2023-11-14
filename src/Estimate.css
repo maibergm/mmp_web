@@ -53,18 +53,19 @@
 .item-list{
   display: grid;
   grid-template-columns: 5fr 1fr;
+  padding-left: 10px;
+
 }
 .survey-group{
   display: flex;
   width:95%;
   margin: 0 auto; /* Add this line to center the container */
-  border: 2px solid #ccc; /* Border style, color, and width */
   padding: 20px; /* Add some padding to create space between the content and the border */
-  border-radius: 5px; /* Rounded corners for the border */
+
 
 
 }
-.button-group-test {
+.room-picker-button {
   flex:1;
 }
 .item-picker{
@@ -100,6 +101,13 @@
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   border-bottom-right-radius:5px;
   border-top-right-radius: 5px;
+}
+.qty-button.selected {
+  background-color: #000;
+  color: #fff;
+}
+.room-heading{
+  padding-left: 10px;
 }
 .item-button {
   display: inline-block;

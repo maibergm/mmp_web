@@ -37,44 +37,69 @@ function Estimate() {
   const [selectedDiningRoomItems, setSelectedDiningRoomItems] = useState([]);
   const [selectedOutsideItems, setSelectedOutsideItems] = useState([]);
   const [selectedBathroomItems, setSelectedBathroomItems] = useState([]);
-  const [selectedRooms, setSelectedRooms] = useState([]);
-  const [inputValues, setInputValues] = useState({});
+  const [selectedRooms, setSelectedRooms] = useState(["Bedroom"]);
+  const [pickedItems, setPickedItems] = useState({});
 
   {/* Button Clicker Handlers */}
   function addItem(event, itemName) {
-  if (!inputValues.hasOwnProperty(itemName)) {
+  if (!pickedItems.hasOwnProperty(itemName)) {
     // Update the state with the new value for the specific itemName
-    setInputValues((prevInputValues) => ({
-      ...prevInputValues,
+    setPickedItems((prevPickedItemValue) => ({
+      ...prevPickedItemValue,
       [itemName]: 1,
     }));
   }
   else {
-    let newValue = inputValues[itemName];
+    let newValue = pickedItems[itemName];
     newValue = newValue + 1;
-    setInputValues((prevInputValues) => ({
-      ...prevInputValues,
+    setPickedItems((prevPickedItemValue) => ({
+      ...prevPickedItemValue,
       [itemName]: newValue,
     }));
   }
 }
+
+  function subItem(event, itemName) {
+    event.preventDefault();
+    if (!pickedItems.hasOwnProperty(itemName)) {
+
+    }
+    else {
+      let newValue = pickedItems[itemName];
+      newValue = newValue - 1;
+      if(newValue === 0) {
+        const newpickedItems = { ...pickedItems };
+        delete newpickedItems[itemName];
+
+        // Update the state with the new object
+        setPickedItems(newpickedItems);
+      }
+      else {
+        setPickedItems((prevPickedItemValue) => ({
+          ...prevPickedItemValue,
+          [itemName]: newValue,
+        }));
+      }
+    }
+  }
+
   function handleQtyChange(event, itemName) {
     let valueCheck = parseInt(event.target.value, 10);
     if(!isNaN(valueCheck) && valueCheck >= 0) {
       if (event.target.value === '0') {
-      // Create a copy of the inputValues object without the specified key
-        const newInputValues = { ...inputValues };
-        delete newInputValues[itemName];
+      // Create a copy of the pickedItems object without the specified key
+        const newpickedItems = { ...pickedItems };
+        delete newpickedItems[itemName];
 
         // Update the state with the new object
-        setInputValues(newInputValues);
+        setPickedItems(newpickedItems);
       }
       else {
         const { value } = event.target;
 
         // Update the state with the new value for the specific itemName
-        setInputValues((prevInputValues) => ({
-          ...prevInputValues,
+        setPickedItems((prevPickedItemValue) => ({
+          ...prevPickedItemValue,
           [itemName]: value,
         }));
       }
@@ -322,6 +347,7 @@ function Estimate() {
     }
     return null; // Return null when "No" is selected
   }
+
   function survey() {
     return (
       <>
@@ -361,7 +387,7 @@ function Estimate() {
       )
     }
   }
-
+  {/*Item picker for each room */}
   function bedroomItemPicker() {
     const bedroomItems = [
       { name: "Bunk Bed", volume: 35 },
@@ -402,13 +428,14 @@ function Estimate() {
           {bedroomItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 className={`item-desc ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onContextMenu={(e) => subItem(e, item.name)}
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
                   className = "qty-button"
                   type="number"
-                  value={inputValues[item.name] || ''}
+                  value={pickedItems[item.name] || ''}
                   name="inputValue"
                   onChange={(e) => handleQtyChange(e, item.name)}
                 />
@@ -438,13 +465,14 @@ function Estimate() {
           {kitchenItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 className={`item-desc ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onContextMenu={(e) => subItem(e, item.name)}
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
                   className = "qty-button"
                   type="number"
-                  value={inputValues[item.name] || ''}
+                  value={pickedItems[item.name] || ''}
                   name="inputValue"
                   onChange={(e) => handleQtyChange(e, item.name)}
                 />
@@ -469,13 +497,14 @@ function Estimate() {
           {officeItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 className={`item-desc ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onContextMenu={(e) => subItem(e, item.name)}
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
                   className = "qty-button"
                   type="number"
-                  value={inputValues[item.name] || ''}
+                  value={pickedItems[item.name] || ''}
                   name="inputValue"
                   onChange={(e) => handleQtyChange(e, item.name)}
                 />
@@ -505,13 +534,14 @@ function Estimate() {
           {livingRoomItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 className={`item-desc ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onContextMenu={(e) => subItem(e, item.name)}
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
                   className = "qty-button"
                   type="number"
-                  value={inputValues[item.name] || ''}
+                  value={pickedItems[item.name] || ''}
                   name="inputValue"
                   onChange={(e) => handleQtyChange(e, item.name)}
                 />
@@ -536,13 +566,14 @@ function Estimate() {
           {diningRoomItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 className={`item-desc ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onContextMenu={(e) => subItem(e, item.name)}
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
                   className = "qty-button"
                   type="number"
-                  value={inputValues[item.name] || ''}
+                  value={pickedItems[item.name] || ''}
                   name="inputValue"
                   onChange={(e) => handleQtyChange(e, item.name)}
                 />
@@ -573,13 +604,14 @@ function Estimate() {
           {outsideItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 className={`item-desc ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onContextMenu={(e) => subItem(e, item.name)}
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
                   className = "qty-button"
                   type="number"
-                  value={inputValues[item.name] || ''}
+                  value={pickedItems[item.name] || ''}
                   name="inputValue"
                   onChange={(e) => handleQtyChange(e, item.name)}
                 />
@@ -602,16 +634,18 @@ function Estimate() {
     if(selectedRooms.includes("Bathroom")) {
       return(
         <div className = "item-picker">
+          <h2 className="room-heading">Bathroom</h2>
           {bathroomItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 className={`item-desc ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onContextMenu={(e) => subItem(e, item.name)}
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
-                  className = "qty-button"
+                  className = {`qty-button ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
                   type="number"
-                  value={inputValues[item.name] || ''}
+                  value={pickedItems[item.name] || ''}
                   name="inputValue"
                   onChange={(e) => handleQtyChange(e, item.name)}
                 />
@@ -638,13 +672,14 @@ function Estimate() {
           {miscItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
-                 className={`item-desc ${inputValues.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 className={`item-desc ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
+                 onContextMenu={(e) => subItem(e, item.name)}
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
                   className = "qty-button"
                   type="number"
-                  value={inputValues[item.name] || ''}
+                  value={pickedItems[item.name] || ''}
                   name="inputValue"
                   onChange={(e) => handleQtyChange(e, item.name)}
                 />
@@ -655,44 +690,43 @@ function Estimate() {
     }
   }
 
-
   function renderItemPicker() {
     return (
       <>
-        <h5 className = "form-subheading">Inventory Items </h5>
+        <h5 className = "form-subheading">Inventory </h5>
         <label className="form-label"> Choose all the items that you want to bring </label>
         <div className = "survey-group">
-          <div className = "button-group-test" >
+          <div className = "room-picker-button" >
             <button
-              className={`form-control room-button ${selectedRooms.includes('Bedroom') ? 'selected' : ''}`}
+              className={` room-button ${selectedRooms.includes('Bedroom') ? 'selected' : ''}`}
               onClick={(e) => handleRoomClick(e, 'Bedroom')}>Bedroom
             </button>
             <button
-              className={`form-control room-button ${selectedRooms.includes('Kitchen') ? 'selected' : ''}`}
+              className={` room-button ${selectedRooms.includes('Kitchen') ? 'selected' : ''}`}
               onClick={(e) => handleRoomClick(e, 'Kitchen')}>Kitchen
             </button>
             <button
-              className={`form-control room-button ${selectedRooms.includes('Living Room') ? 'selected' : ''}`}
+              className={` room-button ${selectedRooms.includes('Living Room') ? 'selected' : ''}`}
               onClick={(e) => handleRoomClick(e, 'Living Room')}>Living Room
             </button>
             <button
-              className={`form-control room-button ${selectedRooms.includes('Dining Room') ? 'selected' : ''}`}
+              className={` room-button ${selectedRooms.includes('Dining Room') ? 'selected' : ''}`}
               onClick={(e) => handleRoomClick(e, 'Dining Room')}>Dining Room
             </button>
             <button
-              className={`form-control room-button ${selectedRooms.includes('Outside') ? 'selected' : ''}`}
+              className={`room-button ${selectedRooms.includes('Outside') ? 'selected' : ''}`}
               onClick={(e) => handleRoomClick(e, 'Outside')}>Garage/Garden
             </button>
             <button
-              className={`form-control room-button ${selectedRooms.includes('Bathroom') ? 'selected' : ''}`}
+              className={`room-button ${selectedRooms.includes('Bathroom') ? 'selected' : ''}`}
               onClick={(e) => handleRoomClick(e, 'Bathroom')}>Bathroom
             </button>
             <button
-              className={`form-control room-button ${selectedRooms.includes('Misc') ? 'selected' : ''}`}
+              className={`room-button ${selectedRooms.includes('Misc') ? 'selected' : ''}`}
               onClick={(e) => handleRoomClick(e, 'Misc')}>Boxes & Misc
             </button>
             <button
-              className={`form-control room-button ${selectedRooms.includes('Office') ? 'selected' : ''}`}
+              className={`room-button ${selectedRooms.includes('Office') ? 'selected' : ''}`}
               onClick={(e) => handleRoomClick(e, 'Office')}>Office
             </button>
           </div>
@@ -720,9 +754,9 @@ function Estimate() {
         {packingInformation()}
         {survey()}
       </div>
-      {Object.keys(inputValues).map((itemName, index) => (
+      {Object.keys(pickedItems).map((itemName, index) => (
         <div key={index}>
-          <p>{itemName}: {inputValues[itemName]}</p>
+          <p>{itemName}: {pickedItems[itemName]}</p>
         </div>
       ))}
       <p>addy: {selectedRooms[0]}</p>
