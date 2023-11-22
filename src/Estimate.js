@@ -30,7 +30,7 @@ function Estimate() {
     boxSupplyWardrobe:'',
     surveyType:'',
   };
-  const colourOptions = [
+  const extraItemList = [
     { value: 'Bicycle', label: 'Bicycle' },
     { value: 'Tent', label: 'Tent' },
     { value: 'Sleeping Bag', label: 'Sleeping Bag' },
@@ -46,6 +46,7 @@ function Estimate() {
   const [selectedDiningRoomItems, setSelectedDiningRoomItems] = useState([]);
   const [selectedOutsideItems, setSelectedOutsideItems] = useState([]);
   const [selectedBathroomItems, setSelectedBathroomItems] = useState([]);
+  const [extraMiscItems, setExtraMiscItems] = useState([]);
   const [selectedRooms, setSelectedRooms] = useState(["Bedroom"]);
   const [pickedItems, setPickedItems] = useState({});
   const [extraItems, setExtraItems] = useState({});
@@ -68,17 +69,17 @@ function Estimate() {
     }));
   }
 }
-  function addExtraItem(item) {
-    if (!extraItems.hasOwnProperty(item)) {
-      setExtraItems((prevExtraItem) => ({
+  function addExtraItem(item, itemArray, setItemArray) {
+    if (!itemArray.hasOwnProperty(item)) {
+      setItemArray((prevExtraItem) => ({
         ...prevExtraItem,
         [item]: 1,
       }));
     }
     else {
-      let newValue = extraItems[item];
+      let newValue = itemArray[item];
       newValue = newValue + 1;
-      setPickedItems((prevExtraItem) => ({
+      setItemArray((prevExtraItem) => ({
         ...prevExtraItem,
         [item]: newValue,
       }));
@@ -107,6 +108,29 @@ function Estimate() {
       }
     }
   }
+  function subExtraItem(event, item, itemArray, setItemArray) {
+    event.preventDefault();
+    if (!itemArray.hasOwnProperty(item)) {
+
+    }
+    else {
+      let newValue = itemArray[item];
+      newValue = newValue - 1;
+      if(newValue === 0) {
+        const newpickedItems = { ...itemArray };
+        delete newpickedItems[item];
+
+        // Update the state with the new object
+        setItemArray(newpickedItems);
+      }
+      else {
+        setItemArray((prevPickedItemValue) => ({
+          ...prevPickedItemValue,
+          [item]: newValue,
+        }));
+      }
+    }
+  }
 
   function handleQtyChange(event, itemName) {
     let valueCheck = parseInt(event.target.value, 10);
@@ -130,7 +154,28 @@ function Estimate() {
       }
     }
   }
+  function handleExtraItemQtyChange(event, item, itemArray, setItemArray) {
+    let valueCheck = parseInt(event.target.value, 10);
+    if(!isNaN(valueCheck) && valueCheck >= 0) {
+      if (event.target.value === '0') {
+      // Create a copy of the pickedItems object without the specified key
+        const newpickedItems = { ...itemArray };
+        delete newpickedItems[item];
 
+        // Update the state with the new object
+        setItemArray(newpickedItems);
+      }
+      else {
+        const { value } = event.target;
+
+        // Update the state with the new value for the specific itemName
+        setItemArray((prevPickedItemValue) => ({
+          ...prevPickedItemValue,
+          [item]: value,
+        }));
+      }
+    }
+  }
   function handleInputChange(e) {
     const { name, value } = e.target;
     setFormData({
@@ -710,25 +755,40 @@ function Estimate() {
                 />
              </div>
            ))}
-           <div className="additional-item-list">
-            {Object.keys(extraItems).map((item, index) => (
-              <button
-                key={index}
-                className="item-desc">
-                {item}
-              </button>
+            {Object.keys(extraMiscItems).map((item, index) => (
+              <div className="item-list">
+                <button
+                  className={`item-desc ${extraMiscItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  onContextMenu={(e) => subExtraItem(e, item,extraMiscItems,setExtraMiscItems)}
+                  onClick={(e) =>  addExtraItem(item, extraMiscItems, setExtraMiscItems)}>{item}
+                </button>
+                <input
+                  className = {`qty-button ${extraMiscItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  type="number"
+                  value={extraMiscItems[item] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleExtraItemQtyChange(e, item, extraMiscItems, setExtraMiscItems)}
+                />
+              </div>
             ))}
-          </div>
            <Select
              className="additional-item-dropdown"
-             defaultValue={colourOptions[0]}
+             placeholder="Add additional items.."
              name="color"
-             options={colourOptions}
+             options={extraItemList}
              onChange={(selectedOption) => {
                 const selectedItem = selectedOption.value;
-                addExtraItem(selectedItem); // Pass the selected value to your addExtraItem function
+                addExtraItem(selectedItem, extraMiscItems, setExtraMiscItems); // Pass the selected value to your addExtraItem function
               }}
-             />
+           />
+           <textarea
+             className="form-control"
+             name="textareaInput"
+             rows="2"
+             cols="50"
+             placeholder="Enter any additional items not found..">
+           </textarea>
+
         </div>
       )
     }
@@ -800,7 +860,7 @@ function Estimate() {
       </div>
       {Object.keys(pickedItems).map((itemName, index) => (
         <div key={index}>
-          <p>{itemName}: {pickedItems[itemName]}</p>
+          <p>{itemName}: {extraMiscItems[itemName]}</p>
         </div>
       ))}
       <p>addy: {selectedRooms[0]}</p>

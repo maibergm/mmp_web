@@ -53,7 +53,6 @@
 .item-list{
   display: grid;
   grid-template-columns: 5fr 1fr;
-  padding-left: 10px;
 
 }
 .survey-group{
@@ -70,7 +69,7 @@
 }
 .item-picker{
   flex: 3;
-
+  padding-left: 10px;
 }
 .item-desc{
   padding: .75rem;
@@ -86,8 +85,8 @@
   border-top-left-radius: 5px;
 }
 .item-desc.selected{
-  background-color: #000;
-  color: #fff;
+  background-color: #DFDDDD;
+  color: black;
 }
 .qty-button {
   padding: .75rem;
@@ -103,8 +102,8 @@
   border-top-right-radius: 5px;
 }
 .qty-button.selected {
-  background-color: #000;
-  color: #fff;
+  background-color: #DFDDDD;
+  color: black;
 }
 .room-heading{
   padding-left: 10px;
@@ -149,12 +148,12 @@
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .room-button.selected {
-  background-color: #000;
-  color: #fff;
+  background-color: #DFDDDD;
+  color: black;
 }
 .additional-item-dropdown{
-  padding-left: 10px;
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 .additional-item-list{
   padding-top: 10px;
