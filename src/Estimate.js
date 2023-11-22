@@ -39,13 +39,13 @@ function Estimate() {
     // Add more options as needed
   ];
   const [formData, setFormData] = useState(clientFormData);
-  const [selectedBedroomItems, setSelectedBedroomItems] = useState([]);
-  const [selectedKitchenItems, setSelectedKitchenItems] = useState([]);
-  const [selectedOfficeItems, setSelectedOfficeItems] = useState([]);
-  const [selectedLivingRoomItems, setSelectedLivingRoomItems] = useState([]);
-  const [selectedDiningRoomItems, setSelectedDiningRoomItems] = useState([]);
-  const [selectedOutsideItems, setSelectedOutsideItems] = useState([]);
-  const [selectedBathroomItems, setSelectedBathroomItems] = useState([]);
+  const [extraBedroomItems, setExtraBedroomItems] = useState([]);
+  const [extraKitchenItems, setExtraKitchenItems] = useState([]);
+  const [extraOfficeItems, setExtraOfficeItems] = useState([]);
+  const [extraLivingRoomItems, setExtraLivingRoomItems] = useState([]);
+  const [extraDiningRoomItems, setExtraDiningRoomItems] = useState([]);
+  const [extraOutsideItems, setExtraOutsideItems] = useState([]);
+  const [extraBathroomItems, setExtraBathroomItems] = useState([]);
   const [extraMiscItems, setExtraMiscItems] = useState([]);
   const [selectedRooms, setSelectedRooms] = useState(["Bedroom"]);
   const [pickedItems, setPickedItems] = useState({});
@@ -182,14 +182,6 @@ function Estimate() {
       ...formData,
       [name]: value,
     });
-  }
-  function handleItemClick(e, item) {
-    e.preventDefault();
-    if (selectedBedroomItems.includes(item)) {
-      setSelectedBedroomItems(selectedBedroomItems.filter((selected) => selected !== item));
-    } else {
-      setSelectedBedroomItems([...selectedBedroomItems, item]);
-    }
   }
   function handleRoomClick(e,room) {
      e.preventDefault();
@@ -503,7 +495,7 @@ function Estimate() {
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
-                  className = "qty-button"
+                  className = {`qty-button ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
                   type="number"
                   value={pickedItems[item.name] || ''}
                   name="inputValue"
@@ -511,6 +503,39 @@ function Estimate() {
                 />
              </div>
            ))}
+            {Object.keys(extraBedroomItems).map((item, index) => (
+              <div className="item-list">
+                <button
+                  className={`item-desc ${extraBedroomItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  onContextMenu={(e) => subExtraItem(e, item,extraBedroomItems,setExtraBedroomItems)}
+                  onClick={(e) =>  addExtraItem(item, extraBedroomItems, setExtraBedroomItems)}>{item}
+                </button>
+                <input
+                  className = {`qty-button ${extraBedroomItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  type="number"
+                  value={extraBedroomItems[item] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleExtraItemQtyChange(e, item, extraBedroomItems, setExtraBedroomItems)}
+                />
+              </div>
+            ))}
+           <Select
+             className="additional-item-dropdown"
+             placeholder="Add additional items.."
+             name="color"
+             options={extraItemList}
+             onChange={(selectedOption) => {
+                const selectedItem = selectedOption.value;
+                addExtraItem(selectedItem, extraBedroomItems, setExtraBedroomItems); // Pass the selected value to your addExtraItem function
+              }}
+           />
+           <textarea
+             className="form-control"
+             name="textareaInput"
+             rows="2"
+             cols="50"
+             placeholder="Enter any additional items not found..">
+           </textarea>
         </div>
       )
     }
@@ -540,7 +565,7 @@ function Estimate() {
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
-                  className = "qty-button"
+                  className = {`qty-button ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
                   type="number"
                   value={pickedItems[item.name] || ''}
                   name="inputValue"
@@ -548,6 +573,39 @@ function Estimate() {
                 />
              </div>
            ))}
+            {Object.keys(extraKitchenItems).map((item, index) => (
+              <div className="item-list">
+                <button
+                  className={`item-desc ${extraKitchenItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  onContextMenu={(e) => subExtraItem(e, item,extraKitchenItems,setExtraKitchenItems)}
+                  onClick={(e) =>  addExtraItem(item, extraKitchenItems, setExtraKitchenItems)}>{item}
+                </button>
+                <input
+                  className = {`qty-button ${extraKitchenItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  type="number"
+                  value={extraKitchenItems[item] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleExtraItemQtyChange(e, item, extraKitchenItems, setExtraKitchenItems)}
+                />
+              </div>
+            ))}
+           <Select
+             className="additional-item-dropdown"
+             placeholder="Add additional items.."
+             name="color"
+             options={extraItemList}
+             onChange={(selectedOption) => {
+                const selectedItem = selectedOption.value;
+                addExtraItem(selectedItem, extraKitchenItems, setExtraKitchenItems); // Pass the selected value to your addExtraItem function
+              }}
+           />
+           <textarea
+             className="form-control"
+             name="textareaInput"
+             rows="2"
+             cols="50"
+             placeholder="Enter any additional items not found..">
+           </textarea>
         </div>
       )
     }
@@ -572,7 +630,7 @@ function Estimate() {
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
-                  className = "qty-button"
+                  className = {`qty-button ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
                   type="number"
                   value={pickedItems[item.name] || ''}
                   name="inputValue"
@@ -580,6 +638,39 @@ function Estimate() {
                 />
              </div>
            ))}
+            {Object.keys(extraOfficeItems).map((item, index) => (
+              <div className="item-list">
+                <button
+                  className={`item-desc ${extraOfficeItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  onContextMenu={(e) => subExtraItem(e, item,extraOfficeItems,setExtraOfficeItems)}
+                  onClick={(e) =>  addExtraItem(item, extraOfficeItems, setExtraOfficeItems)}>{item}
+                </button>
+                <input
+                  className = {`qty-button ${extraOfficeItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  type="number"
+                  value={extraOfficeItems[item] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleExtraItemQtyChange(e, item, extraOfficeItems, setExtraOfficeItems)}
+                />
+              </div>
+            ))}
+           <Select
+             className="additional-item-dropdown"
+             placeholder="Add additional items.."
+             name="color"
+             options={extraItemList}
+             onChange={(selectedOption) => {
+                const selectedItem = selectedOption.value;
+                addExtraItem(selectedItem, extraOfficeItems, setExtraOfficeItems); // Pass the selected value to your addExtraItem function
+              }}
+           />
+           <textarea
+             className="form-control"
+             name="textareaInput"
+             rows="2"
+             cols="50"
+             placeholder="Enter any additional items not found..">
+           </textarea>
         </div>
       )
     }
@@ -609,7 +700,7 @@ function Estimate() {
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
-                  className = "qty-button"
+                  className = {`qty-button ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
                   type="number"
                   value={pickedItems[item.name] || ''}
                   name="inputValue"
@@ -617,6 +708,39 @@ function Estimate() {
                 />
              </div>
            ))}
+            {Object.keys(extraLivingRoomItems).map((item, index) => (
+              <div className="item-list">
+                <button
+                  className={`item-desc ${extraLivingRoomItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  onContextMenu={(e) => subExtraItem(e, item, extraLivingRoomItems,setExtraLivingRoomItems)}
+                  onClick={(e) =>  addExtraItem(item, extraLivingRoomItems, setExtraLivingRoomItems)}>{item}
+                </button>
+                <input
+                  className = {`qty-button ${extraLivingRoomItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  type="number"
+                  value={extraLivingRoomItems[item] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleExtraItemQtyChange(e, item, extraLivingRoomItems, setExtraLivingRoomItems)}
+                />
+              </div>
+            ))}
+           <Select
+             className="additional-item-dropdown"
+             placeholder="Add additional items.."
+             name="color"
+             options={extraItemList}
+             onChange={(selectedOption) => {
+                const selectedItem = selectedOption.value;
+                addExtraItem(selectedItem, extraLivingRoomItems, setExtraLivingRoomItems); // Pass the selected value to your addExtraItem function
+              }}
+           />
+           <textarea
+             className="form-control"
+             name="textareaInput"
+             rows="2"
+             cols="50"
+             placeholder="Enter any additional items not found..">
+           </textarea>
         </div>
       )
     }
@@ -641,7 +765,7 @@ function Estimate() {
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
-                  className = "qty-button"
+                  className = {`qty-button ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
                   type="number"
                   value={pickedItems[item.name] || ''}
                   name="inputValue"
@@ -649,6 +773,39 @@ function Estimate() {
                 />
              </div>
            ))}
+            {Object.keys(extraDiningRoomItems).map((item, index) => (
+              <div className="item-list">
+                <button
+                  className={`item-desc ${extraDiningRoomItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  onContextMenu={(e) => subExtraItem(e, item,extraDiningRoomItems,setExtraDiningRoomItems)}
+                  onClick={(e) =>  addExtraItem(item, extraDiningRoomItems, setExtraDiningRoomItems)}>{item}
+                </button>
+                <input
+                  className = {`qty-button ${extraDiningRoomItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  type="number"
+                  value={extraDiningRoomItems[item] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleExtraItemQtyChange(e, item, extraDiningRoomItems, setExtraDiningRoomItems)}
+                />
+              </div>
+            ))}
+           <Select
+             className="additional-item-dropdown"
+             placeholder="Add additional items.."
+             name="color"
+             options={extraItemList}
+             onChange={(selectedOption) => {
+                const selectedItem = selectedOption.value;
+                addExtraItem(selectedItem, extraDiningRoomItems, setExtraDiningRoomItems); // Pass the selected value to your addExtraItem function
+              }}
+           />
+           <textarea
+             className="form-control"
+             name="textareaInput"
+             rows="2"
+             cols="50"
+             placeholder="Enter any additional items not found..">
+           </textarea>
         </div>
       )
     }
@@ -679,7 +836,7 @@ function Estimate() {
                  onClick={(e) => addItem(e, item.name)}>{item.name}
                </button>
                 <input
-                  className = "qty-button"
+                  className = {`qty-button ${pickedItems.hasOwnProperty(item.name) ? 'selected' : ''}`}
                   type="number"
                   value={pickedItems[item.name] || ''}
                   name="inputValue"
@@ -687,6 +844,39 @@ function Estimate() {
                 />
              </div>
            ))}
+            {Object.keys(extraOutsideItems).map((item, index) => (
+              <div className="item-list">
+                <button
+                  className={`item-desc ${extraOutsideItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  onContextMenu={(e) => subExtraItem(e, item,extraOutsideItems,setExtraOutsideItems)}
+                  onClick={(e) =>  addExtraItem(item, extraOutsideItems, setExtraOutsideItems)}>{item}
+                </button>
+                <input
+                  className = {`qty-button ${extraOutsideItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  type="number"
+                  value={extraOutsideItems[item] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleExtraItemQtyChange(e, item, extraOutsideItems, setExtraOutsideItems)}
+                />
+              </div>
+            ))}
+           <Select
+             className="additional-item-dropdown"
+             placeholder="Add additional items.."
+             name="color"
+             options={extraItemList}
+             onChange={(selectedOption) => {
+                const selectedItem = selectedOption.value;
+                addExtraItem(selectedItem, extraOutsideItems, setExtraOutsideItems); // Pass the selected value to your addExtraItem function
+              }}
+           />
+           <textarea
+             className="form-control"
+             name="textareaInput"
+             rows="2"
+             cols="50"
+             placeholder="Enter any additional items not found..">
+           </textarea>
         </div>
       )
     }
@@ -704,7 +894,6 @@ function Estimate() {
     if(selectedRooms.includes("Bathroom")) {
       return(
         <div className = "item-picker">
-          <h2 className="room-heading">Bathroom</h2>
           {bathroomItems.map((item, index) => (
              <div className="item-list" key={index}>
                <button
@@ -721,6 +910,39 @@ function Estimate() {
                 />
              </div>
            ))}
+            {Object.keys(extraBathroomItems).map((item, index) => (
+              <div className="item-list">
+                <button
+                  className={`item-desc ${extraBathroomItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  onContextMenu={(e) => subExtraItem(e, item,extraBathroomItems,setExtraBathroomItems)}
+                  onClick={(e) =>  addExtraItem(item, extraBathroomItems, setExtraBathroomItems)}>{item}
+                </button>
+                <input
+                  className = {`qty-button ${extraBathroomItems.hasOwnProperty(item) ? 'selected' : ''}`}
+                  type="number"
+                  value={extraBathroomItems[item] || ''}
+                  name="inputValue"
+                  onChange={(e) => handleExtraItemQtyChange(e, item, extraBathroomItems, setExtraBathroomItems)}
+                />
+              </div>
+            ))}
+           <Select
+             className="additional-item-dropdown"
+             placeholder="Add additional items.."
+             name="color"
+             options={extraItemList}
+             onChange={(selectedOption) => {
+                const selectedItem = selectedOption.value;
+                addExtraItem(selectedItem, extraBathroomItems, setExtraBathroomItems); // Pass the selected value to your addExtraItem function
+              }}
+           />
+           <textarea
+             className="form-control"
+             name="textareaInput"
+             rows="2"
+             cols="50"
+             placeholder="Enter any additional items not found..">
+           </textarea>
         </div>
       )
     }
@@ -788,7 +1010,6 @@ function Estimate() {
              cols="50"
              placeholder="Enter any additional items not found..">
            </textarea>
-
         </div>
       )
     }
