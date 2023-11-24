@@ -139,48 +139,42 @@ function Estimate() {
     }
   }
 
-  function handleQtyChange(event, itemName) {
+  function handleQtyChange(event, itemName, itemArray, setItemArray) {
     let valueCheck = parseInt(event.target.value, 10);
-    if(!isNaN(valueCheck) && valueCheck >= 0) {
-      if (event.target.value === '0') {
-      // Create a copy of the pickedItems object without the specified key
-        const newpickedItems = { ...pickedItems };
-        delete newpickedItems[itemName];
-
-        // Update the state with the new object
-        setPickedItems(newpickedItems);
-      }
-      else {
-        const { value } = event.target;
-
-        // Update the state with the new value for the specific itemName
-        setPickedItems((prevPickedItemValue) => ({
-          ...prevPickedItemValue,
-          [itemName]: value,
-        }));
-      }
+    if (valueCheck <= 0 || event.target.value === '') {
+    // Create a copy of the pickedItems object without the specified key
+      const newpickedItems = { ...itemArray };
+      delete newpickedItems[itemName];
+      // Update the state with the new object
+      setItemArray(newpickedItems);
+    }
+    else {
+      const { value } = event.target;
+      // Update the state with the new value for the specific itemName
+      setItemArray((prevPickedItemValue) => ({
+        ...prevPickedItemValue,
+        [itemName]: value,
+      }));
     }
   }
   function handleExtraItemQtyChange(event, item, itemArray, setItemArray) {
     let valueCheck = parseInt(event.target.value, 10);
-    if(!isNaN(valueCheck) && valueCheck >= 0) {
-      if (event.target.value === '0') {
-      // Create a copy of the pickedItems object without the specified key
-        const newpickedItems = { ...itemArray };
-        delete newpickedItems[item];
+    if (valueCheck <= 0 || event.target.value === '') {
+    // Create a copy of the pickedItems object without the specified key
+      const newpickedItems = { ...itemArray };
+      delete newpickedItems[item];
 
-        // Update the state with the new object
-        setItemArray(newpickedItems);
-      }
-      else {
-        const { value } = event.target;
+      // Update the state with the new object
+      setItemArray(newpickedItems);
+    }
+    else {
+      const { value } = event.target;
 
-        // Update the state with the new value for the specific itemName
-        setItemArray((prevPickedItemValue) => ({
-          ...prevPickedItemValue,
-          [item]: value,
-        }));
-      }
+      // Update the state with the new value for the specific itemName
+      setItemArray((prevPickedItemValue) => ({
+        ...prevPickedItemValue,
+        [item]: value,
+      }));
     }
   }
   function handleInputChange(e) {
@@ -506,6 +500,8 @@ function Estimate() {
                   type="number"
                   value={bedroomItemList[item.name] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleQtyChange(e, item.name, bedroomItemList, setBedroomItemList)}
                 />
              </div>
@@ -522,6 +518,8 @@ function Estimate() {
                   type="number"
                   value={extraBedroomItems[item] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleExtraItemQtyChange(e, item, extraBedroomItems, setExtraBedroomItems)}
                 />
               </div>
@@ -576,6 +574,8 @@ function Estimate() {
                   type="number"
                   value={kitchenItemList[item.name] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleQtyChange(e, item.name, kitchenItemList, setKitchenItemList)}
                 />
              </div>
@@ -592,6 +592,8 @@ function Estimate() {
                   type="number"
                   value={extraKitchenItems[item] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleExtraItemQtyChange(e, item, extraKitchenItems, setExtraKitchenItems)}
                 />
               </div>
@@ -641,6 +643,8 @@ function Estimate() {
                   type="number"
                   value={officeItemList[item.name] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleQtyChange(e, item.name, officeItemList, setOfficeItemList)}
                 />
              </div>
@@ -657,6 +661,8 @@ function Estimate() {
                   type="number"
                   value={extraOfficeItems[item] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleExtraItemQtyChange(e, item, extraOfficeItems, setExtraOfficeItems)}
                 />
               </div>
@@ -711,6 +717,8 @@ function Estimate() {
                   type="number"
                   value={livingRoomItemList[item.name] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleQtyChange(e, item.name, livingRoomItemList, setLivingRoomItemList)}
                 />
              </div>
@@ -727,6 +735,8 @@ function Estimate() {
                   type="number"
                   value={extraLivingRoomItems[item] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleExtraItemQtyChange(e, item, extraLivingRoomItems, setExtraLivingRoomItems)}
                 />
               </div>
@@ -776,6 +786,8 @@ function Estimate() {
                   type="number"
                   value={diningRoomItemList[item.name] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleQtyChange(e, item.name, diningRoomItemList, setDiningRoomItemList)}
                 />
              </div>
@@ -792,6 +804,8 @@ function Estimate() {
                   type="number"
                   value={extraDiningRoomItems[item] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleExtraItemQtyChange(e, item, extraDiningRoomItems, setExtraDiningRoomItems)}
                 />
               </div>
@@ -847,6 +861,8 @@ function Estimate() {
                   type="number"
                   value={outsideItemList[item.name] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleQtyChange(e, item.name, outsideItemList, setOutsideItemList)}
                 />
              </div>
@@ -863,6 +879,8 @@ function Estimate() {
                   type="number"
                   value={extraOutsideItems[item] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleExtraItemQtyChange(e, item, extraOutsideItems, setExtraOutsideItems)}
                 />
               </div>
@@ -913,6 +931,8 @@ function Estimate() {
                   type="number"
                   value={bathroomItemList[item.name] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleQtyChange(e, item.name, bathroomItemList, setBathroomItemList)}
                 />
              </div>
@@ -929,6 +949,8 @@ function Estimate() {
                   type="number"
                   value={extraBathroomItems[item] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleExtraItemQtyChange(e, item, extraBathroomItems, setExtraBathroomItems)}
                 />
               </div>
@@ -980,6 +1002,8 @@ function Estimate() {
                   type="number"
                   value={miscItemList[item.name] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleQtyChange(e, item.name, miscItemList, setMiscItemList)}
                 />
              </div>
@@ -996,6 +1020,8 @@ function Estimate() {
                   type="number"
                   value={extraMiscItems[item] || ''}
                   name="inputValue"
+                  min="0"
+                  max="99"
                   onChange={(e) => handleExtraItemQtyChange(e, item, extraMiscItems, setExtraMiscItems)}
                 />
               </div>
@@ -1062,14 +1088,16 @@ function Estimate() {
               onClick={(e) => handleRoomClick(e, 'Office')}>Office
             </button>
           </div>
-          {bedroomItemPicker()}
-          {kitchenItemPicker()}
-          {officeItemPicker()}
-          {livingRoomItemPicker()}
-          {diningRoomItemPicker()}
-          {outsideGarageItemPicker()}
-          {bathroomItemPicker()}
-          {miscItemPicker()}
+          <div className = "item-picker-buttons">
+            {bedroomItemPicker()}
+            {kitchenItemPicker()}
+            {officeItemPicker()}
+            {livingRoomItemPicker()}
+            {diningRoomItemPicker()}
+            {outsideGarageItemPicker()}
+            {bathroomItemPicker()}
+            {miscItemPicker()}
+          </div>
         </div>
       </>
   );
