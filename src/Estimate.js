@@ -6,16 +6,6 @@ import './Estimate.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Estimate() {
-  const itemVolumeData = [
-    { item: 'Single Bed', volume:25 },
-    { item: 'Double Bed', volume:45 },
-    { item: 'King Bed', volume:50 },
-    { item: 'Bedside Cabinet', volume:6 },
-    { item: 'Chest of Drawers', volume:13.5 },
-    { item: 'Television', volume:5 },
-    { item: 'Bookcase', volume:20 },
-
-  ]
   const clientFormData = {
     title: '',
     firstName: '',
@@ -40,13 +30,163 @@ function Estimate() {
     surveyType:'',
   };
   const extraItemList = [
-    { value: 'Bicycle', label: 'Bicycle' },
-    { value: 'Tent', label: 'Tent' },
-    { value: 'Sleeping Bag', label: 'Sleeping Bag' },
-    { value: 'Toy Car', label: 'Toy Car' },
-    { value: 'Ladder', label: 'Ladder' },
-    // Add more options as needed
-  ];
+  { value: "Fridge/Freezer Upright", label: "Fridge/Freezer Upright", volume: 25 },
+  { value: "Fridge/Freezer Cabinet", label: "Fridge/Freezer Cabinet", volume: 10 },
+  { value: "American Style Fridge", label: "American Style Fridge", volume: 35 },
+  { value: "Microwave", label: "Microwave", volume: 4 },
+  { value: "Large 6 Seater Table", label: "Large 6 Seater Table", volume: 50 },
+  { value: "Medium 4 Seater Table", label: "Medium 4 Seater Table", volume: 30 },
+  { value: "Small 2 Seater Table", label: "Small 2 Seater Table", volume: 25 },
+  { value: "Chair/Stool", label: "Chair/Stool", volume: 5 },
+  { value: "Child High Chair", label: "Child High Chair", volume: 7 },
+  { value: "Cooker/Oven", label: "Cooker/Oven", volume: 20 },
+  { value: "Dishwasher", label: "Dishwasher", volume: 12 },
+  { value: "Bin", label: "Bin", volume: 2 },
+  { value: "Pictures", label: "Pictures", volume: 1 },
+  { value: "Washing Machine", label: "Washing Machine", volume: 12 },
+  { value: "Tumble Dryer", label: "Tumble Dryer", volume: 12 },
+  { value: "Linen Basket", label: "Linen Basket", volume: 6 },
+  { value: "Clothes Airer", label: "Clothes Airer", volume: 1 },
+  { value: "King/Queen Bed", label: "King Bed", volume: 50 },
+  { value: "King/Queen Bed", label: "Queen Bed", volume: 50 },
+  { value: "Double Bed", label: "Double Bed", volume: 45 },
+  { value: "Single Bed", label: "Single Bed", volume: 25 },
+  { value: "Cot", label: "Cot", volume: 10 },
+  { value: "King Mattress Only", label: "King Mattress Only", volume: 0 },
+  { value: "Double Mattress Only", label: "Double Mattress Only", volume: 0 },
+  { value: "Bedside Cabinet", label: "Bedside Cabinet", volume: 0 },
+  { value: "Table Lamp", label: "Table Lamp", volume: 0 },
+  { value: "Ottoman", label: "Ottoman", volume: 0 },
+  { value: "Dresser", label: "Dresser", volume: 0 },
+  { value: "Chest of 5 Drawers", label: "Chest of 5 Drawers", volume: 0 },
+  { value: "Chest of 4 Drawers", label: "Chest of 4 Drawers", volume: 0 },
+  { value: "Chest of 3 Drawers", label: "Chest of 3 Drawers", volume: 0 },
+  { value: "Plasma/LCD TV 32+", label: "Plasma/LCD TV 32+", volume: 0 },
+  { value: "Standard CRT TV", label: "Standard CRT TV", volume: 0 },
+  { value: "Small Portable TV", label: "Small Portable TV", volume: 0 },
+  { value: "Video/DVD Player", label: "Video/DVD Player", volume: 0 },
+  { value: "Bookcase", label: "Bookcase", volume: 0 },
+  { value: "Chair/Stool", label: "Chair/Stool", volume: 0 },
+  { value: "Pictures", label: "Pictures", volume: 0 },
+  { value: "Mirrors", label: "Mirrors", volume: 0 },
+  { value: "Chest", label: "Chest", volume: 0 },
+  { value: "Wardrobe", label: "Wardrobe", volume: 0 },
+  { value: "Desk", label: "Desk", volume: 0 },
+  { value: "2 Seater Sofa", label: "2 Seater Sofa", volume: 0 },
+  { value: "3 Seater Sofa", label: "3 Seater Sofa", volume: 0 },
+  { value: "Arm Chair", label: "Arm Chair", volume: 0 },
+  { value: "Footstool", label: "Footstool", volume: 0 },
+  { value: "China Cabinet", label: "China Cabinet", volume: 0 },
+  { value: "Wall Unit", label: "Wall Unit", volume: 0 },
+  { value: "Bookcase", label: "Bookcase", volume: 0 },
+  { value: "Plasma/LCD TV 32+", label: "Plasma/LCD TV 32+", volume: 0 },
+  { value: "Standard CRT TV", label: "Standard CRT TV", volume: 0 },
+  { value: "Small Portable TV", label: "Small Portable TV", volume: 0 },
+  { value: "Video/DVD Player", label: "Video/DVD Player", volume: 0 },
+  { value: "Games Console", label: "Games Console", volume: 0 },
+  { value: "TV Stand", label: "TV Stand", volume: 0 },
+  { value: "TV/Stereo Cabinet", label: "TV/Stereo Cabinet", volume: 0 },
+  { value: "Stereo", label: "Stereo", volume: 0 },
+  { value: "Coffee Table", label: "Coffee Table", volume: 0 },
+  { value: "Piano (Upright)", label: "Piano (Upright)", volume: 0 },
+  { value: "Lamp", label: "Lamp", volume: 0 },
+  { value: "Heater", label: "Heater", volume: 0 },
+  { value: "Pictures", label: "Pictures", volume: 0 },
+  { value: "Mirrors", label: "Mirrors", volume: 0 },
+  { value: "Rugs", label: "Rugs", volume: 0 },
+  { value: "Garden Table (Flat)", label: "Garden Table (Flat)", volume: 0 },
+  { value: "Garden Chair", label: "Garden Chair", volume: 0 },
+  { value: "Hose", label: "Hose", volume: 0 },
+  { value: "BBQ", label: "BBQ", volume: 0 },
+  { value: "Trampoline", label: "Trampoline", volume: 0 },
+  { value: "Bench", label: "Bench", volume: 0 },
+  { value: "Pot Plants", label: "Pot Plants", volume: 0 },
+  { value: "Mower", label: "Mower", volume: 0 },
+  { value: "Wheelbarrow", label: "Wheelbarrow", volume: 0 },
+  { value: "Garden Tools", label: "Garden Tools", volume: 0 },
+  { value: "Strimmer", label: "Strimmer", volume: 0 },
+  { value: "Ladder", label: "Ladder", volume: 0 },
+  { value: "Workmate", label: "Workmate", volume: 0 },
+  { value: "Tool Box", label: "Tool Box", volume: 0 },
+  { value: "Bicycle - Adult", label: "Bicycle - Adult", volume: 0 },
+  { value: "Bicycle - Child", label: "Bicycle - Child", volume: 0 },
+  { value: "Golf Clubs", label: "Golf Clubs", volume: 0 },
+  { value: "Golf Trolley", label: "Golf Trolley", volume: 0 },
+  { value: "Folding Chair", label: "Folding Chair", volume: 0 },
+  { value: "Surfboard", label: "Surfboard", volume: 0 },
+  { value: "Large 6 Seater Table", label: "Large 6 Seater Table", volume: 0 },
+  { value: "Medium 4 Seater Table", label: "Medium 4 Seater Table", volume: 0 },
+  { value: "Small 2 Seater Table", label: "Small 2 Seater Table", volume: 0 },
+  { value: "Chairs", label: "Chairs", volume: 0 },
+  { value: "Nest of 3 Tables", label: "Nest of 3 Tables", volume: 0 },
+  { value: "China Cabinet", label: "China Cabinet", volume: 0 },
+  { value: "Pictures", label: "Pictures", volume: 0 },
+  { value: "Rug", label: "Rug", volume: 0 },
+  { value: "Sideboard", label: "Sideboard", volume: 0 },
+  { value: "Mirror", label: "Mirror", volume: 0 },
+  { value: "Pictures", label: "Pictures", volume: 0 },
+  { value: "Cabinet", label: "Cabinet", volume: 0 },
+  { value: "Trunk", label: "Trunk", volume: 0 },
+  { value: "Christmas Tree", label: "Christmas Tree", volume: 0 },
+  { value: "Christmas Decorations", label: "Christmas Decorations", volume: 0 },
+  { value: "Occasional Table", label: "Occasional Table", volume: 0 },
+  { value: "Bookcase", label: "Bookcase", volume: 0 },
+  { value: "Pictures", label: "Pictures", volume: 0 },
+  { value: "Mirrors", label: "Mirrors", volume: 0 },
+  { value: "Rug", label: "Rug", volume: 0 },
+  { value: "Grandfather Clock", label: "Grandfather Clock", volume: 0 },
+  { value: "Umbrella Stand", label: "Umbrella Stand", volume: 0 },
+  { value: "Coat Stand", label: "Coat Stand", volume: 0 },
+  { value: "Freezer", label: "Freezer", volume: 0 },
+  { value: "Sewing Machine", label: "Sewing Machine", volume: 0 },
+  { value: "Vacuum Cleaner", label: "Vacuum Cleaner", volume: 0 },
+  { value: "Iron", label: "Iron", volume: 0 },
+  { value: "Ironing Board", label: "Ironing Board", volume: 0 },
+  { value: "Pushchair", label: "Pushchair", volume: 0 },
+  { value: "Suitcases", label: "Suitcases", volume: 0 },
+  { value: "Desk", label: "Desk", volume: 0 },
+  { value: "Chair/Stool", label: "Chair/Stool", volume: 0 },
+  { value: "Bookcase", label: "Bookcase", volume: 0 },
+  { value: "Filing Cabinet", label: "Filing Cabinet", volume: 0 },
+  { value: "Computer", label: "Computer", volume: 0 },
+  { value: "Printer", label: "Printer", volume: 0 },
+  { value: "Scanner", label: "Scanner", volume: 0 },
+  { value: "Fax", label: "Fax", volume: 0 },
+  { value: "Pictures", label: "Pictures", volume: 0 },
+  { value: "2 Cubic Foot Boxes", label: "2 Cubic Foot Boxes", volume: 0 },
+  { value: "Books", label: "Books", volume: 0 },
+  { value: "Files and Papers", label: "Files and Papers", volume: 0 },
+  { value: "CDs", label: "CDs", volume: 0 },
+  { value: "DVDs", label: "DVDs", volume: 0 },
+  { value: "Videos", label: "Videos", volume: 0 },
+  { value: "4 Cubic Foot Boxes", label: "4 Cubic Foot Boxes", volume: 0 },
+  { value: "Crockery", label: "Crockery", volume: 0 },
+  { value: "Glassware", label: "Glassware", volume: 0 },
+  { value: "China/Crystal", label: "China/Crystal", volume: 0 },
+  { value: "Ornaments", label: "Ornaments", volume: 0 },
+  { value: "Pots and Pans", label: "Pots and Pans", volume: 0 },
+  { value: "Kitchen Sundries", label: "Kitchen Sundries", volume: 0 },
+  { value: "Silverware", label: "Silverware", volume: 0 },
+  { value: "Footwear", label: "Footwear", volume: 0 },
+  { value: "Toys/Games", label: "Toys/Games", volume: 0 },
+  { value: "Alcohol/Wine", label: "Alcohol/Wine", volume: 0 },
+  { value: "Toiletries", label: "Toiletries", volume: 0 },
+  { value: "Master Bedroom", label: "Master Bedroom", volume: 0 },
+  { value: "Loft", label: "Loft" , volume: 0},
+  { value: "Family Room", label: "Family Room", volume: 0 },
+  { value: "Hallway", label: "Hallway" , volume: 0},
+  { value: "Study", label: "Study" , volume: 0},
+  { value: "Garage", label: "Garage" , volume: 0},
+  { value: "5 Cubic Foot Boxes", label: "5 Cubic Foot Boxes", volume: 0 },
+  { value: "Clothing", label: "Clothing" , volume: 0},
+  { value: "6 Cubic Foot Boxes-Teachest", label: "6 Cubic Foot Boxes-Teachest", volume: 0 },
+  { value: "Linen", label: "Linen" , volume: 0},
+  { value: "Bedding", label: "Bedding" , volume: 0},
+];
+
+
+
+
   const [totalVolume, setTotalVolume] = useState(0);
   const [formData, setFormData] = useState(clientFormData);
   const [bedroomItemList, setBedroomItemList] = useState([]);
@@ -94,6 +234,7 @@ function Estimate() {
         ...prevExtraItem,
         [item]: 1,
       }));
+      totalVolumeCalc(item, "+")
     }
     else {
       let newValue = itemArray[item];
@@ -102,6 +243,7 @@ function Estimate() {
         ...prevExtraItem,
         [item]: newValue,
       }));
+      totalVolumeCalc(item, "+")
     }
   }
   function subItem(event, itemName, itemArray, setItemArray) {
@@ -148,11 +290,12 @@ function Estimate() {
           ...prevPickedItemValue,
           [item]: newValue,
         }));
+        totalVolumeCalc(item, "-")
       }
     }
   }
   function totalVolumeCalc(item, cond) {
-    const itemValue = itemVolumeData.find((data) => data.item === item);
+    const itemValue = extraItemList.find((data) => data.value === item);
     if(itemValue) {
       if(cond==="+") {
         setTotalVolume((prevTotalVolume) => prevTotalVolume + itemValue.volume);
@@ -165,25 +308,40 @@ function Estimate() {
   function handleQtyChange(event, itemName, itemArray, setItemArray) {
     let valueCheck = parseInt(event.target.value, 10);
     if (valueCheck <= 0 || event.target.value === '') {
-    // Create a copy of the pickedItems object without the specified key
       const newpickedItems = { ...itemArray };
+      if(parseInt(newpickedItems[itemName]) > 0) {
+        setItemArray(newpickedItems);
+        totalVolumeCalc(itemName, "-")
+      }
       delete newpickedItems[itemName];
-      // Update the state with the new object
-      setItemArray(newpickedItems);
+
     }
     else {
       const { value } = event.target;
       // Update the state with the new value for the specific itemName
-      setItemArray((prevPickedItemValue) => ({
-        ...prevPickedItemValue,
-        [itemName]: value,
-      }));
+      setItemArray((prevPickedItemValue) => {
+        // Compare the new value with the previous value
+        if (isNaN(parseInt(prevPickedItemValue[itemName]))) {
+          totalVolumeCalc(itemName, "+");
+        }
+        else{
+          const isValueGreaterThanPrevious = value > parseInt(prevPickedItemValue[itemName]);
+
+          // Call totalVolumeCalc based on the comparison result
+          totalVolumeCalc(itemName, isValueGreaterThanPrevious ? "+" : "-");
+        }
+
+        // Update the state with the new value
+        return {
+          ...prevPickedItemValue,
+          [itemName]: value,
+        };
+      });
     }
   }
   function handleExtraItemQtyChange(event, item, itemArray, setItemArray) {
     let valueCheck = parseInt(event.target.value, 10);
     if (valueCheck <= 0 || event.target.value === '') {
-    // Create a copy of the pickedItems object without the specified key
       const newpickedItems = { ...itemArray };
       delete newpickedItems[item];
 
@@ -476,17 +634,19 @@ function Estimate() {
   {/*Item picker for each room */}
   function bedroomItemPicker() {
     const bedroomItems = [
-      { name: "Bunk Bed"},
+      { name: "Single Bed"},
+      { name: "Double Bed"},
+      { name: "King/Queen Bed"},
+      { name: "Cot"},
+      { name: "Bedside Cabinet"},
+      { name: "Table Lamp"},
+      { name: "Wardrobe"},
       { name: "Chest of Drawers"},
-      { name: "Triple Wardrobe"},
-      { name: "Double Wardrobe"},
-      { name: "Single Wardrobe"},
-      { name: "Chaise Longue"},
-      { name: "Futon"},
-      { name: "Toddler Bed"},
       { name: "Television"},
       { name: "Bookcase"},
-      { name: "Bedside Cabinet"},
+      { name: "Standing Mirror"},
+
+
     ];
     if(selectedRooms.includes("Bedroom")) {
       return(
@@ -510,11 +670,11 @@ function Estimate() {
              </div>
            ))}
             {Object.keys(extraBedroomItems).map((item, index) => (
-              <div className="item-list">
+              <div key ={item} className="item-list">
                 <button
                   className={`item-desc ${extraBedroomItems.hasOwnProperty(item) ? 'selected' : ''}`}
-                  onContextMenu={(e) => subExtraItem(e, item,extraBedroomItems,setExtraBedroomItems)}
-                  onClick={(e) =>  addExtraItem(item, extraBedroomItems, setExtraBedroomItems)}>{item}
+                  onContextMenu={(e) => subItem(e, item,extraBedroomItems,setExtraBedroomItems)}
+                  onClick={(e) =>  addItem(item, extraBedroomItems, setExtraBedroomItems)}>{item}
                 </button>
                 <input
                   className = {`qty-button ${extraBedroomItems.hasOwnProperty(item) ? 'selected' : ''}`}
@@ -523,7 +683,7 @@ function Estimate() {
                   name="inputValue"
                   min="0"
                   max="99"
-                  onChange={(e) => handleExtraItemQtyChange(e, item, extraBedroomItems, setExtraBedroomItems)}
+                  onChange={(e) => handleQtyChange(e, item, extraBedroomItems, setExtraBedroomItems)}
                 />
               </div>
             ))}
@@ -566,7 +726,7 @@ function Estimate() {
       return(
         <div className = "item-picker">
           {kitchenItems.map((item, index) => (
-             <div className="item-list" key={index}>
+             <div key ={item} className="item-list">
                <button
                  className={`item-desc ${kitchenItemList.hasOwnProperty(item.name) ? 'selected' : ''}`}
                  onContextMenu={(e) => subItem(e, item.name, kitchenItemList, setKitchenItemList)}
@@ -635,7 +795,7 @@ function Estimate() {
       return(
         <div className = "item-picker">
           {officeItems.map((item, index) => (
-             <div className="item-list" key={index}>
+             <div key = {item} className="item-list">
                <button
                  className={`item-desc ${officeItemList.hasOwnProperty(item.name) ? 'selected' : ''}`}
                  onContextMenu={(e) => subItem(e, item.name, officeItemList, setOfficeItemList)}
@@ -709,7 +869,7 @@ function Estimate() {
       return(
         <div className = "item-picker">
           {livingRoomItems.map((item, index) => (
-             <div className="item-list" key={index}>
+             <div key = {item} className="item-list">
                <button
                  className={`item-desc ${livingRoomItemList.hasOwnProperty(item.name) ? 'selected' : ''}`}
                  onContextMenu={(e) => subItem(e, item.name, livingRoomItemList, setLivingRoomItemList)}
@@ -778,7 +938,7 @@ function Estimate() {
       return(
         <div className = "item-picker">
           {diningRoomItems.map((item, index) => (
-             <div className="item-list" key={index}>
+             <div key = {item} className="item-list">
                <button
                  className={`item-desc ${diningRoomItemList.hasOwnProperty(item.name) ? 'selected' : ''}`}
                  onContextMenu={(e) => subItem(e, item.name, diningRoomItemList, setDiningRoomItemList)}
@@ -853,7 +1013,7 @@ function Estimate() {
       return(
         <div className = "item-picker">
           {outsideItems.map((item, index) => (
-             <div className="item-list" key={index}>
+            <div key = {item} className="item-list">
                <button
                  className={`item-desc ${outsideItemList.hasOwnProperty(item.name) ? 'selected' : ''}`}
                  onContextMenu={(e) => subItem(e, item.name, outsideItemList, setOutsideItemList)}
@@ -923,7 +1083,7 @@ function Estimate() {
       return(
         <div className = "item-picker">
           {bathroomItems.map((item, index) => (
-             <div className="item-list" key={index}>
+             <div key = {item} className="item-list">
                <button
                  className={`item-desc ${bathroomItemList.hasOwnProperty(item.name) ? 'selected' : ''}`}
                  onContextMenu={(e) => subItem(e, item.name, bathroomItemList, setBathroomItemList)}
@@ -994,7 +1154,7 @@ function Estimate() {
       return(
         <div className = "item-picker">
           {miscItems.map((item, index) => (
-             <div className="item-list" key={index}>
+             <div key = {item} className="item-list">
                <button
                  className={`item-desc ${miscItemList.hasOwnProperty(item.name) ? 'selected' : ''}`}
                  onContextMenu={(e) => subItem(e, item.name, miscItemList, setMiscItemList)}
@@ -1117,7 +1277,7 @@ function Estimate() {
         {packingInformation()}
         {survey()}
       </div>
-      {Object.keys(miscItemList).map((itemName, index) => (
+      {Object.keys(bedroomItemList).map((itemName, index) => (
         <div key={index}>
           <p>{itemName}: {miscItemList[itemName]}</p>
         </div>
