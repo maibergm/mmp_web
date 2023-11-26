@@ -60,7 +60,7 @@
   margin: 0 auto; /* Add this line to center the container */
   padding: 20px; /* Add some padding to create space between the content and the border */
 }
-.room-picker-button {
+.room-picker-button-group {
   flex:1;
 }
 .item-picker-buttons {
@@ -186,7 +186,7 @@
   .item-desc{
     flex:8;
     padding: .5rem;
-    font-size: .5rem;
+    font-size: .8rem;
     font-weight: normal;
     line-height: 1.5;
     color: #495057;
@@ -212,7 +212,9 @@
     grid-template-columns: 1fr 1fr ;
     padding-bottom: 10px;
   }
-  .item-picker-buttons {
+  .room-picker-button-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     padding-left: 0px;
     border: 0px solid #ccc; /* Border style, color, and width */
 

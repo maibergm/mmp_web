@@ -6,7 +6,16 @@ import './Estimate.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Estimate() {
+  const itemVolumeData = [
+    { item: 'Single Bed', volume:25 },
+    { item: 'Double Bed', volume:45 },
+    { item: 'King Bed', volume:50 },
+    { item: 'Bedside Cabinet', volume:6 },
+    { item: 'Chest of Drawers', volume:13.5 },
+    { item: 'Television', volume:5 },
+    { item: 'Bookcase', volume:20 },
 
+  ]
   const clientFormData = {
     title: '',
     firstName: '',
@@ -38,6 +47,7 @@ function Estimate() {
     { value: 'Ladder', label: 'Ladder' },
     // Add more options as needed
   ];
+  const [totalVolume, setTotalVolume] = useState(0);
   const [formData, setFormData] = useState(clientFormData);
   const [bedroomItemList, setBedroomItemList] = useState([]);
   const [kitchenItemList, setKitchenItemList] = useState ([]);
@@ -66,6 +76,7 @@ function Estimate() {
       ...prevPickedItemValue,
       [itemName]: 1,
     }));
+    totalVolumeCalc(itemName, "+")
   }
   else {
     let newValue = itemArray[itemName];
@@ -74,6 +85,7 @@ function Estimate() {
       ...prevPickedItemValue,
       [itemName]: newValue,
     }));
+    totalVolumeCalc(itemName, "+")
   }
 }
   function addExtraItem(item, itemArray, setItemArray) {
@@ -113,6 +125,7 @@ function Estimate() {
           [itemName]: newValue,
         }));
       }
+      totalVolumeCalc(itemName, "-")
     }
   }
   function subExtraItem(event, item, itemArray, setItemArray) {
@@ -138,7 +151,17 @@ function Estimate() {
       }
     }
   }
-
+  function totalVolumeCalc(item, cond) {
+    const itemValue = itemVolumeData.find((data) => data.item === item);
+    if(itemValue) {
+      if(cond==="+") {
+        setTotalVolume((prevTotalVolume) => prevTotalVolume + itemValue.volume);
+      }
+      else {
+        setTotalVolume((prevTotalVolume) => prevTotalVolume - itemValue.volume);
+      }
+    }
+  }
   function handleQtyChange(event, itemName, itemArray, setItemArray) {
     let valueCheck = parseInt(event.target.value, 10);
     if (valueCheck <= 0 || event.target.value === '') {
@@ -453,37 +476,17 @@ function Estimate() {
   {/*Item picker for each room */}
   function bedroomItemPicker() {
     const bedroomItems = [
-      { name: "Bunk Bed", volume: 35 },
-      { name: "Chest of Drawers", volume: 20 },
-      { name: "Triple Wardrobe", volume: 40 },
-      { name: "Double Wardrobe", volume: 30 },
-      { name: "Single Wardrobe", volume: 20 },
-      { name: "Chaise Longue", volume: 25 },
-      { name: "Futon", volume: 20 },
-      { name: "Toddler Bed", volume: 15 },
-      { name: "Baby changing unit", volume: 10 },
-      { name: "Cot", volume: 15 },
-      { name: "Play Pen", volume: 15 },
-      { name: "Occasional Chair", volume: 10 },
-      { name: "Trunk", volume: 15 },
-      { name: "Indoor Plant", volume: 5 },
-      { name: "Ottoman box", volume: 10 },
-      { name: "Bedside Cabinet", volume: 10 },
-      { name: "Clothes Basket", volume: 5 },
-      { name: "Child's chair", volume: 5 },
-      { name: "Suitcase", volume: 10 },
-      { name: "Mirror", volume: 5 },
-      { name: "Toy House", volume: 10 },
-      { name: "Plastic toy", volume: 5 },
-      { name: "Bookcase", volume: 15 },
-      { name: "PC Desk", volume: 15 },
-      { name: "Chair", volume: 5 },
-      { name: "Standing lamp", volume: 5 },
-      { name: "Cheval Mirror", volume: 15 },
-      { name: "Trouser Press", volume: 10 },
-      { name: "Cube shelving unit", volume: 10 },
-      { name: "Child's Table", volume: 10 },
-      { name: "Picture", volume: 5 },
+      { name: "Bunk Bed"},
+      { name: "Chest of Drawers"},
+      { name: "Triple Wardrobe"},
+      { name: "Double Wardrobe"},
+      { name: "Single Wardrobe"},
+      { name: "Chaise Longue"},
+      { name: "Futon"},
+      { name: "Toddler Bed"},
+      { name: "Television"},
+      { name: "Bookcase"},
+      { name: "Bedside Cabinet"},
     ];
     if(selectedRooms.includes("Bedroom")) {
       return(
@@ -1054,7 +1057,7 @@ function Estimate() {
         <h5 className = "form-subheading">Inventory </h5>
         <label className="form-label"> Choose all the items that you want to bring </label>
         <div className = "survey-group">
-          <div className = "room-picker-button" >
+          <div className = "room-picker-button-group" >
             <button
               className={` room-button ${selectedRooms.includes('Bedroom') ? 'selected' : ''}`}
               onClick={(e) => handleRoomClick(e, 'Bedroom')}>Bedroom
@@ -1119,6 +1122,7 @@ function Estimate() {
           <p>{itemName}: {miscItemList[itemName]}</p>
         </div>
       ))}
+      <h1>Total Volume: {totalVolume}</h1>
       <p>addy: {selectedRooms[0]}</p>
 
     </div>
