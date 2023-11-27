@@ -32,7 +32,7 @@
   padding-bottom: 5px; /* Add some space between the text and the underline */
 }
 .input-boxes {
-  margin:0px;
+  margin:5px;
 }
 
 /*Address details*/
@@ -179,8 +179,8 @@
   .room-button{
     display: inline-block;
     width: 100%;
-    padding: .5rem;
-    font-size: 1rem;
+    padding: .1rem;
+    font-size: .8rem;
     font-weight: normal;
   }
   .item-desc{
@@ -221,8 +221,14 @@
   }
   .item-picker{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-
+    grid-template-columns: 1fr;
+    padding-top:20px;
+    padding-left:10px;
+    padding-right:10px;
+  }
+  .item-picker-buttons {
+    flex: 4;
+    padding-left: 0px;
   }
 }
 @media (max-width:1600px) {
