@@ -159,6 +159,12 @@
   display: grid;
   grid-template-columns: 1fr;
 }
+.submit-button {
+  width:20%;
+  margin: 0 auto; /* Add this line to center the container */
+  background-color: black;
+  color: white;
+}
 @media (max-width:800px) {
   .form {
     width: 95%;

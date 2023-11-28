@@ -19,6 +19,11 @@ function Estimate() {
     pickupDate: '',
     pickupAccessToEntrance: '',
     pickupAdditionalInfo: '',
+    deliveryAdd: '',
+    deliveryEir: '',
+    deliveryProp: '',
+    deliveryLift: '',
+    deliveryDate: '',
     deliveryAccessToEntrance: '',
     deliveryAdditionalInfo: '',
     packingService:'',
@@ -199,6 +204,37 @@ function Estimate() {
   const [pickedItems, setPickedItems] = useState({});
 
   {/* Button Clicker Handlers */}
+  const handleSubmit = (event) => {
+    console.log('Submit button clicked');
+    event.preventDefault();
+
+
+    // Create an object with the form data
+
+    // Make a POST request to the server's /submit-form endpoint
+    fetch('http://localhost:4000/submit-form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          // Successfully sent email
+          console.log('Email sent successfully');
+          // Reset the form fields
+        } else {
+          // Failed to send email, handle the error
+          console.error('Error sending email');
+          // You can display an error message to the user if needed
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        // Handle any network or other errors here
+      });
+  };
   function addItem(event, itemName, itemArray, setItemArray) {
   if (!itemArray.hasOwnProperty(itemName)) {
     // Update the state with the new value for the specific itemName
@@ -209,8 +245,8 @@ function Estimate() {
     totalVolumeCalc(itemName, "+")
   }
   else {
-    let newValue = itemArray[itemName];
-    newValue = newValue + 1;
+    let newValue = parseInt(itemArray[itemName]) + 1 ;
+
     setItemArray((prevPickedItemValue) => ({
       ...prevPickedItemValue,
       [itemName]: newValue,
@@ -284,6 +320,36 @@ function Estimate() {
       }
     }
   }
+  function totalVolumeCalcQtyInput(item,cond, oldVal, newVal) {
+    const itemValue = extraItemList.find((data) => data.value === item);
+    if((isNaN(oldVal))) {
+      setTotalVolume((prevTotalVolume) => prevTotalVolume - (itemValue.volume * newVal));
+    }
+    else {
+      if(oldVal > newVal) {
+        const valDiff = oldVal - newVal;
+        if(itemValue) {
+          if(cond==="+") {
+            setTotalVolume((prevTotalVolume) => prevTotalVolume + (itemValue.volume * valDiff));
+          }
+          else {
+            setTotalVolume((prevTotalVolume) => prevTotalVolume - (itemValue.volume*valDiff));
+          }
+        }
+      }
+      else {
+        const valDiff = newVal - oldVal;
+        if(itemValue) {
+          if(cond==="+") {
+            setTotalVolume((prevTotalVolume) => prevTotalVolume + (itemValue.volume * valDiff));
+          }
+          else {
+            setTotalVolume((prevTotalVolume) => prevTotalVolume - (itemValue.volume*valDiff));
+          }
+        }
+      }
+    }
+  }
   function totalVolumeCalc(item, cond) {
     const itemValue = extraItemList.find((data) => data.value === item);
     if(itemValue) {
@@ -301,7 +367,7 @@ function Estimate() {
       const newpickedItems = { ...itemArray };
       if(parseInt(newpickedItems[itemName]) > 0) {
         setItemArray(newpickedItems);
-        totalVolumeCalc(itemName, "-")
+        totalVolumeCalcQtyInput(itemName, "-", valueCheck,parseInt(newpickedItems[itemName]) )
       }
       delete newpickedItems[itemName];
 
@@ -312,13 +378,13 @@ function Estimate() {
       setItemArray((prevPickedItemValue) => {
         // Compare the new value with the previous value
         if (isNaN(parseInt(prevPickedItemValue[itemName]))) {
-          totalVolumeCalc(itemName, "+");
+          totalVolumeCalcQtyInput(itemName, "+", value, 0);
         }
         else{
           const isValueGreaterThanPrevious = value > parseInt(prevPickedItemValue[itemName]);
 
           // Call totalVolumeCalc based on the comparison result
-          totalVolumeCalc(itemName, isValueGreaterThanPrevious ? "+" : "-");
+          totalVolumeCalcQtyInput(itemName, isValueGreaterThanPrevious ? "+" : "-", value, parseInt(prevPickedItemValue[itemName]));
         }
 
         // Update the state with the new value
@@ -329,23 +395,38 @@ function Estimate() {
       });
     }
   }
-  function handleExtraItemQtyChange(event, item, itemArray, setItemArray) {
+  function handleExtraItemQtyChange(event, itemName, itemArray, setItemArray) {
     let valueCheck = parseInt(event.target.value, 10);
     if (valueCheck <= 0 || event.target.value === '') {
       const newpickedItems = { ...itemArray };
-      delete newpickedItems[item];
+      if(parseInt(newpickedItems[itemName]) > 0) {
+        setItemArray(newpickedItems);
+        totalVolumeCalcQtyInput(itemName, "-", valueCheck,parseInt(newpickedItems[itemName]) )
+      }
+      delete newpickedItems[itemName];
 
-      // Update the state with the new object
-      setItemArray(newpickedItems);
     }
     else {
       const { value } = event.target;
-
       // Update the state with the new value for the specific itemName
-      setItemArray((prevPickedItemValue) => ({
-        ...prevPickedItemValue,
-        [item]: value,
-      }));
+      setItemArray((prevPickedItemValue) => {
+        // Compare the new value with the previous value
+        if (isNaN(parseInt(prevPickedItemValue[itemName]))) {
+          totalVolumeCalcQtyInput(itemName, "+", value, 0);
+        }
+        else{
+          const isValueGreaterThanPrevious = value > parseInt(prevPickedItemValue[itemName]);
+
+          // Call totalVolumeCalc based on the comparison result
+          totalVolumeCalcQtyInput(itemName, isValueGreaterThanPrevious ? "+" : "-", value, parseInt(prevPickedItemValue[itemName]));
+        }
+
+        // Update the state with the new value
+        return {
+          ...prevPickedItemValue,
+          [itemName]: value,
+        };
+      });
     }
   }
   function handleInputChange(e) {
@@ -459,24 +540,24 @@ function Estimate() {
         <div className = "address">
           <div className="mb-3 input-boxes" >
             <label className="form-label ">Delivery Address</label>
-            <textarea id="comments" name="comments" rows="5" cols="50"></textarea>
+            <textarea rows="5" cols="50" name = "deliveryAdd" value={formData.deliveryAdd} onChange={handleInputChange}></textarea>
           </div>
           <div className = "address-subinfo">
             <div className="mb-3 input-boxes" >
               <label className="form-label ">Eircode</label>
-              <input type="text" className="form-control"/>
+              <input type="text" className="form-control" name="deliveryEir" value={formData.deliveryEir} onChange={handleInputChange}/>
             </div>
           <div className="mb-3 input-boxes" >
             <label className="form-label ">Property Type</label>
-            <input type="text" className="form-control"/>
+            <input type="text" className="form-control" name="deliveryProp" value={formData.deliveryProp} onChange={handleInputChange}/>
           </div>
           <div className="mb-3 input-boxes" >
             <label className="form-label ">Lift Available?</label>
-            <input type="text" className="form-control"/>
+            <input type="text" className="form-control" name="deliveryLift" value={formData.deliveryLift} onChange={handleInputChange}/>
           </div>
           <div className="mb-3 input-boxes" >
             <label className="form-label ">Date moving</label>
-            <input type="date" className="form-control"/>
+            <input type="date" className="form-control" name="deliveryDate" value={formData.deliveryDate} onChange={handleInputChange}/>
           </div>
         </div>
       </div>
@@ -1285,6 +1366,10 @@ function Estimate() {
         {deliveryInformation()}
         {packingInformation()}
         {survey()}
+        <button className = "form-control submit-button"
+            onClick={(e) => handleSubmit(e)}>Submit
+
+        </button>
       </div>
     { /* {Object.keys(bedroomItemList).map((itemName, index) => (
         <div key={index}>
@@ -1292,7 +1377,6 @@ function Estimate() {
         </div>
       ))} */}
       <h1>Total Volume: {totalVolume}</h1>
-      <p>addy: {selectedRooms[0]}</p>
 
     </div>
   );

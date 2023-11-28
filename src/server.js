@@ -34,13 +34,13 @@ const transporter = nodemailer.createTransport({
 
 // Handle form submissions
 app.post('/submit-form', (req, res) => {
-  const { name, email, phoneNumber } = req.body;
+  const { title, firstName, surname,email,phone } = req.body;
 
   const mailOptions = {
     from: 'emailbotassist@gmail.com', // Sender's email address
     to: 'maxmai96@gmail.com', // Recipient's email address
     subject: 'Callback Request', // Email subject
-    text: `Name: ${name}\nEmail: ${email}\nPhone Number: ${phoneNumber}` // Email body
+    text: `Title: ${title}\nName: ${firstName}\nSurname: ${surname}\nEmail: ${email}\nPhone Number: ${phone}` // Email body
   };
 
   // Send the email
