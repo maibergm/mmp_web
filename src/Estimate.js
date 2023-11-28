@@ -208,6 +208,12 @@ function Estimate() {
     console.log('Submit button clicked');
     event.preventDefault();
 
+    const jsonPayload = {
+      totalVolume: totalVolume,
+      formData: formData,
+      bedroomItemList: bedroomItemList,
+      kitchenItemList: kitchenItemList,
+    };
 
     // Create an object with the form data
 
@@ -217,7 +223,7 @@ function Estimate() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(jsonPayload),
     })
       .then((response) => {
         if (response.status === 200) {
