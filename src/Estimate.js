@@ -213,6 +213,20 @@ function Estimate() {
       formData: formData,
       bedroomItemList: bedroomItemList,
       kitchenItemList: kitchenItemList,
+      livingRoomItemList:livingRoomItemList,
+      diningRoomItemList:diningRoomItemList,
+      outsideItemList:outsideItemList,
+      bathroomItemList:bathroomItemList,
+      miscItemList:miscItemList,
+      officeItemList:officeItemList,
+      extraBedroomItems:extraBedroomItems,
+      extraKitchenItems:extraKitchenItems,
+      extraLivingRoomItems:extraLivingRoomItems,
+      extraDiningRoomItems:extraDiningRoomItems,
+      extraOutsideItems:extraOutsideItems,
+      extraBathroomItems:extraBathroomItems,
+      extraMiscItems:extraMiscItems,
+      extraOfficeItems:extraOfficeItems,
     };
 
     // Create an object with the form data
