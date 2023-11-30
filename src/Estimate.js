@@ -32,7 +32,8 @@ function Estimate() {
     boxSupplyMedium:'',
     boxSupplyLarge:'',
     boxSupplyWardrobe:'',
-    surveyType:'',
+    moveType:'',
+    surveyBookingDate:'',
   };
   const extraItemList = [
   { value: "Fridge/Freezer", label: "Fridge/Freezer", volume: 25 },
@@ -254,6 +255,17 @@ function Estimate() {
         console.error('Error:', error);
         // Handle any network or other errors here
       });
+  };
+  const handleQtyLimits = (event) => {
+    const { name, value } = event.target;
+
+    // Ensure the value is within the desired range (0 to 99)
+    const sanitizedValue = Math.min(99, Math.max(0, parseInt(value, 10)));
+
+    setFormData({
+      ...formData,
+      [name]: sanitizedValue,
+    });
   };
   function addItem(event, itemName, itemArray, setItemArray) {
   if (!itemArray.hasOwnProperty(itemName)) {
@@ -505,24 +517,35 @@ function Estimate() {
             <label className="form-label ">Pickup Address</label>
             <textarea rows="5" cols="50" name = "pickupAdd" value={formData.pickupAdd} onChange={handleInputChange}></textarea>
           </div>
-        <div className = "address-subinfo">
-          <div className="mb-3 input-boxes" >
-            <label className="form-label ">Eircode</label>
-            <input type="text" className="form-control" name="pickupEir" value={formData.pickupEir} onChange={handleInputChange}/>
+          <div className = "address-subinfo">
+            <div className="mb-3 input-boxes" >
+              <label className="form-label ">Eircode</label>
+              <input type="text" className="form-control" name="pickupEir" value={formData.pickupEir} onChange={handleInputChange}/>
+            </div>
+            <div className="mb-3 input-boxes">
+              <label className="form-label"> Property Type </label>
+              <select className="form-control" name="pickupProp" value={formData.pickupProp} onChange={handleInputChange}>
+                <option value="">Select an option</option>
+                <option value="House">House</option>
+                <option value="Bungalow">Bungalow</option>
+                <option value="Apartment">Apartment</option>
+              </select>
+            </div>
+            <div className="mb-3 input-boxes" >
+              <label className="form-label ">Date moving</label>
+              <input type="date" className="form-control" name= "pickupDate" value={formData.pickupDate} onChange={handleInputChange}/>
+            </div>
+            {formData.pickupProp === "Apartment" && ( // Check if property type is "Apartment"
+              <div className="mb-3 input-boxes">
+                <label className="form-label"> Lift Available? </label>
+                <select className="form-control" name="pickupLift" value={formData.pickupLift} onChange={handleInputChange}>
+                  <option value="">Select an option</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+            )}
           </div>
-          <div className="mb-3 input-boxes" >
-              <label className="form-label ">Property Type</label>
-              <input type="text" className="form-control" name = "pickupProp" value={formData.pickupProp} onChange={handleInputChange}/>
-          </div>
-          <div className="mb-3 input-boxes" >
-            <label className="form-label ">Lift Available?</label>
-            <input type="text" className="form-control" name="pickupLift" value={formData.pickupLift} onChange={handleInputChange}/>
-          </div>
-          <div className="mb-3 input-boxes" >
-            <label className="form-label ">Date moving</label>
-            <input type="date" className="form-control" name= "pickupDate" value={formData.pickupDate} onChange={handleInputChange}/>
-          </div>
-        </div>
       </div>
         <div className="mb-3">
           <label className="form-label"> Is there good access for a removals vehicle leading up to the entrance of the building? </label>
@@ -532,13 +555,7 @@ function Estimate() {
             <option value="No">No</option>
           </select>
         </div>
-        {pickupAdditionalInfo()}
-      </div>
-    )
-  }
-  function pickupAdditionalInfo() {
-      if (formData.pickupAccessToEntrance === 'No') {
-        return (
+        {formData.pickupAccessToEntrance === "No" && (
           <div className="mb-3">
             <label className="form-label">Please describe the access issues</label>
             <input
@@ -549,10 +566,10 @@ function Estimate() {
               onChange={handleInputChange}
             />
           </div>
-        );
-      }
-      return null; // Return null when "No" is selected
-    }
+        )}
+      </div>
+    )
+  }
   function deliveryInformation() {
     return(
       <div>
@@ -567,18 +584,29 @@ function Estimate() {
               <label className="form-label ">Eircode</label>
               <input type="text" className="form-control" name="deliveryEir" value={formData.deliveryEir} onChange={handleInputChange}/>
             </div>
-          <div className="mb-3 input-boxes" >
-            <label className="form-label ">Property Type</label>
-            <input type="text" className="form-control" name="deliveryProp" value={formData.deliveryProp} onChange={handleInputChange}/>
-          </div>
-          <div className="mb-3 input-boxes" >
-            <label className="form-label ">Lift Available?</label>
-            <input type="text" className="form-control" name="deliveryLift" value={formData.deliveryLift} onChange={handleInputChange}/>
+          <div className="mb-3 input-boxes">
+            <label className="form-label"> Property Type </label>
+            <select className="form-control" name="deliveryProp" value={formData.deliveryProp} onChange={handleInputChange}>
+              <option value="">Select an option</option>
+              <option value="House">House</option>
+              <option value="Bungalow">Bungalow</option>
+              <option value="Apartment">Apartment</option>
+            </select>
           </div>
           <div className="mb-3 input-boxes" >
             <label className="form-label ">Date moving</label>
             <input type="date" className="form-control" name="deliveryDate" value={formData.deliveryDate} onChange={handleInputChange}/>
           </div>
+          {formData.deliveryProp === "Apartment" && ( // Check if property type is "Apartment"
+            <div className="mb-3 input-boxes">
+              <label className="form-label"> Lift Available? </label>
+              <select className="form-control" name="deliveryLift" value={formData.deliveryLift} onChange={handleInputChange}>
+                <option value="">Select an option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          )}
         </div>
       </div>
         <div className="mb-3">
@@ -589,26 +617,20 @@ function Estimate() {
           <option value="No">No</option>
         </select>
       </div>
-    {deliveryAdditionalInfo()}
+      {formData.deliveryAccessToEntrance === "No" && (
+        <div className="mb-3">
+          <label className="form-label">Please describe the access issues</label>
+          <input
+            type="text"
+            className="form-control"
+            name="deliveryAdditionalInfo"
+            value={formData.deliveryAdditionalInfo}
+            onChange={handleInputChange}
+          />
+        </div>
+      )}
   </div>
   )}
-  function deliveryAdditionalInfo() {
-      if (formData.deliveryAccessToEntrance === 'No') {
-        return (
-          <div className="mb-3">
-            <label className="form-label">Please describe the access issues</label>
-            <input
-              type="text"
-              className="form-control"
-              name="deliveryAdditionalInfo"
-              value={formData.deliveryAdditionalInfo}
-              onChange={handleInputChange}
-            />
-          </div>
-        );
-      }
-      return null; // Return null when "No" is selected
-    }
   function packingInformation() {
     return (
       <div>
@@ -621,14 +643,16 @@ function Estimate() {
             <option value="No">No</option>
           </select>
       </div>
-      <div className="mb-3">
-        <label className="form-label"> Do you want us to supply boxes for self packing? </label>
-        <select className="form-control" name="boxSupply" value={formData.boxSupply} onChange={handleInputChange}>
-          <option value="">Select an option</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
+      {formData.packingService === "No" && (
+        <div className="mb-3">
+          <label className="form-label"> Do you want us to supply boxes for self packing? </label>
+          <select className="form-control" name="boxSupply" value={formData.boxSupply} onChange={handleInputChange}>
+            <option value="">Select an option</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+      )}
       {boxSupply()}
     </div>
     )
@@ -641,40 +665,48 @@ function Estimate() {
             <label className="form-label"> Small Boxes <span className="small-text"> (16"x12"x12")</span></label>
             <input
               type="number"
+              max = {99}
+              min = {0}
               className="form-control"
               name="boxSupplySmall"
               value={formData.boxSupplySmall}
-              onChange={handleInputChange}
+              onChange={handleQtyLimits}
               />
             </div>
           <div className="mb-3 input-boxes">
             <label className="form-label">Medium Boxes <span className="small-text"> (18"x18"x16")</span> </label>
             <input
               type="number"
+              max = {99}
+              min = {0}
               className="form-control"
               name="boxSupplyMedium"
               value={formData.boxSupplyMedium}
-              onChange={handleInputChange}
+              onChange={handleQtyLimits}
             />
           </div>
           <div className="mb-3 input-boxes">
             <label className="form-label">Large Boxes <span className="small-text"> (18"x18"x24")</span></label>
             <input
               type="number"
+              max = {99}
+              min = {0}
               className="form-control"
               name="boxSupplyLarge"
               value={formData.boxSupplyLarge}
-              onChange={handleInputChange}
+              onChange={handleQtyLimits}
             />
           </div>
           <div className="mb-3 input-boxes">
             <label className="form-label">Wardrobe Boxes <span className="small-text"> (24"x21"x48")</span></label>
             <input
               type="number"
+              max = {99}
+              min = {0}
               className="form-control"
               name="boxSupplyWardrobe"
               value={formData.boxSupplyWardrobe}
-              onChange={handleInputChange}
+              onChange={handleQtyLimits}
             />
           </div>
         </div>
@@ -690,37 +722,22 @@ function Estimate() {
         <div className="survey-list">
           <div className="mb-3">
             <label className="form-label"> Do you want to book a survey or do a self survey? </label>
-            <select className="form-control" name="surveyType" value={formData.moveType} onChange={handleInputChange}>
+            <select className="form-control" name="moveType" value={formData.moveType} onChange={handleInputChange}>
               <option value="">Select an option</option>
               <option value="bookSurvey">Book a survey</option>
               <option value="selfSurvey">Self Survey</option>
             </select>
           </div>
         </div>
-        {surveyBooking()}
-        {selfSurvey()}
+        {formData.moveType === "bookSurvey" && (
+          <div className = "surveyBooking">
+            <label>When do you want us to come and survey your property?</label>
+            <input className = "form-control" type="date" name= "surveyBookingDate" value={formData.surveyBook} onChange = {handleInputChange}></input>
+          </div>
+        )}
+        {formData.moveType === "selfSurvey" && renderItemPicker()}
       </>
     )
-  }
-  function surveyBooking() {
-    if(formData.surveyType === "bookSurvey") {
-      return(
-        <div className = "surveyBooking">
-          <label>When do you want us to come and survey your property?</label>
-          <input className = "form-control" type="date" ></input>
-        </div>
-      )
-    }
-  }
-  function selfSurvey() {
-    if(formData.surveyType === "selfSurvey") {
-      return(
-        <>
-          {renderItemPicker()}
-        </>
-
-      )
-    }
   }
   {/*Item picker for each room */}
   function bedroomItemPicker() {
@@ -1397,6 +1414,7 @@ function Estimate() {
         </div>
       ))} */}
       <h1>Total Volume: {totalVolume}</h1>
+      <h1>Total Box: {formData.boxSupplyLarge}</h1>
 
     </div>
   );

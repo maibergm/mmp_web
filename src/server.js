@@ -6,7 +6,15 @@ const cors = require('cors'); // Add this line to import cors
 const app = express();
 
 const allowedOrigins = ['http://localhost:3000', 'http://localhost:4000'];
-
+function generateItemText(itemList, extraItemList) {
+  const itemText = Object.entries(itemList)
+    .map(([key, value]) => `${key}: ${value}`)
+    .join('\n');
+  const extraItemText = Object.entries(extraItemList)
+    .map(([key, value]) => `${key}: ${value}`)
+    .join('\n');
+  return `${itemText}\n${extraItemText}`;
+}
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -34,74 +42,35 @@ const transporter = nodemailer.createTransport({
 
 // Handle form submissions
 app.post('/submit-form', (req, res) => {
-  const { totalVolume, formData, bedroomItemList ,kitchenItemList,livingRoomItemList, diningRoomItemList, outsideItemList,
-          bathroomItemList, miscItemList, officeItemList, extraBedroomItems, extraKitchenItems, extraLivingRoomItems,
-          extraDiningRoomItems, extraOutsideItems, extraBathroomItems, extraMiscItems, extraOfficeItems} = req.body;
+  const {
+    totalVolume,
+    formData,
+    bedroomItemList,
+    kitchenItemList,
+    livingRoomItemList,
+    diningRoomItemList,
+    outsideItemList,
+    bathroomItemList,
+    miscItemList,
+    officeItemList,
+    extraBedroomItems,
+    extraKitchenItems,
+    extraLivingRoomItems,
+    extraDiningRoomItems,
+    extraOutsideItems,
+    extraBathroomItems,
+    extraMiscItems,
+    extraOfficeItems
+  } = req.body;
 
-  const bedroomItemListText = Object.entries(bedroomItemList)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const extraBedroomItemListText = Object.entries(extraBedroomItems)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const totalBedroomItemListText = `${bedroomItemListText}\n${extraBedroomItemListText}`;
-
-
-  const kitchenItemListText = Object.entries(kitchenItemList)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const extraKitchenItemListText = Object.entries(extraKitchenItems)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const totalKitchenItemListText = `${kitchenItemListText}\n${extraKitchenItemListText}`;
-
-  const livingRoomItemListText = Object.entries(livingRoomItemList)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const extraLivingRoomItemListText = Object.entries(extraLivingRoomItems)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const totalLivingRoomItemListText = `${livingRoomItemListText}\n${extraLivingRoomItemListText}`;
-
-  const diningRoomItemListText = Object.entries(diningRoomItemList)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const extraDiningRoomItemListText = Object.entries(extraDiningRoomItems)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const totalDiningRoomItemListText = `${diningRoomItemListText}\n${extraDiningRoomItemListText}`;
-
-  const outsideItemListText = Object.entries(outsideItemList)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const extraOutsideItemListText = Object.entries(extraOutsideItems)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const totalOutsideItemListText = `${outsideItemListText}\n${extraOutsideItemListText}`;
-
-  const bathroomItemListText = Object.entries(bathroomItemList)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const extraBathroomItemListText = Object.entries(extraBathroomItems)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const totalBathroomItemListText = `${bathroomItemListText}\n${extraBathroomItemListText}`;
-
-  const miscItemListText = Object.entries(miscItemList)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const extraMiscItemListText = Object.entries(extraMiscItems)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const totalMiscItemListText = `${miscItemListText}\n${extraMiscItemListText}`;
-
-  const officeItemListText = Object.entries(officeItemList)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const extraOfficeItemListText = Object.entries(extraOfficeItems)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join('\n');
-  const totalOfficeItemListText = `${officeItemListText}\n${extraOfficeItemListText}`;
+  const totalBedroomItemListText = generateItemText(bedroomItemList, extraBedroomItems);
+  const totalKitchenItemListText = generateItemText(kitchenItemList, extraKitchenItems);
+  const totalLivingRoomItemListText = generateItemText(livingRoomItemList, extraLivingRoomItems);
+  const totalDiningRoomItemListText = generateItemText(diningRoomItemList, extraDiningRoomItems);
+  const totalOutsideItemListText = generateItemText(outsideItemList, extraOutsideItems);
+  const totalBathroomItemListText = generateItemText(bathroomItemList, extraBathroomItems);
+  const totalMiscItemListText = generateItemText(miscItemList, extraMiscItems);
+  const totalOfficeItemListText = generateItemText(officeItemList, extraOfficeItems);
   const mailOptions = {
     from: 'emailbotassist@gmail.com', // Sender's email address
     to: 'maxmai96@gmail.com', // Recipient's email address

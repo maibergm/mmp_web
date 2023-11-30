@@ -164,6 +164,11 @@
   margin: 0 auto; /* Add this line to center the container */
   background-color: black;
   color: white;
+  margin-top: 20px;
+}
+.surveyBooking {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 @media (max-width:800px) {
   .form {
