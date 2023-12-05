@@ -170,6 +170,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+.note-area {
+  margin-top:10px;
+}
 @media (max-width:800px) {
   .form {
     width: 95%;

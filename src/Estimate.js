@@ -34,6 +34,7 @@ function Estimate() {
     boxSupplyWardrobe:'',
     moveType:'',
     surveyBookingDate:'',
+    surveyBookingNote:'',
   };
   const extraItemList = [
   { value: "Fridge/Freezer", label: "Fridge/Freezer", volume: 25 },
@@ -208,28 +209,36 @@ function Estimate() {
   const handleSubmit = (event) => {
     console.log('Submit button clicked');
     event.preventDefault();
-
-    const jsonPayload = {
-      totalVolume: totalVolume,
-      formData: formData,
-      bedroomItemList: bedroomItemList,
-      kitchenItemList: kitchenItemList,
-      livingRoomItemList:livingRoomItemList,
-      diningRoomItemList:diningRoomItemList,
-      outsideItemList:outsideItemList,
-      bathroomItemList:bathroomItemList,
-      miscItemList:miscItemList,
-      officeItemList:officeItemList,
-      extraBedroomItems:extraBedroomItems,
-      extraKitchenItems:extraKitchenItems,
-      extraLivingRoomItems:extraLivingRoomItems,
-      extraDiningRoomItems:extraDiningRoomItems,
-      extraOutsideItems:extraOutsideItems,
-      extraBathroomItems:extraBathroomItems,
-      extraMiscItems:extraMiscItems,
-      extraOfficeItems:extraOfficeItems,
-    };
-
+    let jsonPayload; // Corrected variable name
+    console.log("start")
+    if (formData.moveType === "selfSurvey") {
+      console.log("self Survey")
+      jsonPayload = {
+        totalVolume: totalVolume,
+        ...formData,
+        ...bedroomItemList,
+        ...kitchenItemList,
+        ...livingRoomItemList,
+        ...diningRoomItemList,
+        ...outsideItemList,
+        ...bathroomItemList,
+        ...miscItemList,
+        ...officeItemList,
+        ...extraBedroomItems,
+        ...extraKitchenItems,
+        ...extraLivingRoomItems,
+        ...extraDiningRoomItems,
+        ...extraOutsideItems,
+        ...extraBathroomItems,
+        ...extraMiscItems,
+        ...extraOfficeItems,
+      };
+    } else {
+      console.log("book survey")
+      jsonPayload = {
+        ...formData,
+      };
+    }
     // Create an object with the form data
 
     // Make a POST request to the server's /submit-form endpoint
@@ -249,6 +258,7 @@ function Estimate() {
           // Failed to send email, handle the error
           console.error('Error sending email');
           // You can display an error message to the user if needed
+          alert('Error sending email. Please try again.');
         }
       })
       .catch((error) => {
@@ -732,7 +742,9 @@ function Estimate() {
         {formData.moveType === "bookSurvey" && (
           <div className = "surveyBooking">
             <label>When do you want us to come and survey your property?</label>
-            <input className = "form-control" type="date" name= "surveyBookingDate" value={formData.surveyBook} onChange = {handleInputChange}></input>
+            <input className = "form-control" type="date" name= "surveyBookingDate" value={formData.surveyBookingDate} onChange = {handleInputChange}></input>
+            <label className = "note-area">or, leave a note</label>
+            <input className = "form-control note-area" type="text" name= "surveyBookingNote" value={formData.surveyBookingNote} onChange = {handleInputChange}></input>
           </div>
         )}
         {formData.moveType === "selfSurvey" && renderItemPicker()}
