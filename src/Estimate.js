@@ -183,7 +183,7 @@ function Estimate() {
 
 
 
-
+  const [formValid, setFormValid] = useState(false);
   const [totalVolume, setTotalVolume] = useState(0);
   const [formData, setFormData] = useState(clientFormData);
   const [bedroomItemList, setBedroomItemList] = useState([]);
@@ -205,66 +205,86 @@ function Estimate() {
   const [selectedRooms, setSelectedRooms] = useState(["Bedroom"]);
   const [pickedItems, setPickedItems] = useState({});
 
+
   {/* Button Clicker Handlers */}
+  const validateForm = () => {
+    // Implement your validation logic
+    // For example, check if required fields are not empty
+    // Return true if the form is valid, false otherwise
+    return (
+      formData.title.trim() !== '' &&
+      formData.firstName.trim() !== '' &&
+      formData.surname.trim() !== '' &&
+      formData.email.trim() !== '' &&
+      formData.phone.trim() !== ''
+      // Add more validation conditions as needed
+    );
+  };
   const handleSubmit = (event) => {
     console.log('Submit button clicked');
     event.preventDefault();
-    let jsonPayload; // Corrected variable name
-    console.log("start")
-    if (formData.moveType === "selfSurvey") {
-      console.log("self Survey")
-      jsonPayload = {
-        totalVolume: totalVolume,
-        ...formData,
-        ...bedroomItemList,
-        ...kitchenItemList,
-        ...livingRoomItemList,
-        ...diningRoomItemList,
-        ...outsideItemList,
-        ...bathroomItemList,
-        ...miscItemList,
-        ...officeItemList,
-        ...extraBedroomItems,
-        ...extraKitchenItems,
-        ...extraLivingRoomItems,
-        ...extraDiningRoomItems,
-        ...extraOutsideItems,
-        ...extraBathroomItems,
-        ...extraMiscItems,
-        ...extraOfficeItems,
-      };
-    } else {
-      console.log("book survey")
-      jsonPayload = {
-        ...formData,
-      };
-    }
-    // Create an object with the form data
 
-    // Make a POST request to the server's /submit-form endpoint
-    fetch('http://localhost:4000/submit-form', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(jsonPayload),
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          // Successfully sent email
-          console.log('Email sent successfully');
-          // Reset the form fields
-        } else {
-          // Failed to send email, handle the error
-          console.error('Error sending email');
-          // You can display an error message to the user if needed
-          alert('Error sending email. Please try again.');
-        }
+    if(formValid) {
+      let jsonPayload; // Corrected variable name
+      console.log("start")
+      if (formData.moveType === "selfSurvey") {
+        console.log("self Survey")
+        jsonPayload = {
+          totalVolume: totalVolume,
+          ...formData,
+          ...bedroomItemList,
+          ...kitchenItemList,
+          ...livingRoomItemList,
+          ...diningRoomItemList,
+          ...outsideItemList,
+          ...bathroomItemList,
+          ...miscItemList,
+          ...officeItemList,
+          ...extraBedroomItems,
+          ...extraKitchenItems,
+          ...extraLivingRoomItems,
+          ...extraDiningRoomItems,
+          ...extraOutsideItems,
+          ...extraBathroomItems,
+          ...extraMiscItems,
+          ...extraOfficeItems,
+        };
+      } else {
+        console.log("book survey")
+        jsonPayload = {
+          ...formData,
+        };
+      }
+      // Create an object with the form data
+
+      // Make a POST request to the server's /submit-form endpoint
+      fetch('http://localhost:4000/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonPayload),
       })
-      .catch((error) => {
-        console.error('Error:', error);
-        // Handle any network or other errors here
-      });
+        .then((response) => {
+          if (response.status === 200) {
+            // Successfully sent email
+            console.log('Email sent successfully');
+            // Reset the form fields
+          } else {
+            // Failed to send email, handle the error
+            console.error('Error sending email');
+            // You can display an error message to the user if needed
+            alert('Error sending email. Please try again.');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          // Handle any network or other errors here
+        });
+    }
+    else {
+      alert('Please fill out all required fields before submitting.');
+    }
   };
   const handleQtyLimits = (event) => {
     const { name, value } = event.target;
@@ -477,6 +497,8 @@ function Estimate() {
       ...formData,
       [name]: value,
     });
+    const isFormValid = validateForm(); // Implement validateForm function
+    setFormValid(isFormValid);
   }
   function handleRoomClick(e,room) {
      e.preventDefault();
@@ -512,7 +534,7 @@ function Estimate() {
           </div>
           <div className="mb-3 input-boxes" >
             <label className="form-label ">Phone Number</label>
-            <input type="tel" className="form-control" name = "phone" value={formData.phone} onChange={handleInputChange}/>
+            <input type="tel" className={`form-control ${formData.phone.length === 10 ? 'is-valid' : 'is-invalid'}`} name = "phone" value={formData.phone} onChange={handleInputChange}/>
           </div>
         </div>
       </div>

@@ -88,7 +88,7 @@ app.post('/submit-form', (req, res) => {
   : '';
   const deliveryAccessIssues = formData.deliveryAdditionalInfo ? `\nDelivery Access Issues: ${formData.deliveryAdditionalInfo}`
   : '';
-  const packingServiceReq = formData.packingService ? `\nPacking Service Required`
+  const packingServiceReq = formData.packingService ==="Yes" ? `\nPacking Service Required`
   : '';
   const smallBoxReq  = formData.boxSupplySmall ? `Small Boxes Requested = ${formData.boxSupplySmall}, `: '';
   const mediumBoxReq  = formData.boxSupplyMedium ? `Medium Boxes Requested = ${formData.boxSupplyMedium}, `: '';
@@ -96,7 +96,9 @@ app.post('/submit-form', (req, res) => {
   const wardrobeBoxReq  = formData.boxSupplyWardrobe ? `Wardrobe Boxes Requested = ${formData.boxSupplyWardrobe}, `: '';
   const surveyDate = formData.surveyBookingDate ? `\nSurvey Date Requested = ${formData.surveyBookingDate}, `: '';
   const surveyNote = formData.surveyBookingNote ? `\nSurvey Date Note = ${formData.surveyBookingNote}, `: '';
-
+  const boxSupplyReq = formData.boxSupply === "Yes"
+  ? `${smallBoxReq}${mediumBoxReq}${largeBoxReq}${wardrobeBoxReq}`
+  : '';
   let mailOptions;
   if (formData.moveType === "selfSurvey") {
     const totalBedroomItemListText = generateItemText(bedroomItemList, extraBedroomItems);
@@ -119,13 +121,12 @@ app.post('/submit-form', (req, res) => {
             \n\nGarden/Garage\n${totalOutsideItemListText}\n\nBathroom\n${totalBathroomItemListText}\n\nMisc\n${totalMiscItemListText}\n\nOffice\n${totalOfficeItemListText} `,
     };
   } else {
-
     mailOptions = {
       from: 'emailbotassist@gmail.com',
       to: 'maxmai96@gmail.com',
       subject: 'Survey Request',
-      text: `Name: ${formData.firstName} ${formData.surname} E-mail: ${formData.email} Phone Number: ${formData.phone}${packingServiceReq}
-            \n${smallBoxReq}${mediumBoxReq}${largeBoxReq}${wardrobeBoxReq}
+      text: `Name: ${formData.firstName} ${formData.surname}, E-mail: ${formData.email}, Phone Number: ${formData.phone},${packingServiceReq}
+            \n${boxSupplyReq}
             \nPickup Details \n${formData.pickupProp}\n${formData.pickupAdd} \n${formData.pickupEir}\n${formData.pickupDate}${pickupAccessIssues}
             \nDelivery Details \n${formData.deliveryProp}\n${formData.deliveryAdd} \n${formData.deliveryEir}\n${formData.deliveryDate}${deliveryAccessIssues}
             ${surveyDate}${surveyNote}`,
