@@ -3,13 +3,13 @@ import AboutUs from './AboutUs.js';
 import React, { useState } from 'react';
 import { Modal, Button, Form, Carousel } from 'react-bootstrap';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-import backgroundImage from './Images/seb-creativo-3jG-UM8IZ40-unsplash.jpg'; // Replace with the actual path to your image
-import secondImage from './Images/florian-steciuk-F7Rl02ir0Gg-unsplash2.jpg'; // Replace with the actual path to your image
-import firstReview from './Images/Review1.jpg'; // Replace with the actual path to your image
-import secondReview from './Images/Review2.jpg';
-import thirdReview from './Images/Review3.jpg';
-import fourthReview from './Images/Review4.jpg';
-import fifthReview from './Images/Review5.jpg';
+import backgroundImage from './assets/seb-creativo-3jG-UM8IZ40-unsplash.jpg'; // Replace with the actual path to your image
+import secondImage from './assets/florian-steciuk-F7Rl02ir0Gg-unsplash2.jpg'; // Replace with the actual path to your image
+import firstReview from './assets/Review1.jpg'; // Replace with the actual path to your image
+import secondReview from './assets/Review2.jpg';
+import thirdReview from './assets/Review3.jpg';
+import fourthReview from './assets/Review4.jpg';
+import fifthReview from './assets/Review5.jpg';
 import './App.css'
 import CallbackModal from './CallbackModal';
 import Estimate from './Estimate';
