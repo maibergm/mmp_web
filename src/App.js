@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Carousel, Collapse, Card, CardBody } from 'react-bootstrap';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-import backgroundImage from './assets/seb-creativo-3jG-UM8IZ40-unsplash.jpg'; // Replace with the actual path to your image
+import backgroundImage from './assets/seb-creativo-3jG-UM8IZ40-unsplash2.jpg'; // Replace with the actual path to your image
 import secondImage from './assets/florian-steciuk-F7Rl02ir0Gg-unsplash2.jpg'; // Replace with the actual path to your image
-import firstReview from './assets/Review1.jpg'; // Replace with the actual path to your image
-import secondReview from './assets/Review2.jpg';
-import thirdReview from './assets/Review3.jpg';
-import fourthReview from './assets/Review4.jpg';
-import fifthReview from './assets/Review5.jpg';
+import firstReview from './assets/Review1.JPG'; // Replace with the actual path to your image
+import secondReview from './assets/Review2.JPG';
+import thirdReview from './assets/Review3.JPG';
+import fourthReview from './assets/Review4.JPG';
+import fifthReview from './assets/Review5.JPG';
 import TailoredSolutionsImage from './assets/erda-estremera-sxNt9g77PE0-unsplash.jpg';
 import ProfessionalExpertiseImage from './assets/ruthson-zimmerman-Ws4wd-vJ9M0-unsplash.jpg';
 import ReliabilityImage from './assets/sincerely-media-EtyBBUByPSQ-unsplash.jpg';
@@ -66,19 +66,16 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="second-image-container">
-            <img src={secondImage} alt="Second Background" className="home-image" />
-            <div className="text-over-second-image">
-              <h2 className="sub-heading">We handle the logistics, while you focus on new beginnings</h2>
-            </div>
-          </div>
           <CallbackModal show={showModal} handleClose={handleModalClose} />
         </div>
     )
   };
   const Reviews = () => {
   return (
-        <Carousel fade className="carousel-slide">
+      <div className="review-container">
+        <img src={secondImage} alt="Second Background" className="review-image" />
+        <div className="carousel-overlay">
+        <Carousel fade controls={false} indicators={false} className="carousel-slide">
           <Carousel.Item>
             <img className="slides" src={firstReview}/>
           </Carousel.Item>
@@ -89,6 +86,8 @@ function App() {
             <img className="slides" src={thirdReview} />
           </Carousel.Item>
         </Carousel>
+        </div>
+      </div>
   );
 };
   const AboutUs = () => {
@@ -180,28 +179,6 @@ function App() {
       </div>
     )
   };
-  const Services = () => {
-    return(
-      <div className="services-section">
-       <div className="service-item">
-         <FaTruck className="service-icon" />
-         <h3>Moving Services</h3>
-         <p>We offer reliable and efficient moving services to ensure a smooth transition to your new home.</p>
-       </div>
-       <div className="service-item">
-         <FaHome className="service-icon" />
-         <h3>Home Relocation</h3>
-         <p>Let us handle the logistics of your home relocation, so you can focus on settling in.</p>
-       </div>
-       <div className="service-item">
-         <FaBoxes className="service-icon" />
-         <h3>Packing Solutions</h3>
-         <p>Our expert packing services ensure the safety of your belongings during the moving process.</p>
-       </div>
-       {/* Add more service items as needed */}
-     </div>
-    )
- };
   const Banner = () => {
     return(
       <div className="banner">
@@ -232,7 +209,6 @@ function App() {
       <Reviews/>
       <AboutUs/>
       <Faq/>
-      <Services/>
       <Routes>
         <Route path="/estimate" element={<Estimate />} />
         {/* Add more routes as needed */}
