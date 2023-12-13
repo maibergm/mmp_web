@@ -99,6 +99,125 @@
   height: auto; /* Maintain aspect ratio */
 }
 
+/* ABOUT US */
+.aboutus-container {
+  max-width: 100%;
+  display:flex;
+}
+.aboutus-first-section,
+.aboutus-second-section {
+  flex: 1;
+  margin: 0; /* Remove margin to eliminate the gap */
+  padding: 20px; /* Add padding for spacing within sections */
+}
+.aboutus-first-image,
+.aboutus-second-image {
+  height:50vh;
+}
+.aboutus-first-heading,
+.aboutus-second-heading {
+  text-align: center;
+}
+/*FAQ */
+.faq-list {
+  max-width: 50%;
+  padding-left:10px;
+  display:grid;
+  grid-template-columns: repeat(2, 1fr); /* Create a grid with 2 columns */
+  gap: 20px; /* Add spacing between button blocks */
+}
+/* FAQ.css */
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.faq-heading {
+  text-align: center;
+}
+.faq-list h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.card {
+  border: 1px solid black; /* Change border-color to border */
+  margin-bottom: 15px;
+  margin: -1px; /* Add negative margin to the card */
+  box-sizing: border-box; /* Include border in the element's total size */
+}
+
+.card-header:hover {
+  background-color: #f8f9fa; /* Change the background color on hover */
+}
+.card:hover {
+  background-color: #f8f9fa; /* Change the background color on hover */
+}
+.card-header {
+  background-color: white;
+  border: none;
+  transition: background-color 0.3s;
+}
+.btn-block.text-left {
+  text-decoration: none; /* Remove underline */
+}
+.btn-block {
+  text-align: left;
+  font-weight: bold;
+  padding: 10px 15px;
+  cursor: pointer;
+  width: 100%;
+  color:black;
+  background-color: white;
+  border: none;
+}
+
+.card-body {
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.card-body p {
+  margin: 0;
+}
+
+.collapse-button {
+  margin-top: 10px;
+}
+
+/* Apply a little style to the collapsed content */
+.collapse.show {
+  transition: height 0.3s ease;
+}
+
+.collapse-body {
+  padding: 15px;
+  border-top: 1px solid #dee2e6;
+  font-size: 14px;
+}
+.banner {
+  background-color: #333;
+  color: white;
+  padding: 40px;
+  text-align: center;
+  width: 100%; /* Adjust the width as needed */
+  display: flex;
+  justify-content: space-around;
+}
+.banner-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.banner-icon {
+  font-size: 2rem;
+  margin: 0 10px;
+}
 @media (max-width:768px) {
   .text-overlay {
     /* Center the text both vertically and horizontally */
@@ -169,5 +288,21 @@
   color: white;
   line-height: 1.5;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+/* ABOUT US */
+.aboutus-container {
+  display:block;
+  max-width: 100%;
+}
+.aboutus-first-image,
+.aboutus-second-image {
+  height:30vh;
+}
+.faq-list {
+  max-width: 90%;
+  padding-left:10px;
+  display:grid;
+  grid-template-columns: repeat(1, 1fr); /* Create a grid with 2 columns */
+  gap: 20px; /* Add spacing between button blocks */
 }
 }
