@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form, Carousel, Collapse, Card, CardBody } from 'react-bootstrap';
+import { Modal, Button, Form, Carousel, Collapse} from 'react-bootstrap';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 import backgroundImage from './assets/seb-creativo-3jG-UM8IZ40-unsplash2.jpg'; // Replace with the actual path to your image
 import secondImage from './assets/florian-steciuk-F7Rl02ir0Gg-unsplash2.jpg'; // Replace with the actual path to your image
 import firstReview from './assets/Review1.JPG'; // Replace with the actual path to your image
@@ -16,11 +21,10 @@ import CallbackModal from './CallbackModal';
 import Estimate from './Estimate';
 import Navbar from './Navbar'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaTruck, FaHome, FaBoxes, FaWarehouse } from 'react-icons/fa';
-import { GoPackage } from "react-icons/go";
-import { LuWarehouse } from "react-icons/lu";
-import { CiDeliveryTruck } from "react-icons/ci";
-import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
+import { LuPackage } from "react-icons/lu";
+import { FaWarehouse } from "react-icons/fa6";
+import { FaHouseChimney } from "react-icons/fa6";
+
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -73,20 +77,31 @@ function App() {
   const Reviews = () => {
   return (
       <div className="review-container">
-        <img src={secondImage} alt="Second Background" className="review-image" />
-        <div className="carousel-overlay">
+        <h2 className = "review-heading"> Customer Reviews </h2>
         <Carousel fade controls={false} indicators={false} className="carousel-slide">
           <Carousel.Item>
-            <img className="slides" src={firstReview}/>
+            <div className="slides">
+              <p className = "review-text"> Ed was very friendly and professional in packing my belongings.
+               My boxes and furniture were delivered with care and it was a very fast process, they even took my monstrosity of a palm tree. Highly recommend!!</p>
+               <p className="review-text"> - Dita</p>
+            </div>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="slides" src={secondReview} />
+            <div className="slides">
+              <p className = "review-text"> I have to say Ed and the guys were amazing. Our completion date moved probably more than 6 times and Ed was always available with solutions.
+               When we finally got our date, Ed had one day to manage and turn around and himself and the team were just fantastic. I would highly recommend. Moving is stressful
+               but this is one thing Ed and the team remove from your worries. thanks so much</p>
+               <p className="review-text"> - Nicky</p>
+            </div>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="slides" src={thirdReview} />
+            <div className="slides">
+              <p className = "review-text"> The team were extremely professional and easy to deal with. Great contact before the move, lots of preparation work and made the move seamless.
+               Cannot recommend the team enough. Moved everything from 3 bed house to new larger home in one day.</p>
+               <p className="review-text"> - Alan</p>
+            </div>
           </Carousel.Item>
         </Carousel>
-        </div>
       </div>
   );
 };
@@ -118,103 +133,70 @@ function App() {
       </div>
     )
   };
-  const Faq = () => {
+  const Services = () => {
     return(
-      <div>
-        <h2 className = "faq-heading">Frequently Asked Questions</h2>
-        <div className="faq-list">
-          <Card>
-            <Card.Header>
-              <Button variant="link" className="btn-block text-left" onClick={toggleCollapse1}>
-                Do you offer packing services??
-              </Button>
-            </Card.Header>
-            <Collapse in={isOpen1}>
-              <Card.Body>
-                Yes we offer packing and un-packing services at an extra charge.
-              </Card.Body>
-            </Collapse>
+      <div className = "services-container">
+        <h2 className = "services-heading"> Services </h2>
+        <div className = "services-list">
+          <div className ="packing-service service-sections">
+          <Card sx={{ maxWidth: 345, border: '2px solid black' }}>
+            <CardContent>
+              <LuPackage size={80} />
+              <Typography gutterBottom variant="h5" component="div">
+                Packing
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Our professional packing service ensures your belongings are carefully and securely packed using high-quality materials and expertise. From delicate china to cumbersome furniture, our experienced team handles everything efficiently, providing peace of mind throughout the moving process.
+              </Typography>
+            </CardContent>
           </Card>
-          <Card>
-            <Card.Header>
-              <Button variant="link1" className="btn-block text-left1" onClick={toggleCollapse2}>
-                Do you offer insurance for my belongings?
-              </Button>
-            </Card.Header>
-            <Collapse in={isOpen2}>
-              <Card.Body>
-                Yes we are a fully insured company so if anything is damaged during the move you are fully covered!.
-              </Card.Body>
-            </Collapse>
+          </div>
+          <div className ="storage-service service-sections">
+          <Card sx={{ maxWidth: 345, border: '2px solid black' }}>
+            <CardContent>
+              <FaWarehouse size={80} />
+              <Typography gutterBottom variant="h5" component="div">
+                Storage
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Our storage solutions offer a safe and convenient option for securely storing your belongings during transitions or when space is limited. With various storage unit sizes
+                available and state-of-the-art security features, our storage services provide peace of mind knowing your items are in a protected environment.
+                </Typography>
+            </CardContent>
           </Card>
-          <Card>
-            <Card.Header>
-              <Button variant="link" className="btn-block text-left" onClick={toggleCollapse3}>
-                Can you help with disassembly and reassembly of furniture?
-              </Button>
-            </Card.Header>
-            <Collapse in={isOpen3}>
-              <Card.Body>
-                Yes we would assemble and disassemble most furniture.
-              </Card.Body>
-            </Collapse>
+          </div>
+          <div className ="home-removal-service service-sections">
+          <Card sx={{ maxWidth: 345, border: '2px solid black' }}>
+            <CardContent>
+              <FaHouseChimney size={80} />
+              <Typography gutterBottom variant="h5" component="div">
+                Home Removals
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence. With a professional team handling every aspect
+                of the move, from packing and loading to transportation and unloading, we ensure a smooth transition.
+              </Typography>
+            </CardContent>
           </Card>
-          <Card>
-            <Card.Header>
-              <Button variant="link" className="btn-block text-left" onClick={toggleCollapse4}>
-                Do you provide moving supplies and boxes?
-              </Button>
-            </Card.Header>
-            <Collapse in={isOpen4}>
-              <Card.Body>
-                Yes on request we can provide the neccessary supplies for moving such as tape and boxes at an additional charge.
-              </Card.Body>
-            </Collapse>
-          </Card>
-
-
-
-          {/* Add more FAQ items here */}
+          </div>
         </div>
       </div>
     )
   };
-  const Banner = () => {
-    return(
-      <div className="banner">
-        <div className = "banner-content">
-          <CiDeliveryTruck className="banner-icon" />
-          <p>Household Moves</p>
-        </div>
-        <div className = "banner-content">
-          <LuWarehouse className="banner-icon" />
-          <p>Storage</p>
-        </div>
-        <div className = "banner-content">
-          <GoPackage className="banner-icon" />
-          <p>Packing</p>
-        </div>
-        <div className = "banner-content">
-          <HiOutlineBuildingOffice2 className="banner-icon" />
-          <p>Commerical</p>
-        </div>
-    </div>
-    )
-  };
   return (
-    <div className="App">
-      <Navbar /> {/* Corrected syntax for rendering the Navbar component */}
-      <Home />
-      <Banner/>
-      <Reviews/>
-      <AboutUs/>
-      <Faq/>
-      <Routes>
-        <Route path="/estimate" element={<Estimate />} />
-        {/* Add more routes as needed */}
-      </Routes>
-      {/* Additional content */}
-    </div>
+      <div className="App">
+        <Navbar /> {/* Corrected syntax for rendering the Navbar component */}
+        <Home />
+        <div className ="app-section">
+          <Services/>
+          <Reviews/>
+        </div>
+        <Routes>
+          <Route path="/estimate" element={<Estimate />} />
+          {/* Add more routes as needed */}
+        </Routes>
+        {/* Additional content */}
+      </div>
   );
 }
 

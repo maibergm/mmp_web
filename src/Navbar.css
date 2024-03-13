@@ -6,14 +6,12 @@
   margin-right: 0;
   background-color: black;
   padding: 10px;
-  
+
 }
 
 .custom-navbar .navbar-brand {
-  margin-left: 10px; /* Add a value here, like 10px */
   font-family: "ubuntu";
   font-size: 1.5rem;
-  padding-left: 2px;
   color: #ffffff;
 }
 /* Make the navbar full width */
