@@ -134,51 +134,91 @@ function App() {
     )
   };
   const Services = () => {
+    let cardWidth = "21rem";
     return(
-      <div className = "services-container">
-        <h2 className = "services-heading"> Services </h2>
-        <div className = "services-list">
-          <div className ="packing-service service-sections">
-          <Card sx={{ maxWidth: 345, border: '2px solid black' }}>
+      <div className = "services-list">
+        <div className ="packing-service service-sections">
+          <Card sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor:"black" }}>
             <CardContent>
-              <LuPackage size={80} />
-              <Typography gutterBottom variant="h5" component="div">
+              <LuPackage size="5rem" color ="white"/>
+              <Typography gutterBottom variant="h5" component="div" color="white">
                 Packing
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color="white" fontSize = "12px">
                 Our professional packing service ensures your belongings are carefully and securely packed using high-quality materials and expertise. From delicate china to cumbersome furniture, our experienced team handles everything efficiently, providing peace of mind throughout the moving process.
               </Typography>
             </CardContent>
           </Card>
-          </div>
-          <div className ="storage-service service-sections">
-          <Card sx={{ maxWidth: 345, border: '2px solid black' }}>
+        </div>
+        <div className ="storage-service service-sections">
+          <Card sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor:"black" }}>
             <CardContent>
-              <FaWarehouse size={80} />
-              <Typography gutterBottom variant="h5" component="div">
+              <FaWarehouse size="5rem" color="white" />
+              <Typography gutterBottom variant="h5" component="div" color="white">
                 Storage
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color="white" fontSize = "12px">
                 Our storage solutions offer a safe and convenient option for securely storing your belongings during transitions or when space is limited. With various storage unit sizes
                 available and state-of-the-art security features, our storage services provide peace of mind knowing your items are in a protected environment.
                 </Typography>
             </CardContent>
           </Card>
-          </div>
-          <div className ="home-removal-service service-sections">
-          <Card sx={{ maxWidth: 345, border: '2px solid black' }}>
+        </div>
+        <div className ="home-removal-service service-sections">
+          <Card sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor:"black" }}>
             <CardContent>
-              <FaHouseChimney size={80} />
-              <Typography gutterBottom variant="h5" component="div">
+              <FaHouseChimney size="5rem" color ="white"/>
+              <Typography gutterBottom variant="h5" component="div" color="white">
                 Home Removals
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color="text.secondary" color="white" fontSize = "12px">
                 Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence. With a professional team handling every aspect
                 of the move, from packing and loading to transportation and unloading, we ensure a smooth transition.
               </Typography>
             </CardContent>
           </Card>
-          </div>
+        </div>
+        <div className ="single-item-service service-sections">
+          <Card sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor:"black" }}>
+            <CardContent>
+              <FaHouseChimney size="5rem" color ="white"/>
+              <Typography gutterBottom variant="h5" component="div" color="white">
+                Single Item Pickup
+              </Typography>
+              <Typography variant="body2" color="text.secondary" color="white" fontSize = "12px">
+                Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence. With a professional team handling every aspect
+                of the move, from packing and loading to transportation and unloading, we ensure a smooth transition.
+              </Typography>
+            </CardContent>
+          </Card>
+        </div>
+        <div className ="courier-service service-sections">
+          <Card sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor:"black" }}>
+            <CardContent>
+              <FaHouseChimney size="5rem" color ="white"/>
+              <Typography gutterBottom variant="h5" component="div" color="white">
+                Courier Service
+              </Typography>
+              <Typography variant="body2" color="text.secondary" color="white" fontSize = "12px">
+                Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence. With a professional team handling every aspect
+                of the move, from packing and loading to transportation and unloading, we ensure a smooth transition.
+              </Typography>
+            </CardContent>
+          </Card>
+        </div>
+        <div className ="in-house-move-service service-sections">
+          <Card sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor:"black" }}>
+            <CardContent>
+              <FaHouseChimney size="5rem" color ="white"/>
+              <Typography gutterBottom variant="h5" component="div" color="white">
+                In-House Move
+              </Typography>
+              <Typography variant="body2" color="text.secondary" color="white" fontSize = "12px">
+                Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence. With a professional team handling every aspect
+                of the move, from packing and loading to transportation and unloading, we ensure a smooth transition.
+              </Typography>
+            </CardContent>
+          </Card>
         </div>
       </div>
     )

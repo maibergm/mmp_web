@@ -247,12 +247,11 @@
 .services-heading{
   text-align: center;
 }
-.services-container{
-  padding-top:10px;
-}
+
 .services-list{
-  display: flex;
-  flex-wrap:wrap;
+  padding-top:40px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
 }
 .service-sections{
   padding:5px;
@@ -273,6 +272,15 @@
 .home-removal-service{
   flex: 1;
 
+}
+.single-item-service{
+  flex:1;
+}
+.courier-service{
+  flex:1;
+}
+.in-house-move-service{
+  flex:1;
 }
 /*                       */
 @media (max-width:768px) {
