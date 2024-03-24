@@ -1,14 +1,21 @@
 // Navbar.js
 import React from 'react';
 import './Navbar.css';
+import CompanyLogo from './assets/mmpLogo.png';
+import LogoBox from './assets/mmpLogoBox.png';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
     <nav className="navbar custom-navbar">
-      <div className="container d-flex justify-content-between align-items-center">
-        <div className="d-flex align-items-center">
-          <span className="navbar-brand">Magnum</span>
-          {/* Other content can go here, e.g., navigation links */}
+      <div className="navbar-content">
+        <div className="navbar-logo-content">
+          <Link to="/">
+            <img src={CompanyLogo} alt="Company Logo" className="navbar-logo" />
+          </Link>
+        </div>
+        <div className="navbar-right-content">
+          <button className = "callbanner-button">Booking Form</button>
         </div>
       </div>
     </nav>

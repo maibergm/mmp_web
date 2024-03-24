@@ -6,6 +6,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 import backgroundImage from './assets/seb-creativo-3jG-UM8IZ40-unsplash2.jpg'; // Replace with the actual path to your image
 import secondImage from './assets/florian-steciuk-F7Rl02ir0Gg-unsplash2.jpg'; // Replace with the actual path to your image
 import firstReview from './assets/Review1.JPG'; // Replace with the actual path to your image
@@ -20,10 +21,21 @@ import './App.css'
 import CallbackModal from './CallbackModal';
 import Estimate from './Estimate';
 import Navbar from './Navbar'
+import Footer from './Footer'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { LuPackage } from "react-icons/lu";
 import { FaWarehouse } from "react-icons/fa6";
 import { FaHouseChimney } from "react-icons/fa6";
+import { RiEBike2Fill } from "react-icons/ri";
+import { LuPackageOpen } from "react-icons/lu";
+import { TbTrolley } from "react-icons/tb";
+import { useSpring, animated } from 'react-spring';
+import Accordion from '@mui/material/Accordion';
+import AccordionActions from '@mui/material/AccordionActions';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 
 function App() {
@@ -34,22 +46,7 @@ function App() {
   const handleModalClose = () => {
     setShowModal(false);
   };
-  const [isOpen1, setIsOpen1] = useState(false);
-  const [isOpen2, setIsOpen2] = useState(false);
-  const [isOpen3, setIsOpen3] = useState(false);
-  const [isOpen4, setIsOpen4] = useState(false);
-  const toggleCollapse1 = () => {
-    setIsOpen1(!isOpen1);
-  };
-  const toggleCollapse2 = () => {
-    setIsOpen2(!isOpen2);
-  };
-  const toggleCollapse3 = () => {
-    setIsOpen3(!isOpen3);
-  };
-  const toggleCollapse4 = () => {
-    setIsOpen4(!isOpen4);
-  };
+
 
   const Home = () => {
     return(
@@ -107,130 +104,164 @@ function App() {
 };
   const AboutUs = () => {
     return (
-      <div className="AboutUs">
+      <div className="aboutus">
         <div className="aboutus-container">
-          <div className="aboutus-first-section">
-            <h1 className="aboutus-first-heading">
-              Professional Expertise
-            </h1>
-            <img src={ProfessionalExpertiseImage} className="aboutus-first-image" />
-            <p className="aboutus-first-section-text">
-              Our moving company boasts a team of highly skilled and experienced professionals who are well-versed in the art of moving. With a track record of successful relocations,
-              we handle every aspect of the move with precision and care. From packing delicate items to transporting valuable possessions, you can trust our experts to handle your belongings as if they were their own.
-            </p>
-          </div>
-          <div className="aboutus-second-section">
-            <h1 className="aboutus-second-heading">
-              Reliability and Trustworthiness
-            </h1>
-            <img src={TailoredSolutionsImage} className="aboutus-second-image" />
-            <p className="aboutus-second-section-text">
-              At our moving company, reliability and trustworthiness are at the core of our service. We understand that moving can be stressful, and we strive to make the process as smooth as possible. Count on us to arrive on time, follow through with our commitments, and ensure your belongings reach their destination safely.
-              Our transparent pricing and open communication further establish us as a trusted partner in your move.
-            </p>
-          </div>
+          <h1 className = "aboutus-title"> Magnum Movers & Packers </h1>
+          <p className = "aboutus-text">
+               At Magnum Movers & Packers, our team of dedicated professionals is committed to providing exceptional customer service and personalized
+               solutions tailored to meeting your unique needs. With a comprehensive range of moving services we're able to tailor to your every need, from
+               local moves to long-distance relocations, explore our range of services to discover how we can assist you in making your next move seamless
+               and stress-free.
+
+          </p>
         </div>
       </div>
     )
   };
   const Services = () => {
     let cardWidth = "21rem";
+    let topPadding = "1rem";
     return(
-      <div className = "services-list">
-        <div className ="packing-service service-sections">
-          <Card sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor:"black" }}>
-            <CardContent>
-              <LuPackage size="5rem" color ="white"/>
-              <Typography gutterBottom variant="h5" component="div" color="white">
-                Packing
-              </Typography>
-              <Typography variant="body2" color="white" fontSize = "12px">
-                Our professional packing service ensures your belongings are carefully and securely packed using high-quality materials and expertise. From delicate china to cumbersome furniture, our experienced team handles everything efficiently, providing peace of mind throughout the moving process.
-              </Typography>
-            </CardContent>
-          </Card>
+      <div className = "services">
+        <h1 className ="services-heading"> Services </h1>
+        <div className="services-list">
+         <FlippableCard title="Packing" icon={<LuPackageOpen size="5rem" color="white" />} backContent ="Our professional packing service ensures your belongings are carefully and securely packed using high-quality materials and expertise."/>
+         <FlippableCard title="Storage" icon={<FaWarehouse size="5rem" color="white" />} backContent = "Our storage solutions offer a safe and convenient option for securely storing your belongings during transitions or when space is limited. With various storage unit sizes available and state-of-the-art security features, our storage services provide peace of mind knowing your items are in a protected environment."/>
+         <FlippableCard title="Home Removals" icon={<TbTrolley size="5rem" color="white" />} backContent = "Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence. "/>
+         <FlippableCard title="Single Item Pickup" icon={<LuPackage size="5rem" color="white" />} backContent = "Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence."/>
+         <FlippableCard title="Courier Service" icon={<RiEBike2Fill size="5rem" color="white" />} backContent = "Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence."/>
+         <FlippableCard title="In-House Move" icon={<FaHouseChimney size="5rem" color="white" />} backContent = "Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence."/>
+       </div>
+      </div>
+      )
+  };
+  const CallBanner = () => {
+    return (
+      <div className="callbanner">
+        <div className ="callbanner-content">
+          <p className ="callbanner-text">Want us to call you?</p>
+          <input className ="callbanner-input-name" type="text" placeholder="Name" />
+          <input className = "callbanner-input-phone"type="text" placeholder="Phone Number" />
+          <button className = "callbanner-button">Request Callback</button>
         </div>
-        <div className ="storage-service service-sections">
-          <Card sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor:"black" }}>
-            <CardContent>
-              <FaWarehouse size="5rem" color="white" />
-              <Typography gutterBottom variant="h5" component="div" color="white">
-                Storage
-              </Typography>
-              <Typography variant="body2" color="white" fontSize = "12px">
-                Our storage solutions offer a safe and convenient option for securely storing your belongings during transitions or when space is limited. With various storage unit sizes
-                available and state-of-the-art security features, our storage services provide peace of mind knowing your items are in a protected environment.
-                </Typography>
-            </CardContent>
-          </Card>
-        </div>
-        <div className ="home-removal-service service-sections">
-          <Card sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor:"black" }}>
-            <CardContent>
-              <FaHouseChimney size="5rem" color ="white"/>
-              <Typography gutterBottom variant="h5" component="div" color="white">
-                Home Removals
-              </Typography>
-              <Typography variant="body2" color="text.secondary" color="white" fontSize = "12px">
-                Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence. With a professional team handling every aspect
-                of the move, from packing and loading to transportation and unloading, we ensure a smooth transition.
-              </Typography>
-            </CardContent>
-          </Card>
-        </div>
-        <div className ="single-item-service service-sections">
-          <Card sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor:"black" }}>
-            <CardContent>
-              <FaHouseChimney size="5rem" color ="white"/>
-              <Typography gutterBottom variant="h5" component="div" color="white">
-                Single Item Pickup
-              </Typography>
-              <Typography variant="body2" color="text.secondary" color="white" fontSize = "12px">
-                Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence. With a professional team handling every aspect
-                of the move, from packing and loading to transportation and unloading, we ensure a smooth transition.
-              </Typography>
-            </CardContent>
-          </Card>
-        </div>
-        <div className ="courier-service service-sections">
-          <Card sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor:"black" }}>
-            <CardContent>
-              <FaHouseChimney size="5rem" color ="white"/>
-              <Typography gutterBottom variant="h5" component="div" color="white">
-                Courier Service
-              </Typography>
-              <Typography variant="body2" color="text.secondary" color="white" fontSize = "12px">
-                Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence. With a professional team handling every aspect
-                of the move, from packing and loading to transportation and unloading, we ensure a smooth transition.
-              </Typography>
-            </CardContent>
-          </Card>
-        </div>
-        <div className ="in-house-move-service service-sections">
-          <Card sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor:"black" }}>
-            <CardContent>
-              <FaHouseChimney size="5rem" color ="white"/>
-              <Typography gutterBottom variant="h5" component="div" color="white">
-                In-House Move
-              </Typography>
-              <Typography variant="body2" color="text.secondary" color="white" fontSize = "12px">
-                Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence. With a professional team handling every aspect
-                of the move, from packing and loading to transportation and unloading, we ensure a smooth transition.
-              </Typography>
-            </CardContent>
-          </Card>
+      </div>
+    );
+  };
+  const Faq = () => {
+    return(
+      <div className = "faq">
+        <h2 className = "faq-heading"> Frequently Asked Questions </h2>
+        <div className ="faq-content">
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"> Do you offer packing and unpacking services?
+          </AccordionSummary>
+          <AccordionDetails>
+            Yes, we offer comprehensive packing and unpacking services to make your move hassle-free.
+            Our trained professionals will carefully pack your belongings using high-quality materials
+            to ensure their safety during transit. Upon arrival at your new destination, we can also assist
+            with unpacking and setting up your items according to your preferences.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"> Are my belongings insured during the move?
+          </AccordionSummary>
+          <AccordionDetails>
+            Yes, we understand the importance of protecting your belongings during the moving process.
+            That's why we offer various insurance options to provide you with peace of mind. Our team
+            will guide you through the available insurance coverage options and help you choose the one that best suits your needs.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"> Do you provide storage options for my belongings?
+          </AccordionSummary>
+          <AccordionDetails>
+            Yes, we offer secure storage solutions for customers who require temporary or long-term storage for their belongings.
+            Our storage facilities are equipped with state-of-the-art security measures to ensure the safety of your items until you're ready to retrieve them.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"> What areas do you serve for removal services?
+          </AccordionSummary>
+          <AccordionDetails>
+             We provide removal services across all of Ireland. Whether you're moving within the same county or relocating to a different
+             county, we have the expertise and resources to assist you.
+          </AccordionDetails>
+        </Accordion>
         </div>
       </div>
     )
   };
+  const FlippableCard = ({ title, icon, backContent }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  // React Spring animation configuration
+  const frontAnimation = useSpring({
+    transform: `rotateY(${isFlipped ? 180 : 0}deg)`,
+    height: isFlipped ? "100%" : "100%",
+  });
+  const backAnimation = useSpring({
+    transform: `rotateY(${isFlipped ? 0 : -180}deg)`,
+    height: isFlipped ? "100%" : "100%",
+  });
+
+  const handleCardClick = () => {
+    setIsFlipped(!isFlipped);
+  };
+  let cardWidth = "21rem";
+  let topPadding = "1rem";
+  return (
+    <div className="service-sections" style={{ height: "100%" }}>
+       <Card className = "card-class" sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor: "black", height: "100%" }}>
+        <CardActionArea onClick={handleCardClick}>
+          <CardContent>
+            <animated.div style={isFlipped ? backAnimation : frontAnimation}>
+              {isFlipped ? (
+                // Back of the card
+                <Typography gutterBottom variant="body1" component="div" color="white"  sx={{ fontSize: "1rem" }}>
+                  {backContent}
+                </Typography>
+              ) : (
+                // Front of the card
+                <>
+                  {icon}
+                  <Typography gutterBottom variant="h5" component="div" color="white" sx={{ paddingTop: topPadding }}>
+                    {title}
+                  </Typography>
+                </>
+              )}
+            </animated.div>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </div>
+  );
+};
   return (
       <div className="App">
         <Navbar /> {/* Corrected syntax for rendering the Navbar component */}
         <Home />
         <div className ="app-section">
+          <AboutUs/>
           <Services/>
-          <Reviews/>
         </div>
+        <CallBanner/>
+        <div className ="app-section">
+          <Reviews/>
+          <Faq/>
+        </div>
+        <Footer/>
         <Routes>
           <Route path="/estimate" element={<Estimate />} />
           {/* Add more routes as needed */}
