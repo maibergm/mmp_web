@@ -73,7 +73,14 @@
 }
 .aboutus{
   margin-top:20px;
-  width: 80%;
+  width: 70%;
+  position: relative;
+  top:-6rem;
+  background: linear-gradient(to bottom, #A9A9A9, lightgrey);
+  padding-bottom: 4rem;
+  border-radius: 1rem;
+  padding-left: 1rem;
+  padding-right:1rem;
 }
 .aboutus-container{
   display: flex;
@@ -81,8 +88,10 @@
   justify-content: center;
   align-items: center;
 }
-.aboutus-title{
-  margin:10px;
+.aboutus-logo{
+  max-width: 100%;
+  width: 15rem;
+  padding-bottom:5px;
 }
 .aboutus-text{
   text-align: center;
@@ -164,16 +173,25 @@
   gap: 20px; /* Add spacing between button blocks */
 }
 /*SERVICES */
+.services{
+  padding-top: 50px;
+  width:70%;
+}
 .services-heading{
   text-align: center;
+  padding-bottom: 20px;
 }
+.services-card-images{
 
+}
 .services-list{
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3,1fr);
+
 }
 .card-class{
-  min-width: 21rem;
+  padding:5px;
 }
 .service-sections{
   padding:5px;
@@ -204,46 +222,87 @@
 .in-house-move-service{
   flex:1;
 }
-.callbanner {
-  margin-top:20px;
-  background-color: black;
-  width: 100%;
-}
-.callbanner-content{
-  display: flex;
-  flex-direction: row;
-  justify-content:space-between;
-  width: 70%;
-  margin:auto;
-}
-.callbanner-text{
-  color:white;
-}
-.callbanner-input-name,
-.callbanner-input-phone,
-.callbanner-text {
-  margin-top:20px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  border-color: white;
-  font-size: 1.5rem;
-  padding:10px;
-  color:white;
-}
-.callbanner-button{
-  margin-top:20px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  border-color: white;
-  font-size: 1.5rem;
-  padding-left: 50px;
-  padding-right: 50px;
-}
+
 .faq{
   margin: 10px;
   width:80%;
 }
 
+.reviewTest{
+  padding-top: 50px;
+  text-align: center;
+}
+.reviewTest-content{
+  padding-top:50px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+
+}
+
+.reviewPic{
+  padding:10px;
+  max-width: 25rem;
+}
+
+
+
+.homeTest-images {
+  position: relative;
+  overflow: hidden; /* Ensure the image does not overflow */
+}
+
+.homeTest-image {
+  width: 100%; /* Ensure the image takes the full width of its container */
+
+}
+
+.homeTest-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: absolute;
+  top: 50%; /* Position the content vertically at the center */
+  left: 0;
+  transform: translateY(-50%); /* Center the content vertically */
+}
+.homeTest-right-content {
+  background-color: #1A1A1A;
+  margin:auto;
+  padding:50px;
+  border-radius: 20px;
+}
+.homeTest-text{
+  color:white;
+}
+.homeTest-name{
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.homeTest-left-content {
+  text-align: center; /* Center the text horizontally */
+  color: white;
+  font-size: 2rem;
+  margin:auto;
+  padding:20px;
+}
+.homeTest-subheading{
+  color:white;
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: 25px;
+}
+.homeTest-boxes{
+  margin:5px;
+}
+.homeTest-button{
+  margin:5px;
+  border-radius: 30px;
+  font-weight: 500;
+}
+.homeTest-inputs{
+  background-color: lightgrey;
+  border-color: lightgrey;
+}
 /*                       */
 @media (max-width:768px) {
   .text-overlay {

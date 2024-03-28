@@ -49,3 +49,6 @@
 .footer-text{
   color:white;
 }
+.footer-privacy-policy {
+  color: lightgrey; /* Keep the default link color */
+}

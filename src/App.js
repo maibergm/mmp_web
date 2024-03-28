@@ -7,6 +7,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import inhouseImage from './assets/clay-banks-fAprylEyuCs-unsplash.jpg'
+import courierImage from './assets/rosebox-BFdSCxmqvYc-unsplash.jpg'
+import singleItemImage from './assets/brandable-box-8mCsyImZRGY-unsplash.jpg'
+import storageImage from './assets/joshua-coleman-ZVkDLrXGMdw-unsplash.jpg'
+import removalsImage from './assets/tania-melnyczuk-Iw3yGDDr1AY-unsplash.jpg'
 import backgroundImage from './assets/seb-creativo-3jG-UM8IZ40-unsplash2.jpg'; // Replace with the actual path to your image
 import secondImage from './assets/florian-steciuk-F7Rl02ir0Gg-unsplash2.jpg'; // Replace with the actual path to your image
 import firstReview from './assets/Review1.JPG'; // Replace with the actual path to your image
@@ -22,6 +27,7 @@ import CallbackModal from './CallbackModal';
 import Estimate from './Estimate';
 import Navbar from './Navbar'
 import Footer from './Footer'
+import Callbanner from './Callbanner'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { LuPackage } from "react-icons/lu";
 import { FaWarehouse } from "react-icons/fa6";
@@ -35,6 +41,7 @@ import AccordionActions from '@mui/material/AccordionActions';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CompanyLogo from './assets/mmpLogo.png';
 
 
 
@@ -69,6 +76,50 @@ function App() {
           </div>
           <CallbackModal show={showModal} handleClose={handleModalClose} />
         </div>
+    )
+  };
+  const HomeTest = () => {
+    return(
+      <div className ="homeTest">
+        <div className = "homeTest-images">
+          <img src={backgroundImage} className="homeTest-image" />
+          <div className = "homeTest-content">
+            <div className = "homeTest-left-content">
+            <p className = "homeTest-left-text">
+              Your seamless move starts here. Trust the experts for a stress-free journey
+            </p>
+            </div>
+            <div className ="homeTest-right-content">
+              <h5 className = "homeTest-subheading">Want us to call you?  </h5>
+              <div className = "homeTest-name">
+                <div className="mb-3 homeTest-boxes" >
+                  <input type="text" className="form-control homeTest-inputs" placeholder = "Name" />
+                </div>
+                <div className="mb-3 homeTest-boxes" >
+                  <input type="text" className="form-control homeTest-inputs" placeholder = "Surname" />
+                </div>
+              </div>
+
+              <div className="mb-3 homeTest-boxes" >
+                <input type="text" className="form-control homeTest-inputs" placeholder = "Phone Number" />
+              </div>
+              <div className="mb-3 homeTest-boxes" >
+                <input type="text" className="form-control homeTest-inputs" placeholder = "E-mail" />
+              </div>
+
+              <div className = "homeTest-name">
+                <div className="mb-3 homeTest-boxes" >
+                  <input type="text" className="form-control homeTest-inputs" placeholder = "Moving From" />
+                </div>
+                <div className="mb-3 homeTest-boxes" >
+                  <input type="text" className="form-control homeTest-inputs" placeholder = "Moving To" />
+                </div>
+              </div>
+              <button className ="form-control homeTest-button">Callback</button>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   };
   const Reviews = () => {
@@ -106,7 +157,7 @@ function App() {
     return (
       <div className="aboutus">
         <div className="aboutus-container">
-          <h1 className = "aboutus-title"> Magnum Movers & Packers </h1>
+          <img src={CompanyLogo} className="aboutus-logo" />
           <p className = "aboutus-text">
                At Magnum Movers & Packers, our team of dedicated professionals is committed to providing exceptional customer service and personalized
                solutions tailored to meeting your unique needs. With a comprehensive range of moving services we're able to tailor to your every need, from
@@ -119,33 +170,36 @@ function App() {
     )
   };
   const Services = () => {
-    let cardWidth = "21rem";
+    let cardWidth = "25rem";
     let topPadding = "1rem";
     return(
       <div className = "services">
         <h1 className ="services-heading"> Services </h1>
         <div className="services-list">
-         <FlippableCard title="Packing" icon={<LuPackageOpen size="5rem" color="white" />} backContent ="Our professional packing service ensures your belongings are carefully and securely packed using high-quality materials and expertise."/>
-         <FlippableCard title="Storage" icon={<FaWarehouse size="5rem" color="white" />} backContent = "Our storage solutions offer a safe and convenient option for securely storing your belongings during transitions or when space is limited. With various storage unit sizes available and state-of-the-art security features, our storage services provide peace of mind knowing your items are in a protected environment."/>
-         <FlippableCard title="Home Removals" icon={<TbTrolley size="5rem" color="white" />} backContent = "Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence. "/>
-         <FlippableCard title="Single Item Pickup" icon={<LuPackage size="5rem" color="white" />} backContent = "Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence."/>
-         <FlippableCard title="Courier Service" icon={<RiEBike2Fill size="5rem" color="white" />} backContent = "Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence."/>
-         <FlippableCard title="In-House Move" icon={<FaHouseChimney size="5rem" color="white" />} backContent = "Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence."/>
-       </div>
+        <FlippableCard className = "services-packing-card" title="Packing" image= {TailoredSolutionsImage} backContent="Our professional packing service ensures your belongings are carefully and securely packed using high-quality materials and expertise." />
+        <FlippableCard title="Storage" image= {storageImage} backContent="Our storage solutions offer a safe and convenient option for securely storing your belongings during transitions or when space is limited." />
+        <FlippableCard title="Home Removals" image= {removalsImage} backContent="Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence. " />
+        <FlippableCard title="Single Item Pickup" image= {singleItemImage} backContent= "Conveniently pick up and transport single items with ease using our specialized single-item pickup service." />
+        <FlippableCard title="Courier Service" image= {courierImage} backContent="Efficiently deliver packages and goods with our reliable courier service, ensuring timely and secure transportation. " />
+        <FlippableCard title="In-House Move" image= {inhouseImage} backContent="Efficiently rearrange furniture and items within your home with our convenient in-house move service." />
+        </div>
       </div>
       )
   };
-  const CallBanner = () => {
-    return (
-      <div className="callbanner">
-        <div className ="callbanner-content">
-          <p className ="callbanner-text">Want us to call you?</p>
-          <input className ="callbanner-input-name" type="text" placeholder="Name" />
-          <input className = "callbanner-input-phone"type="text" placeholder="Phone Number" />
-          <button className = "callbanner-button">Request Callback</button>
+  const ReviewTest = () => {
+    return(
+      <div className = "reviewTest">
+        <h2 className = "reviewTest-heading"> Customer Reviews </h2>
+        <div className = "reviewTest-content">
+          <img src={firstReview} alt="Company Logo" className="reviewPic" />
+          <img src={secondReview} alt="Company Logo" className="reviewPic" />
+          <img src={thirdReview} alt="Company Logo" className="reviewPic" />
+          <img src={fourthReview} alt="Company Logo" className="reviewPic" />
+          <img src={fifthReview} alt="Company Logo" className="reviewPic" />
         </div>
       </div>
-    );
+    )
+
   };
   const Faq = () => {
     return(
@@ -203,46 +257,42 @@ function App() {
       </div>
     )
   };
-  const FlippableCard = ({ title, icon, backContent }) => {
+  const FlippableCard = ({ title, image, backContent }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-
-  // React Spring animation configuration
-  const frontAnimation = useSpring({
-    transform: `rotateY(${isFlipped ? 180 : 0}deg)`,
-    height: isFlipped ? "100%" : "100%",
-  });
-  const backAnimation = useSpring({
-    transform: `rotateY(${isFlipped ? 0 : -180}deg)`,
-    height: isFlipped ? "100%" : "100%",
-  });
 
   const handleCardClick = () => {
     setIsFlipped(!isFlipped);
   };
-  let cardWidth = "21rem";
-  let topPadding = "1rem";
+
   return (
-    <div className="service-sections" style={{ height: "100%" }}>
-       <Card className = "card-class" sx={{ maxWidth: cardWidth, border: '2px solid black', backgroundColor: "black", height: "100%" }}>
+    <div className="service-sections">
+      <Card className="card-class" sx={{ maxWidth: 500, maxHeight:900, border: '2px solid black', backgroundColor: "black" }}>
         <CardActionArea onClick={handleCardClick}>
-          <CardContent>
-            <animated.div style={isFlipped ? backAnimation : frontAnimation}>
-              {isFlipped ? (
-                // Back of the card
-                <Typography gutterBottom variant="body1" component="div" color="white"  sx={{ fontSize: "1rem" }}>
-                  {backContent}
-                </Typography>
-              ) : (
-                // Front of the card
-                <>
-                  {icon}
-                  <Typography gutterBottom variant="h5" component="div" color="white" sx={{ paddingTop: topPadding }}>
-                    {title}
-                  </Typography>
-                </>
-              )}
-            </animated.div>
-          </CardContent>
+          {isFlipped ? (
+            <CardContent>
+              <Typography gutterBottom variant="body1" component="div" color="white" sx={{ fontSize: "1rem" }}>
+                {backContent}
+              </Typography>
+            </CardContent>
+          ) : (
+            <>
+              <CardMedia
+                className = "services-card-images"
+                component="img"
+                height="140"
+                image={image}
+                alt={title}
+              />
+              <CardContent>
+              <Typography gutterBottom variant="h5" component="div" color="white">
+                {title}
+              </Typography>
+              <Typography variant="body2" color="white">
+                {backContent}
+              </Typography>
+              </CardContent>
+            </>
+          )}
         </CardActionArea>
       </Card>
     </div>
@@ -251,22 +301,21 @@ function App() {
   return (
       <div className="App">
         <Navbar /> {/* Corrected syntax for rendering the Navbar component */}
-        <Home />
+        <HomeTest />
         <div className ="app-section">
           <AboutUs/>
-          <Services/>
         </div>
-        <CallBanner/>
+        <Callbanner/>
         <div className ="app-section">
+          <Services/>
           <Reviews/>
           <Faq/>
         </div>
+        <ReviewTest/>
         <Footer/>
         <Routes>
           <Route path="/estimate" element={<Estimate />} />
-          {/* Add more routes as needed */}
         </Routes>
-        {/* Additional content */}
       </div>
   );
 }

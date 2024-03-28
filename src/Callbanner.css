@@ -1,0 +1,52 @@
+.callbanner {
+  margin-top:20px;
+  background-color: black;
+  width: 100%;
+}
+.callbanner-content{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  width: 60%;
+  margin:auto;
+  padding: 1rem;
+}
+.callbanner-text{
+  color:white;
+}
+
+.callbanner-text {
+  margin-top:20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border-color: white;
+  font-size: 1.5rem;
+  padding:10px;
+  color:white;
+}
+
+
+.callbanner-button,
+.callbanner-input-name,
+.callbanner-input-phone{
+
+  margin:1rem;
+  border-radius: 5px;
+  border-color: white;
+  font-size: 1.5rem;
+  color: black;
+  background: white;
+  border-color: black;
+}
+.callbanner-button{
+  border-radius: 30px;
+  padding-left:20px;
+  padding-right:20px;
+  font-size:1.2rem;
+  font-weight: 500;
+  justify-content: center;
+}
+.callbanner-input-name::placeholder,
+.callbanner-input-phone::placeholder{
+  font-size:1.2rem;
+}
