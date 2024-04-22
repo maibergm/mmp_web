@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form, Carousel, Collapse} from 'react-bootstrap';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import Card from '@mui/material/Card';
@@ -35,6 +35,7 @@ import { FaHouseChimney } from "react-icons/fa6";
 import { RiEBike2Fill } from "react-icons/ri";
 import { LuPackageOpen } from "react-icons/lu";
 import { TbTrolley } from "react-icons/tb";
+import { FaWhatsapp } from "react-icons/fa";
 import { useSpring, animated } from 'react-spring';
 import Accordion from '@mui/material/Accordion';
 import AccordionActions from '@mui/material/AccordionActions';
@@ -54,115 +55,60 @@ function App() {
     setShowModal(false);
   };
 
-
   const Home = () => {
     return(
-      <div className="Home">
-          <div className="first-image-container">
-            <img src={backgroundImage} className="home-image" />
-            <div className="text-overlay">
-              <div className="text-first-image">
-                Your seamless move starts here. Trust the experts for a stress-free journey
-              </div>
-              <div className="button-container">
-                <Link to="/estimate">
-                  <button className="estimate-button">Request an Estimate</button>
-                </Link>
-                <button className="callback-button" onClick={handleModalOpen}>
-                  Request a Callback
-                </button>
-              </div>
+      <div className = "home">
+        <div className = "home-content">
+        <div className = "home-left-content">
+          <h2 className = "home-left-text"> Your seamless move starts here. Trust the experts for a stress-free journey.</h2>
+          <Link to="/estimate" className="home-quote-button" style={{ textDecoration: 'none' }}>
+            Get a Quote
+          </Link>
+        </div>
+        <div className = "home-right-content">
+          <h5 className = "home-subheading"> Get in contact with us today! </h5>
+          <div className = "home-name">
+            <div className="mb-3 home-boxes" >
+              <input type="text" className="form-control home-inputs" placeholder = "Name" />
+            </div>
+            <div className="mb-3 home-boxes" >
+              <input type="text" className="form-control home-inputs" placeholder = "Surname" />
             </div>
           </div>
-          <CallbackModal show={showModal} handleClose={handleModalClose} />
-        </div>
-    )
-  };
-  const HomeTest = () => {
-    return(
-      <div className ="homeTest">
-        <div className = "homeTest-images">
-          <img src={backgroundImage} className="homeTest-image" />
-          <div className = "homeTest-content">
-            <div className = "homeTest-left-content">
-            <p className = "homeTest-left-text">
-              Your seamless move starts here. Trust the experts for a stress-free journey
-            </p>
-            </div>
-            <div className ="homeTest-right-content">
-              <h5 className = "homeTest-subheading">Want us to call you?  </h5>
-              <div className = "homeTest-name">
-                <div className="mb-3 homeTest-boxes" >
-                  <input type="text" className="form-control homeTest-inputs" placeholder = "Name" />
-                </div>
-                <div className="mb-3 homeTest-boxes" >
-                  <input type="text" className="form-control homeTest-inputs" placeholder = "Surname" />
-                </div>
-              </div>
 
-              <div className="mb-3 homeTest-boxes" >
-                <input type="text" className="form-control homeTest-inputs" placeholder = "Phone Number" />
-              </div>
-              <div className="mb-3 homeTest-boxes" >
-                <input type="text" className="form-control homeTest-inputs" placeholder = "E-mail" />
-              </div>
-
-              <div className = "homeTest-name">
-                <div className="mb-3 homeTest-boxes" >
-                  <input type="text" className="form-control homeTest-inputs" placeholder = "Moving From" />
-                </div>
-                <div className="mb-3 homeTest-boxes" >
-                  <input type="text" className="form-control homeTest-inputs" placeholder = "Moving To" />
-                </div>
-              </div>
-              <button className ="form-control homeTest-button">Callback</button>
-            </div>
+          <div className="mb-3 home-boxes" >
+            <input type="text" className="form-control home-inputs" placeholder = "Phone Number" />
           </div>
+          <div className="mb-3 home-boxes" >
+            <input type="text" className="form-control home-inputs" placeholder = "E-mail" />
+          </div>
+          <div className="mb-3 home-boxes">
+            <textarea
+              className="form-control home-inputs"
+              placeholder="Enter your message here..."
+              rows="5" // Number of visible lines
+            />
+            </div>
+          <button className =" home-button">Callback</button>
         </div>
       </div>
+    </div>
+
     )
   };
-  const Reviews = () => {
-  return (
-      <div className="review-container">
-        <h2 className = "review-heading"> Customer Reviews </h2>
-        <Carousel fade controls={false} indicators={false} className="carousel-slide">
-          <Carousel.Item>
-            <div className="slides">
-              <p className = "review-text"> Ed was very friendly and professional in packing my belongings.
-               My boxes and furniture were delivered with care and it was a very fast process, they even took my monstrosity of a palm tree. Highly recommend!!</p>
-               <p className="review-text"> - Dita</p>
-            </div>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div className="slides">
-              <p className = "review-text"> I have to say Ed and the guys were amazing. Our completion date moved probably more than 6 times and Ed was always available with solutions.
-               When we finally got our date, Ed had one day to manage and turn around and himself and the team were just fantastic. I would highly recommend. Moving is stressful
-               but this is one thing Ed and the team remove from your worries. thanks so much</p>
-               <p className="review-text"> - Nicky</p>
-            </div>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div className="slides">
-              <p className = "review-text"> The team were extremely professional and easy to deal with. Great contact before the move, lots of preparation work and made the move seamless.
-               Cannot recommend the team enough. Moved everything from 3 bed house to new larger home in one day.</p>
-               <p className="review-text"> - Alan</p>
-            </div>
-          </Carousel.Item>
-        </Carousel>
-      </div>
-  );
-};
+
   const AboutUs = () => {
     return (
       <div className="aboutus">
         <div className="aboutus-container">
           <img src={CompanyLogo} className="aboutus-logo" />
           <p className = "aboutus-text">
-               At Magnum Movers & Packers, our team of dedicated professionals is committed to providing exceptional customer service and personalized
-               solutions tailored to meeting your unique needs. With a comprehensive range of moving services we're able to tailor to your every need, from
-               local moves to long-distance relocations, explore our range of services to discover how we can assist you in making your next move seamless
-               and stress-free.
+            At Magnum Movers &amp; Packers, we specialize in facilitating seamless office and household
+            relocations, providing expert packing, unpacking, and secure storage solutions through our
+            trusted partners. Our dedicated team of professionals is committed to delivering exceptional
+            customer service and personalized solutions tailored to your unique needs. With our focus
+            on efficiency and specialization in both local and long-distance relocations, our wide range of
+            services guarantees a stress-free moving experience for our clients.
 
           </p>
         </div>
@@ -178,29 +124,37 @@ function App() {
         <div className="services-list">
         <FlippableCard className = "services-packing-card" title="Packing" image= {TailoredSolutionsImage} backContent="Our professional packing service ensures your belongings are carefully and securely packed using high-quality materials and expertise." />
         <FlippableCard title="Storage" image= {storageImage} backContent="Our storage solutions offer a safe and convenient option for securely storing your belongings during transitions or when space is limited." />
-        <FlippableCard title="Home Removals" image= {removalsImage} backContent="Our home removal service provides a hassle-free solution for relocating your household belongings to your new residence. " />
-        <FlippableCard title="Single Item Pickup" image= {singleItemImage} backContent= "Conveniently pick up and transport single items with ease using our specialized single-item pickup service." />
-        <FlippableCard title="Courier Service" image= {courierImage} backContent="Efficiently deliver packages and goods with our reliable courier service, ensuring timely and secure transportation. " />
-        <FlippableCard title="In-House Move" image= {inhouseImage} backContent="Efficiently rearrange furniture and items within your home with our convenient in-house move service." />
+        <FlippableCard title="Home Removals" image= {removalsImage} backContent="Our comprehensive home removal service provides a hassle-free solution for relocating your household belongings to your new residence." />
+        <FlippableCard title="Single Item Pickup" image= {singleItemImage} backContent= "Pick-up and transport single items with our item pickup service, ensuring seamless and secure transportation from pickup to delivery." />
+        <FlippableCard title="Courier Service" image= {courierImage} backContent="Efficiently deliver packages and goods with our reliable courier service, providing prompt and secure transportation to any destination." />
+        <FlippableCard title="In-House Move" image= {inhouseImage} backContent="Efficiently rearrange furniture and items within your home with our convenient in-house move service, tailored to meet all your needs." />
         </div>
       </div>
       )
   };
-  const ReviewTest = () => {
-    return(
-      <div className = "reviewTest">
-        <h2 className = "reviewTest-heading"> Customer Reviews </h2>
-        <div className = "reviewTest-content">
-          <img src={firstReview} alt="Company Logo" className="reviewPic" />
-          <img src={secondReview} alt="Company Logo" className="reviewPic" />
-          <img src={thirdReview} alt="Company Logo" className="reviewPic" />
-          <img src={fourthReview} alt="Company Logo" className="reviewPic" />
-          <img src={fifthReview} alt="Company Logo" className="reviewPic" />
-        </div>
-      </div>
-    )
+  const Review = () => {
+    const images = [firstReview, secondReview, thirdReview, fourthReview, fifthReview];
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  };
+    const goToPreviousImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+    };
+
+    const goToNextImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    };
+
+    return (
+        <div className="review">
+            <h2 className="review-heading">Testimonials</h2>
+            <div className="review-content">
+                <button className="review-button" onClick={goToPreviousImage}>{'<'}</button>
+                <img src={images[currentImageIndex]} alt="Review Image" className="reviewPic" />
+                <button className="review-button" onClick={goToNextImage}>{'>'}</button>
+            </div>
+        </div>
+    );
+};
   const Faq = () => {
     return(
       <div className = "faq">
@@ -208,49 +162,132 @@ function App() {
         <div className ="faq-content">
         <Accordion>
           <AccordionSummary
+            style={{ textAlign: 'left' }}
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1-content"
-            id="panel1-header"> Do you offer packing and unpacking services?
+            id="panel1-header"> What services do you offer?
           </AccordionSummary>
-          <AccordionDetails>
-            Yes, we offer comprehensive packing and unpacking services to make your move hassle-free.
-            Our trained professionals will carefully pack your belongings using high-quality materials
-            to ensure their safety during transit. Upon arrival at your new destination, we can also assist
-            with unpacking and setting up your items according to your preferences.
+          <AccordionDetails style={{ textAlign: 'left' }}>
+            We offer a range of services including packing, unpacking, storage solutions, local and long-
+            distance relocations, furniture disassembly/reassembly, moving supplies, and disposal
+            services.
           </AccordionDetails>
         </Accordion>
         <Accordion>
           <AccordionSummary
+            style={{ textAlign: 'left' }}
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1-content"
-            id="panel1-header"> Are my belongings insured during the move?
+            id="panel1-header"> How do you ensure the safety of my belongings during the move?
           </AccordionSummary>
-          <AccordionDetails>
-            Yes, we understand the importance of protecting your belongings during the moving process.
-            That's why we offer various insurance options to provide you with peace of mind. Our team
-            will guide you through the available insurance coverage options and help you choose the one that best suits your needs.
+          <AccordionDetails style={{ textAlign: 'left' }}>
+            We have a team of experienced professionals who use quality packing materials and
+            techniques to ensure the safety of your belongings. Additionally, we offer insurance options
+            for added peace of mind. Our team will guide you through the available insurance coverage
+            options.
           </AccordionDetails>
         </Accordion>
         <Accordion>
           <AccordionSummary
+            style={{ textAlign: 'left' }}
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1-content"
-            id="panel1-header"> Do you provide storage options for my belongings?
+            id="panel1-header"> Do you offer storage solutions?
           </AccordionSummary>
-          <AccordionDetails>
-            Yes, we offer secure storage solutions for customers who require temporary or long-term storage for their belongings.
-            Our storage facilities are equipped with state-of-the-art security measures to ensure the safety of your items until you're ready to retrieve them.
+          <AccordionDetails style={{ textAlign: 'left' }}>
+            Yes, we offer secure storage solutions for short or long-term needs. Our partners ensure that
+            your belongings are safe and easily accessible.
           </AccordionDetails>
         </Accordion>
         <Accordion>
           <AccordionSummary
+            style={{ textAlign: 'left' }}
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1-content"
-            id="panel1-header"> What areas do you serve for removal services?
+            id="panel1-header"> How far in advance should I book my move?
           </AccordionSummary>
-          <AccordionDetails>
-             We provide removal services across all of Ireland. Whether you're moving within the same county or relocating to a different
-             county, we have the expertise and resources to assist you.
+          <AccordionDetails style={{ textAlign: 'left' }}>
+            It is recommended to book your move as early as possible to secure your preferred moving
+            date. However, we also accommodate last-minute moves depending on availability.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            style={{ textAlign: 'left' }}
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"> What area do you serve for relocation services?
+          </AccordionSummary>
+          <AccordionDetails style={{ textAlign: 'left' }}>
+            We provide relocation services locally, nationally, and internationally. Our team is equipped
+            to handle moves locally across Ireland and overseas. We have a network of partners in
+            various regions to ensure a smooth relocation experience wherever you are moving to.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            style={{ textAlign: 'left' }}
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"> Do you offer specialized moving services for fragile or valuable items?
+          </AccordionSummary>
+          <AccordionDetails style={{ textAlign: 'left' }}>
+            Yes, we provide specialized services for fragile or valuable items such as fine art, antiques,
+            pianos, and other delicate possessions. Our team handles these items with care and
+            attention to detail to ensure their safe transport to your new location.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            style={{ textAlign: 'left' }}
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"> How do you handle scheduling changes or unforeseen circumstances?
+          </AccordionSummary>
+          <AccordionDetails style={{ textAlign: 'left' }}>
+            We understand that unexpected situations can arise, and we are flexible in accommodating
+            scheduling changes whenever possible. Our customer service team is available to assist you
+            in rescheduling your move or adapting to any unforeseen circumstances that may affect your
+            relocation.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            style={{ textAlign: 'left' }}
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"> Do you do office relocations?
+          </AccordionSummary>
+          <AccordionDetails style={{ textAlign: 'left' }}>
+            Yes, we specialize in office relocations and have extensive experience in moving businesses
+            of all sizes. Our team understands the unique requirements of relocating an office space,
+            including handling office furniture, electronics, and important documents with care and
+            efficiency.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            style={{ textAlign: 'left' }}
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"> Do I need to be present at home during packing and relocation services?
+          </AccordionSummary>
+          <AccordionDetails style={{ textAlign: 'left' }}>
+            Typically, you do not necessarily need to be present at home during packing and relocation
+            services. However, we do recommend being present.
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            style={{ textAlign: 'left' }}
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"> When do I have to pay for the packing and relocation services?
+          </AccordionSummary>
+          <AccordionDetails style={{ textAlign: 'left' }}>
+            Payment is typically expected at the time of service completion or before the move takes
+            place. In some cases, we may require a deposit or partial payment upfront. Payment terms
+            will be discussed with our customer service team.
           </AccordionDetails>
         </Accordion>
         </div>
@@ -266,7 +303,7 @@ function App() {
 
   return (
     <div className="service-sections">
-      <Card className="card-class" sx={{ maxWidth: 500, maxHeight:900, border: '2px solid black', backgroundColor: "black" }}>
+      <Card className="card-class" sx={{ maxWidth: 500, maxHeight:900, border: '2px solid black', backgroundColor: "black", }}>
         <CardActionArea onClick={handleCardClick}>
           {isFlipped ? (
             <CardContent>
@@ -301,17 +338,18 @@ function App() {
   return (
       <div className="App">
         <Navbar /> {/* Corrected syntax for rendering the Navbar component */}
-        <HomeTest />
+        <Home />
         <div className ="app-section">
           <AboutUs/>
         </div>
         <Callbanner/>
         <div className ="app-section">
           <Services/>
-          <Reviews/>
-          <Faq/>
         </div>
-        <ReviewTest/>
+        <Review/>
+        <div className ="app-section">
+        <Faq/>
+        </div>
         <Footer/>
         <Routes>
           <Route path="/estimate" element={<Estimate />} />

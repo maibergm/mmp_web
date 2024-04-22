@@ -52,3 +52,63 @@
 .footer-privacy-policy {
   color: lightgrey; /* Keep the default link color */
 }
+@media (max-width:768px) {
+
+  .footer {
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: black;
+    padding: 10px;
+
+  }
+
+  .footer-content {
+    padding-top:20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 95%;
+    margin-left: auto;
+  }
+
+  .footer-contact-us{
+    flex:1;
+  }
+  .footer-opening-hours{
+    flex:1;
+  }
+  .footer-logo{
+    flex:1;
+  }
+  .footer-company-name-text{
+    text-align:center;
+    padding-top: 15px;
+  }
+  .footer-company-logo {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    width: 13rem; /* Example width */
+    filter: brightness(0) invert(1); /* Change the logo to white */
+  }
+  .footer-heading-text{
+    color:white;
+    padding-bottom: 10px;
+
+  }
+  .contact-info,
+  .opening-hours-info {
+    margin-bottom: 10px;
+  }
+  .footer-text{
+    color:white;
+  }
+  .footer-privacy-policy {
+    color: lightgrey; /* Keep the default link color */
+  }
+
+
+
+}

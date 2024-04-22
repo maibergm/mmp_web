@@ -9,11 +9,7 @@
   align-items: center;
   width: 80%;
 }
-.home-image {
-  width: 100%;
-  height: auto; /* Ensure the image takes the full height of its container */
 
-}
 
 .text-overlay {
   position: absolute;
@@ -57,15 +53,7 @@
   margin-bottom: 10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-.review-container {
-  width:70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 70%;
-  max-height: 100%;
 
-}
 .sub-text {
   font-size: 1.2rem;
   color: white;
@@ -76,7 +64,7 @@
   width: 70%;
   position: relative;
   top:-6rem;
-  background: linear-gradient(to bottom, #A9A9A9, lightgrey);
+  background: #1A1A1A;
   padding-bottom: 4rem;
   border-radius: 1rem;
   padding-left: 1rem;
@@ -87,11 +75,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color:white;
 }
 .aboutus-logo{
   max-width: 100%;
   width: 15rem;
   padding-bottom:5px;
+   filter: brightness(0) invert(1); /* Change the image to white */
+
 }
 .aboutus-text{
   text-align: center;
@@ -127,20 +118,9 @@
   background-color: white;
   border: none;
 }
-.review-text{
-  font-style: italic;
-  font-size: 1rem;
-  color: black;
-}
 
-.review-heading{
-  border-bottom: 1px inset #ddd; /* Adjust the border properties as needed */
-  display: flex; /* Ensure the underline spans the entire width of the container */
-  padding-bottom: 5px; /* Add some space between the text and the underline */
-  color: black;
-  text-align: center;
-  margin-top:20px;
-}
+
+
 .slides{
   height: 150px; /* Set a fixed height for the carousel items */
   display: flex; /* Ensure the items are displayed as flex containers */
@@ -148,9 +128,7 @@
   align-items: center; /* Center the content vertically */
   justify-content: center; /* Center the content horizontally */
 }
-.review-text{
-  text-align: center;
-}
+
 .stars {
   display: flex;
   flex-direction: row;
@@ -226,148 +204,299 @@
 .faq{
   margin: 10px;
   width:80%;
+  margin-bottom:20rem;
 }
 
-.reviewTest{
-  padding-top: 50px;
+.review{
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+  background-image: url('./assets/background_pattern_1.jpg');
+  align-items: center;
+  padding-bottom:100px;
+  margin-bottom: 50px;
+  padding-top:50px;
+  margin-top:10rem;
+}
+.review-content{
+  display: flex;
+
+}
+.review-heading{
+  color:white;
+  padding-bottom:50px;
+}
+.reviewPic{
+  max-width: 25rem;
+  min-width: 25rem;
+  max-height: 13rem;
+  min-height: 13rem;
+  border-radius:25px;
+}
+.review-button {
+background-color: transparent;
+border: none;
+color: white;
+cursor: pointer;
+padding: 0.5rem;
+font-size:20px;
+color: lightgrey;
+}
+
+.review-button span {
+font-size: 1.5rem;
+color: white; /* Customize arrow color */
+}
+.home {
+  min-height: 80vh;
+  background-image: url('./assets/seb-creativo-3jG-UM8IZ40-unsplash2.jpg'); /* Replace 'path/to/your/image.jpg' with the path to your image */
+  background-size: cover; /* Cover the entire background with the image */
+  background-position: center; /* Center the background image */
+  width:100%;
+  display: flex; /* Add flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+.home-content{
+  display: flex;
+  flex-direction: row;
+  color:white;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
-.reviewTest-content{
-  padding-top:50px;
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
+.home-left-content {
+  display: flex;
+  flex-direction: column;
+  flex:2;
+  padding: 10px;
+  align-items: center;
+}
+.home-left-text{
+  flex:1;
+  margin-bottom:5rem;
+}
+.home-quote-button {
+  flex:1;
+  color: white; /* Set the text color to white */
+  display: block;
+  border-radius: 10px;
+  border: none; /* Remove the border */
+  border-color: black;
+  font-weight: 400;
+  font-size: 20px;
+  width: 20%;
+  background-color: black;
+  padding: 30px 30px;
 
 }
-
-.reviewPic{
-  padding:10px;
-  max-width: 25rem;
-}
-
-
-
-.homeTest-images {
-  position: relative;
-  overflow: hidden; /* Ensure the image does not overflow */
-}
-
-.homeTest-image {
-  width: 100%; /* Ensure the image takes the full width of its container */
-
-}
-
-.homeTest-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  position: absolute;
-  top: 50%; /* Position the content vertically at the center */
-  left: 0;
-  transform: translateY(-50%); /* Center the content vertically */
-}
-.homeTest-right-content {
-  background-color: #1A1A1A;
-  margin:auto;
+.home-right-content {
+  flex:1;
   padding:50px;
-  border-radius: 20px;
-}
-.homeTest-text{
-  color:white;
-}
-.homeTest-name{
+  background-image: url('./assets/background_pattern_1.jpg');
+  margin:20px;
 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
 }
-.homeTest-left-content {
-  text-align: center; /* Center the text horizontally */
-  color: white;
-  font-size: 2rem;
-  margin:auto;
-  padding:20px;
-}
-.homeTest-subheading{
+.home-subheading{
   color:white;
   text-align: center;
   padding-bottom: 20px;
   font-size: 25px;
 }
-.homeTest-boxes{
+
+.home-name{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.home-inputs{
+
+}
+.home-boxes{
   margin:5px;
 }
-.homeTest-button{
-  margin:5px;
-  border-radius: 30px;
+.home-button{
+  display: block;
+  border-radius: 10px;
   font-weight: 500;
+  width:80%;
+  margin:auto;
+  background-color: white;
+  margin-top: 20px;
+  padding: 5px;
 }
-.homeTest-inputs{
-  background-color: lightgrey;
-  border-color: lightgrey;
-}
+
+
 /*                       */
 @media (max-width:768px) {
-  .text-overlay {
-    /* Center the text both vertically and horizontally */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px; /* Adjust the padding for better spacing */
-  }
-  .first-image {
-    width:100%;
-    height:100%;
-    display:block;
-    object-fit: cover;
-  }
-  .text-first-image {
-    font-size: 1.5rem;
-  }
-  .button-container {
-    display: block;
-    text-align: center;
-    margin-top: 60px;
-  }
-  .estimate-button,
-  .callback-button {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    margin: 5px auto; /* Center the buttons horizontally and add margin between them */
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    display: block; /* Display the buttons as block elements */
-  }
-  .second-image-container {
+
+  .aboutus{
+    margin-top:20px;
+    width: 100%;
     position: relative;
-    width: 100%;
-    height: auto;
-    overflow: hidden;
+    top:-2rem;
+    background: #1A1A1A;
+    padding-bottom: 4rem;
+    border-radius: 1rem;
+    padding-left: 0rem;
+    padding-right:0rem;
+  }
+  .aboutus-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    padding:10px;
+  }
+  .aboutus-logo{
+    max-width: 100%;
+    width: 15rem;
+    padding-bottom:5px;
+     filter: brightness(0) invert(1); /* Change the image to white */
+
+  }
+  .aboutus-text{
+    text-align: center;
   }
 
-  .second-image {
+
+  .app-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    height: 25vh;
-    display: block;
   }
 
-  .text-over-second-image {
+  .home {
+    min-height: 80vh;
+    background-image: url('./assets/seb-creativo-3jG-UM8IZ40-unsplash2.jpg'); /* Replace 'path/to/your/image.jpg' with the path to your image */
+    background-size: cover; /* Cover the entire background with the image */
+    background-position: center; /* Center the background image */
     width:100%;
-    color: white;
-    font-size: .8rem;
-    padding: 1px; /* Add padding to control vertical spacing */
-    line-height: 1.4; /* Adjust line height to prevent text overlap */
-    background-color: rgba(0, 0, 0, 0);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    display: flex; /* Add flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  .home-content{
+    display: flex;
+    flex-direction: column;
+    color:white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .home-quote-button {
+    display: none;
+  }
+  .home-left-content {
+    width: 80%;
+    margin: auto;
+    flex:1;
+    padding: 10px;
+  }
+  .home-left-text{
+    padding-top: 50px;
+  }
+  .home-right-content {
+    flex:1;
+    padding:50px;
+    background-image: url('./assets/background_pattern_1.jpg');
+    margin:20px;
+
+  }
+  .home-subheading{
+    color:white;
+    text-align: center;
+    padding-bottom: 20px;
+    font-size: 25px;
   }
 
-  .sub-heading {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: white;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
+  .home-name{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .home-inputs{
+    background-color: lightgrey;
+    border-color: lightgrey;
+  }
+  .home-boxes{
+    margin:5px;
+  }
+  .home-button{
+    display: block;
+    border-radius: 10px;
+    font-weight: 500;
+    width:80%;
+    margin:auto;
+    background-color: white;
+    margin-top: 20px;
+    padding: 5px;
+  }
 
 
+  .services{
+    padding-top: 50px;
+    width:100%;
+  }
+  .services-heading{
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  .services-card-images{
+
+  }
+  .services-list{
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    margin: auto;
+
+  }
+  .card-class{
+    padding:5px;
+  }
+  .service-sections{
+    padding:5px;
+    text-align: center;
+    margin:0px;
+  }
+  .subheadings{
+    padding-top: 5px;
+  }
+  .packing-service{
+    flex: 1;
+
+  }
+  .storage-service{
+    flex: 1;
+
+  }
+  .home-removal-service{
+    flex: 1;
+
+  }
+  .single-item-service{
+    flex:1;
+  }
+  .courier-service{
+    flex:1;
+  }
+  .in-house-move-service{
+    flex:1;
+  }
+  .review-content{
+    padding-top:50px;
+    display: flex;
+    flex-direction: row;
+
+  }
+  .reviewPic{
+    padding:10px;
+    max-width: 25rem;
+  }
+
+  .faq{
+    margin: 10px;
+    width:95%;
+  }
 }

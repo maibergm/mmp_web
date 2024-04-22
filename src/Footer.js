@@ -16,11 +16,11 @@ function Footer() {
       <div className="footer-content">
         <div className="footer-contact-us">
           <h3 className="footer-heading-text">Contact Us</h3>
-          <p className ="footer-text">Email: magnummoversandpackers@gmail.com</p>
+          <p className ="footer-text">Email: info@magnummp.ie</p>
           <p className ="footer-text">Phone: 123-456-7890</p>
         </div>
         <div className="footer-opening-hours">
-          <h3 className="footer-heading-text">Opening Hours</h3>
+          <h3 className="footer-heading-text">Office Opening Hours</h3>
           <p className ="footer-text">Monday - Friday: 9:00 AM - 5:00 PM</p>
           <p className ="footer-text">Saturday: 10:00 AM - 3:00 PM</p>
           <p className ="footer-text">Sunday: Closed</p>

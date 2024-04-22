@@ -12,11 +12,11 @@ function Navbar() {
       <div className="navbar-content">
         <div className="navbar-logo-content">
           <Link to="/">
-            <img src={CompanyLogo} alt="Company Logo" className="navbar-logo" />
+            <img src={TextLogo} alt="Company Logo" className="navbar-logo" />
           </Link>
         </div>
         <div className="navbar-right-content">
-          <button className = "navbar-button">Booking Form</button>
+          <button className = "navbar-button">Quick Quote</button>
         </div>
       </div>
     </nav>

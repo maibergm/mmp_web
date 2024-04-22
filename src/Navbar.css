@@ -10,6 +10,7 @@
   justify-content: space-between;
   width:80%;
   margin:auto;
+  align-items: center;
 }
 .navbar-right-content{
   display:flex;
@@ -20,9 +21,9 @@
   margin-bottom: 20px;
   border-radius: 30px;
   border-color: black;
-  font-size: 14px;
+  font-size: 15px;
   font-weight:500;
-  padding:10px 12px;
+  padding:10px 20px;
   border-color: white;
   background-color: white;
   color: black;
@@ -35,6 +36,28 @@
   max-width: 100%;
   width: 8rem; /* Example width */
   filter: brightness(0) invert(1); /* Change the logo to white */
-  padding-bottom:5px;
-  padding-top:5px;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width:768px) {
+  .navbar-logo {
+    max-width: 100%;
+    width: 6rem;
+    filter: brightness(0) invert(1); /* Change the logo to white */
+    padding-bottom:5px;
+    padding-top:5px;
+  }
+  .navbar-button{
+    margin-top:20px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    border-color: black;
+    font-size: 15px;
+    font-weight:500;
+    padding:10px 20px;
+    border-color: white;
+    background-color: white;
+    color: black;
+    white-space: nowrap;
+  }
 }

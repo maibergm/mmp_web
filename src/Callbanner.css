@@ -1,7 +1,8 @@
 .callbanner {
   margin-top:20px;
-  background-color: black;
+  background-image: url('./assets/background_pattern_1.jpg');
   width: 100%;
+  margin-bottom:50px;
 }
 .callbanner-content{
   display: flex;
@@ -30,7 +31,8 @@
 .callbanner-input-name,
 .callbanner-input-phone{
 
-  margin:1rem;
+  margin-top: 1rem;
+  margin-bottom:1rem;
   border-radius: 5px;
   border-color: white;
   font-size: 1.5rem;
@@ -49,4 +51,48 @@
 .callbanner-input-name::placeholder,
 .callbanner-input-phone::placeholder{
   font-size:1.2rem;
+}
+@media (max-width:1750px) {
+
+  .callbanner-content{
+    width:70%;
+  }
+}
+
+@media (max-width:1480px) {
+
+  .callbanner-content{
+    width:80%;
+  }
+}
+@media (max-width:1300px) {
+
+  .callbanner-content{
+    width:90%;
+  }
+}
+@media (max-width:1170px) {
+
+  .callbanner-content{
+    width:95%;
+  }
+}
+@media (max-width:1100px) {
+
+  .callbanner-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+  }
+  .callbanner-text{
+    text-align: center;
+  }
+  .callbanner-button,
+  .callbanner-input-name,
+  .callbanner-input-phone{
+    padding:5px;
+  }
+
+
 }
