@@ -1,3 +1,4 @@
+/* APP */
 .App {
   display: flex;
   flex-direction: column;
@@ -9,247 +10,10 @@
   align-items: center;
   width: 80%;
 }
-
-
-.text-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  text-align: center;
-  color: white;
-  padding: 20px;
-  box-sizing: border-box; /* Include padding in the element's total width and height */
-  z-index: 1; /* Ensure the text overlay is above the image */
-}
-
-.text-first-image {
-  font-size: 2rem;
-}
-
-.button-container {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-}
-.estimate-button,
-.callback-button {
-  background-color: #333;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.sub-heading {
-  font-size: 2rem;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 10px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.sub-text {
-  font-size: 1.2rem;
-  color: white;
-  line-height: 1.5;
-}
-.aboutus{
-  margin-top:20px;
-  width: 70%;
-  position: relative;
-  top:-6rem;
-  background: #1A1A1A;
-  padding-bottom: 4rem;
-  border-radius: 1rem;
-  padding-left: 1rem;
-  padding-right:1rem;
-}
-.aboutus-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color:white;
-}
-.aboutus-logo{
-  max-width: 100%;
-  width: 15rem;
-  padding-bottom:5px;
-   filter: brightness(0) invert(1); /* Change the image to white */
-
-}
-.aboutus-text{
-  text-align: center;
-}
-.card {
-  border: 1px solid black; /* Change border-color to border */
-  margin-bottom: 15px;
-  margin: -1px; /* Add negative margin to the card */
-  box-sizing: border-box; /* Include border in the element's total size */
-}
-
-.card-header:hover {
-  background-color: #f8f9fa; /* Change the background color on hover */
-}
-.card:hover {
-  background-color: #f8f9fa; /* Change the background color on hover */
-}
-.card-header {
-  background-color: white;
-  border: none;
-  transition: background-color 0.3s;
-}
-.btn-block.text-left {
-  text-decoration: none; /* Remove underline */
-}
-.btn-block {
-  text-align: left;
-  font-weight: bold;
-  padding: 10px 15px;
-  cursor: pointer;
-  width: 100%;
-  color:black;
-  background-color: white;
-  border: none;
-}
-
-
-
-.slides{
-  height: 150px; /* Set a fixed height for the carousel items */
-  display: flex; /* Ensure the items are displayed as flex containers */
-  flex-direction: column;
-  align-items: center; /* Center the content vertically */
-  justify-content: center; /* Center the content horizontally */
-}
-
-.stars {
-  display: flex;
-  flex-direction: row;
-}
-.sub-text {
-  font-size: .8rem;
-  color: white;
-  line-height: 1.5;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-/* ABOUT US */
-.faq{
-  text-align: center;
-}
-.faq-list {
-  max-width: 90%;
-  padding-left:10px;
-  display:grid;
-  grid-template-columns: repeat(1, 1fr); /* Create a grid with 2 columns */
-  gap: 20px; /* Add spacing between button blocks */
-}
-/*SERVICES */
-.services{
-  padding-top: 50px;
-  width:70%;
-}
-.services-heading{
-  text-align: center;
-  padding-bottom: 20px;
-}
-.services-card-images{
-
-}
-.services-list{
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-
-}
-.card-class{
-  padding:5px;
-}
-.service-sections{
-  padding:5px;
-  text-align: center;
-  margin:10px;
-}
-.subheadings{
-  padding-top: 5px;
-}
-.packing-service{
-  flex: 1;
-
-}
-.storage-service{
-  flex: 1;
-
-}
-.home-removal-service{
-  flex: 1;
-
-}
-.single-item-service{
-  flex:1;
-}
-.courier-service{
-  flex:1;
-}
-.in-house-move-service{
-  flex:1;
-}
-
-.faq{
-  margin: 10px;
-  width:80%;
-  margin-bottom:20rem;
-}
-
-.review{
-  width: 100%;
-  display:flex;
-  flex-direction: column;
-  background-image: url('./assets/background_pattern_1.jpg');
-  align-items: center;
-  padding-bottom:100px;
-  margin-bottom: 50px;
-  padding-top:50px;
-  margin-top:10rem;
-}
-.review-content{
-  display: flex;
-
-}
-.review-heading{
-  color:white;
-  padding-bottom:50px;
-}
-.reviewPic{
-  max-width: 25rem;
-  min-width: 25rem;
-  max-height: 13rem;
-  min-height: 13rem;
-  border-radius:25px;
-}
-.review-button {
-background-color: transparent;
-border: none;
-color: white;
-cursor: pointer;
-padding: 0.5rem;
-font-size:20px;
-color: lightgrey;
-}
-
-.review-button span {
-font-size: 1.5rem;
-color: white; /* Customize arrow color */
-}
+/* HOME */
 .home {
   min-height: 80vh;
-  background-image: url('./assets/seb-creativo-3jG-UM8IZ40-unsplash2.jpg'); /* Replace 'path/to/your/image.jpg' with the path to your image */
+  background-image: url('./assets/mmp_background_image.jpg'); /* Replace 'path/to/your/image.jpg' with the path to your image */
   background-size: cover; /* Cover the entire background with the image */
   background-position: center; /* Center the background image */
   width:100%;
@@ -293,7 +57,7 @@ color: white; /* Customize arrow color */
 .home-right-content {
   flex:1;
   padding:50px;
-  background-image: url('./assets/background_pattern_1.jpg');
+  background:black;
   margin:20px;
 
 }
@@ -303,16 +67,15 @@ color: white; /* Customize arrow color */
   padding-bottom: 20px;
   font-size: 25px;
 }
-
 .home-name{
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.home-inputs{
-
-}
 .home-boxes{
   margin:5px;
+}
+.home-inputs{
+
 }
 .home-button{
   display: block;
@@ -324,11 +87,197 @@ color: white; /* Customize arrow color */
   margin-top: 20px;
   padding: 5px;
 }
+/* ABOUT US */
+.aboutus{
+  margin-top:20px;
+  width: 70%;
+  position: relative;
+  top:-6rem;
+  background: black;
+  padding-bottom: 4rem;
+  border-radius: 1rem;
+  padding-left: 1rem;
+  padding-right:1rem;
+}
+.aboutus-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color:white;
+}
+.aboutus-logo{
+  max-width: 100%;
+  width: 15rem;
+  padding-bottom:5px;
+   filter: brightness(0) invert(1); /* Change the image to white */
 
+}
+.aboutus-text{
+  text-align: center;
+}
+/* SERVICES */
+.services{
+  padding-top: 50px;
+  width:70%;
+}
+.services-heading{
+  text-align: center;
+  padding-bottom: 20px;
+}
+.services-list{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
 
-/*                       */
+}
+.service-sections{
+  padding:5px;
+  text-align: center;
+  margin:10px;
+}
+.service-card-class{
+
+}
+.services-card-images{
+
+}
+/* REVIEWS */
+.review{
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+  background:black;
+  align-items: center;
+  padding-bottom:100px;
+  margin-bottom: 50px;
+  padding-top:50px;
+  margin-top:10rem;
+}
+.review-heading{
+  color:white;
+  padding-bottom:50px;
+}
+.review-content{
+  display: flex;
+
+}
+.review-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size:20px;
+  color: lightgrey;
+}
+.review-button span {
+  font-size:1.5rem;
+  color:white;
+}
+.reviewPic{
+  max-width: 25rem;
+  min-width: 25rem;
+  max-height: 13rem;
+  min-height: 13rem;
+  border-radius:25px;
+}
+/* FAQ */
+.faq{
+  text-align: center;
+  margin: 10px;
+  width:80%;
+  margin-bottom:20rem;
+}
+.faq-list {
+  max-width: 90%;
+  padding-left:10px;
+  display:grid;
+  grid-template-columns: repeat(1, 1fr); /* Create a grid with 2 columns */
+  gap: 20px; /* Add spacing between button blocks */
+}
+.faq-content{
+
+}
 @media (max-width:768px) {
+/* APP */
+  .App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .app-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+/* HOME */
+  .home {
+    min-height: 80vh;
+    background-image: url('./assets/mmp_background_image.jpg'); /* Replace 'path/to/your/image.jpg' with the path to your image */
+    background-size: cover; /* Cover the entire background with the image */
+    background-position: center; /* Center the background image */
+    width:100%;
+    display: flex; /* Add flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  .home-content{
+    display: flex;
+    flex-direction: column;
+    color:white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .home-left-content {
+    width: 80%;
+    margin: auto;
+    flex:1;
+    padding: 10px;
+  }
+  .home-left-text{
+    padding-top: 50px;
+  }
+  .home-quote-button {
+    display: none;
+  }
+  .home-right-content {
+    flex:1;
+    padding:50px;
+    background-image: url('./assets/background_pattern_1.jpg');
+    margin:20px;
 
+  }
+  .home-subheading{
+    color:white;
+    text-align: center;
+    padding-bottom: 20px;
+    font-size: 25px;
+  }
+  .home-name{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .home-boxes{
+    margin:5px;
+  }
+  .home-inputs{
+    background-color: lightgrey;
+    border-color: lightgrey;
+  }
+  .home-button{
+    display: block;
+    border-radius: 10px;
+    font-weight: 500;
+    width:80%;
+    margin:auto;
+    background-color: white;
+    margin-top: 20px;
+    padding: 5px;
+  }
+/* ABOUT US */
   .aboutus{
     margin-top:20px;
     width: 100%;
@@ -358,82 +307,7 @@ color: white; /* Customize arrow color */
   .aboutus-text{
     text-align: center;
   }
-
-
-  .app-section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-
-  .home {
-    min-height: 80vh;
-    background-image: url('./assets/seb-creativo-3jG-UM8IZ40-unsplash2.jpg'); /* Replace 'path/to/your/image.jpg' with the path to your image */
-    background-size: cover; /* Cover the entire background with the image */
-    background-position: center; /* Center the background image */
-    width:100%;
-    display: flex; /* Add flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-  }
-  .home-content{
-    display: flex;
-    flex-direction: column;
-    color:white;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  .home-quote-button {
-    display: none;
-  }
-  .home-left-content {
-    width: 80%;
-    margin: auto;
-    flex:1;
-    padding: 10px;
-  }
-  .home-left-text{
-    padding-top: 50px;
-  }
-  .home-right-content {
-    flex:1;
-    padding:50px;
-    background-image: url('./assets/background_pattern_1.jpg');
-    margin:20px;
-
-  }
-  .home-subheading{
-    color:white;
-    text-align: center;
-    padding-bottom: 20px;
-    font-size: 25px;
-  }
-
-  .home-name{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .home-inputs{
-    background-color: lightgrey;
-    border-color: lightgrey;
-  }
-  .home-boxes{
-    margin:5px;
-  }
-  .home-button{
-    display: block;
-    border-radius: 10px;
-    font-weight: 500;
-    width:80%;
-    margin:auto;
-    background-color: white;
-    margin-top: 20px;
-    padding: 5px;
-  }
-
-
+/* SERVICES */
   .services{
     padding-top: 50px;
     width:100%;
@@ -442,47 +316,29 @@ color: white; /* Customize arrow color */
     text-align: center;
     padding-bottom: 20px;
   }
-  .services-card-images{
-
-  }
   .services-list{
     width: 95%;
     display: grid;
     grid-template-columns: repeat(1,1fr);
     margin: auto;
-
-  }
-  .card-class{
-    padding:5px;
   }
   .service-sections{
     padding:5px;
     text-align: center;
     margin:0px;
   }
-  .subheadings{
-    padding-top: 5px;
+  .services-card-class{
+    padding:5px;
   }
-  .packing-service{
-    flex: 1;
+  .services-card-images{
 
   }
-  .storage-service{
-    flex: 1;
+/* REVIEWS */
+  .review {
 
   }
-  .home-removal-service{
-    flex: 1;
+  .review-heading{
 
-  }
-  .single-item-service{
-    flex:1;
-  }
-  .courier-service{
-    flex:1;
-  }
-  .in-house-move-service{
-    flex:1;
   }
   .review-content{
     padding-top:50px;
@@ -490,13 +346,22 @@ color: white; /* Customize arrow color */
     flex-direction: row;
 
   }
+  .review-button{
+
+  }
   .reviewPic{
     padding:10px;
     max-width: 25rem;
   }
-
+/* FAQ */
   .faq{
     margin: 10px;
     width:95%;
+  }
+  .faq-list{
+
+  }
+  .faq-content{
+
   }
 }

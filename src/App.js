@@ -1,44 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button, Form, Carousel, Collapse} from 'react-bootstrap';
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import './App.css'
+import React, { useState } from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import inhouseImage from './assets/clay-banks-fAprylEyuCs-unsplash.jpg'
-import courierImage from './assets/rosebox-BFdSCxmqvYc-unsplash.jpg'
-import singleItemImage from './assets/brandable-box-8mCsyImZRGY-unsplash.jpg'
-import storageImage from './assets/joshua-coleman-ZVkDLrXGMdw-unsplash.jpg'
-import removalsImage from './assets/tania-melnyczuk-Iw3yGDDr1AY-unsplash.jpg'
-import backgroundImage from './assets/seb-creativo-3jG-UM8IZ40-unsplash2.jpg'; // Replace with the actual path to your image
-import secondImage from './assets/florian-steciuk-F7Rl02ir0Gg-unsplash2.jpg'; // Replace with the actual path to your image
+import inhouseImage from './assets/mmp_inhouse_image.jpg'
+import courierImage from './assets/mmp_courier_image.jpg'
+import singleItemImage from './assets/mmp_singleItem_image.jpg'
+import storageImage from './assets/mmp_storage_image.jpg'
+import removalsImage from './assets/mmp_removals_image.jpg'
+import packingImage from './assets/mmp_packing_image.jpg';
 import firstReview from './assets/Review1.JPG'; // Replace with the actual path to your image
 import secondReview from './assets/Review2.JPG';
 import thirdReview from './assets/Review3.JPG';
 import fourthReview from './assets/Review4.JPG';
 import fifthReview from './assets/Review5.JPG';
-import TailoredSolutionsImage from './assets/erda-estremera-sxNt9g77PE0-unsplash.jpg';
-import ProfessionalExpertiseImage from './assets/ruthson-zimmerman-Ws4wd-vJ9M0-unsplash.jpg';
-import ReliabilityImage from './assets/sincerely-media-EtyBBUByPSQ-unsplash.jpg';
-import './App.css'
-import CallbackModal from './CallbackModal';
 import Estimate from './Estimate';
 import Navbar from './Navbar'
 import Footer from './Footer'
 import Callbanner from './Callbanner'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { LuPackage } from "react-icons/lu";
-import { FaWarehouse } from "react-icons/fa6";
-import { FaHouseChimney } from "react-icons/fa6";
-import { RiEBike2Fill } from "react-icons/ri";
-import { LuPackageOpen } from "react-icons/lu";
-import { TbTrolley } from "react-icons/tb";
-import { FaWhatsapp } from "react-icons/fa";
-import { useSpring, animated } from 'react-spring';
 import Accordion from '@mui/material/Accordion';
-import AccordionActions from '@mui/material/AccordionActions';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -47,14 +30,6 @@ import CompanyLogo from './assets/mmpLogo.png';
 
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
-  const handleModalOpen = () => {
-    setShowModal(true);
-  };
-  const handleModalClose = () => {
-    setShowModal(false);
-  };
-
   const Home = () => {
     return(
       <div className = "home">
@@ -75,7 +50,6 @@ function App() {
               <input type="text" className="form-control home-inputs" placeholder = "Surname" />
             </div>
           </div>
-
           <div className="mb-3 home-boxes" >
             <input type="text" className="form-control home-inputs" placeholder = "Phone Number" />
           </div>
@@ -101,7 +75,7 @@ function App() {
     return (
       <div className="aboutus">
         <div className="aboutus-container">
-          <img src={CompanyLogo} className="aboutus-logo" />
+          <img src={CompanyLogo} alt="Company Logo"className="aboutus-logo" />
           <p className = "aboutus-text">
             At Magnum Movers &amp; Packers, we specialize in facilitating seamless office and household
             relocations, providing expert packing, unpacking, and secure storage solutions through our
@@ -115,41 +89,59 @@ function App() {
       </div>
     )
   };
-  const Services = () => {
-    let cardWidth = "25rem";
-    let topPadding = "1rem";
+  const Services =() => {
     return(
       <div className = "services">
         <h1 className ="services-heading"> Services </h1>
         <div className="services-list">
-        <FlippableCard className = "services-packing-card" title="Packing" image= {TailoredSolutionsImage} backContent="Our professional packing service ensures your belongings are carefully and securely packed using high-quality materials and expertise." />
-        <FlippableCard title="Storage" image= {storageImage} backContent="Our storage solutions offer a safe and convenient option for securely storing your belongings during transitions or when space is limited." />
-        <FlippableCard title="Home Removals" image= {removalsImage} backContent="Our comprehensive home removal service provides a hassle-free solution for relocating your household belongings to your new residence." />
-        <FlippableCard title="Single Item Pickup" image= {singleItemImage} backContent= "Pick-up and transport single items with our item pickup service, ensuring seamless and secure transportation from pickup to delivery." />
-        <FlippableCard title="Courier Service" image= {courierImage} backContent="Efficiently deliver packages and goods with our reliable courier service, providing prompt and secure transportation to any destination." />
-        <FlippableCard title="In-House Move" image= {inhouseImage} backContent="Efficiently rearrange furniture and items within your home with our convenient in-house move service, tailored to meet all your needs." />
+        <ServiceCard title="Packing" image= {packingImage} content="Our professional packing service ensures your belongings are carefully and securely packed using high-quality materials and expertise." />
+        <ServiceCard title="Storage" image= {storageImage} content="Our storage solutions offer a safe and convenient option for securely storing your belongings during transitions or when space is limited." />
+        <ServiceCard title="Home Removals" image= {removalsImage} content="Our comprehensive home removal service provides a hassle-free solution for relocating your household belongings to your new residence." />
+        <ServiceCard title="Single Item Pickup" image= {singleItemImage} content= "Pick-up and transport single items with our item pickup service, ensuring seamless and secure transportation from pickup to delivery." />
+        <ServiceCard title="Courier Service" image= {courierImage} content="Efficiently deliver packages and goods with our reliable courier service, providing prompt and secure transportation to any destination." />
+        <ServiceCard title="In-House Move" image= {inhouseImage} content="Efficiently rearrange furniture and items within your home with our convenient in-house move service, tailored to meet all your needs." />
         </div>
       </div>
       )
   };
+  const ServiceCard = ({ title, image, content }) => {
+    return (
+      <div className="service-sections">
+        <Card className="service-card-class" sx={{ maxWidth: 500, maxHeight:900, border: '2px solid black', backgroundColor: "black", }}>
+          <CardContent>
+            <CardMedia
+              className="services-card-images"
+              component="img"
+              height="140"
+              image={image}
+              alt={title}
+            />
+            <Typography gutterBottom variant="h5" component="div" color="white">
+              {title}
+            </Typography>
+            <Typography variant="body2" color="white">
+              {content}
+            </Typography>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  };
   const Review = () => {
     const images = [firstReview, secondReview, thirdReview, fourthReview, fifthReview];
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
     const goToPreviousImage = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
     };
-
     const goToNextImage = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
     };
-
     return (
         <div className="review">
             <h2 className="review-heading">Testimonials</h2>
             <div className="review-content">
                 <button className="review-button" onClick={goToPreviousImage}>{'<'}</button>
-                <img src={images[currentImageIndex]} alt="Review Image" className="reviewPic" />
+                <img src={images[currentImageIndex]} alt="Reviews" className="reviewPic" />
                 <button className="review-button" onClick={goToNextImage}>{'>'}</button>
             </div>
         </div>
@@ -294,50 +286,9 @@ function App() {
       </div>
     )
   };
-  const FlippableCard = ({ title, image, backContent }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  const handleCardClick = () => {
-    setIsFlipped(!isFlipped);
-  };
-
-  return (
-    <div className="service-sections">
-      <Card className="card-class" sx={{ maxWidth: 500, maxHeight:900, border: '2px solid black', backgroundColor: "black", }}>
-        <CardActionArea onClick={handleCardClick}>
-          {isFlipped ? (
-            <CardContent>
-              <Typography gutterBottom variant="body1" component="div" color="white" sx={{ fontSize: "1rem" }}>
-                {backContent}
-              </Typography>
-            </CardContent>
-          ) : (
-            <>
-              <CardMedia
-                className = "services-card-images"
-                component="img"
-                height="140"
-                image={image}
-                alt={title}
-              />
-              <CardContent>
-              <Typography gutterBottom variant="h5" component="div" color="white">
-                {title}
-              </Typography>
-              <Typography variant="body2" color="white">
-                {backContent}
-              </Typography>
-              </CardContent>
-            </>
-          )}
-        </CardActionArea>
-      </Card>
-    </div>
-  );
-};
   return (
       <div className="App">
-        <Navbar /> {/* Corrected syntax for rendering the Navbar component */}
+        <Navbar />
         <Home />
         <div className ="app-section">
           <AboutUs/>
@@ -357,5 +308,4 @@ function App() {
       </div>
   );
 }
-
 export default App;
